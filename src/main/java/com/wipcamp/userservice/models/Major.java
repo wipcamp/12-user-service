@@ -1,13 +1,11 @@
 package com.wipcamp.userservice.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@Table(name = "majors")
 public class Major {
 
 	@Id
