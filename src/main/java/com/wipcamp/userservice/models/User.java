@@ -1,19 +1,31 @@
 package com.wipcamp.userservice.models;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import java.sql.Date;
 
 @Entity
+@Table(name = "users")
 public class User {
 	@Id
 	@GeneratedValue
 	private long id;
 	private long lineId;
 	private long facebookId;
+
+	@NonNull
 	private String firstName;
+	@NonNull
 	private String lastName;
+
 	private String firstNameEn;
 	private String lastNameEn;
 	private String nickName;
@@ -22,18 +34,28 @@ public class User {
 	private String gender;
 	private char bloodGroup;
 	private long telNo;
-	private Address address;
 	private String religion;
 	private String school;
 	private int level;
 	private double gpax;
 	private char shirtSize;
-	private Parent parent;
 	private long telEmergency;
 	private String allergicFood;
 	private String congenitalDisease;
 	private String congenitalDrug;
+
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName = "id")
+	private Address address;
+
+	@OneToOne
+	@JoinColumn(name="parent_id",referencedColumnName = "id")
+	private Parent parent;
+
+	@ManyToOne
+	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
+
 
 	public User(long id, long lineId, long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
 			String nickName, Date birthDate, long citizenId, String gender, char bloodGroup, long telNo, Address address,
@@ -63,6 +85,10 @@ public class User {
 		this.allergicFood = allergicFood;
 		this.congenitalDisease = congenitalDisease;
 		this.congenitalDrug = congenitalDrug;
+	}
+
+	public User() {
+
 	}
 
 	public long getId() {
