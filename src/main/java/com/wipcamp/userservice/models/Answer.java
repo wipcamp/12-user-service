@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "answers")
 public class Answer {
 	@Id
 	@GeneratedValue
@@ -25,7 +27,6 @@ public class Answer {
 	@ManyToOne
 	@JoinColumn(name="question_id",referencedColumnName = "id")
 	private Question question;
-
 
 	@NonNull
 	private String answerContent;
