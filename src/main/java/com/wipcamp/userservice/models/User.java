@@ -1,8 +1,14 @@
 package com.wipcamp.userservice.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.sql.Date;
 
+@Entity
 public class User {
+	@Id
+	@GeneratedValue
 	private long id;
 	private long lineId;
 	private long facebookId;
@@ -14,22 +20,50 @@ public class User {
 	private Date birthDate;
 	private long citizenId;
 	private String gender;
-	private long telNo;
-	private String addrProvince;
-	private String addrDistict;
 	private char bloodGroup;
+	private long telNo;
+	private Address address;
 	private String religion;
 	private String school;
 	private int level;
 	private double gpax;
-	private char size;
-	private String major;
-	private String telParent;
-	private String parentRelation;
+	private char shirtSize;
+	private Parent parent;
 	private long telEmergency;
 	private String allergicFood;
 	private String congenitalDisease;
 	private String congenitalDrug;
+	private Major major;
+
+	public User(long id, long lineId, long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
+			String nickName, Date birthDate, long citizenId, String gender, char bloodGroup, long telNo, Address address,
+			String religion, String school, int level, double gpax, char shirtSize, Parent parent, long telEmergency,
+			String allergicFood, String congenitalDisease, String congenitalDrug) {
+		this.id = id;
+		this.lineId = lineId;
+		this.facebookId = facebookId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.firstNameEn = firstNameEn;
+		this.lastNameEn = lastNameEn;
+		this.nickName = nickName;
+		this.birthDate = birthDate;
+		this.citizenId = citizenId;
+		this.gender = gender;
+		this.bloodGroup = bloodGroup;
+		this.telNo = telNo;
+		this.address = address;
+		this.religion = religion;
+		this.school = school;
+		this.level = level;
+		this.gpax = gpax;
+		this.shirtSize = shirtSize;
+		this.parent = parent;
+		this.telEmergency = telEmergency;
+		this.allergicFood = allergicFood;
+		this.congenitalDisease = congenitalDisease;
+		this.congenitalDrug = congenitalDrug;
+	}
 
 	public long getId() {
 		return id;
@@ -119,6 +153,14 @@ public class User {
 		this.gender = gender;
 	}
 
+	public char getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(char bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+
 	public long getTelNo() {
 		return telNo;
 	}
@@ -127,28 +169,12 @@ public class User {
 		this.telNo = telNo;
 	}
 
-	public String getAddrProvince() {
-		return addrProvince;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddrProvince(String addrProvince) {
-		this.addrProvince = addrProvince;
-	}
-
-	public String getAddrDistict() {
-		return addrDistict;
-	}
-
-	public void setAddrDistict(String addrDistict) {
-		this.addrDistict = addrDistict;
-	}
-
-	public char getBloodGroup() {
-		return bloodGroup;
-	}
-
-	public void setBloodGroup(char bloodGroup) {
-		this.bloodGroup = bloodGroup;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getReligion() {
@@ -183,36 +209,28 @@ public class User {
 		this.gpax = gpax;
 	}
 
-	public char getSize() {
-		return size;
+	public char getShirtSize() {
+		return shirtSize;
 	}
 
-	public void setSize(char size) {
-		this.size = size;
+	public void setShirtSize(char shirtSize) {
+		this.shirtSize = shirtSize;
 	}
 
-	public String getMajor() {
+	public Major getMajor() {
 		return major;
 	}
 
-	public void setMajor(String major) {
+	public void setMajor(Major major) {
 		this.major = major;
 	}
 
-	public String getTelParent() {
-		return telParent;
+	public Parent getParent() {
+		return parent;
 	}
 
-	public void setTelParent(String telParent) {
-		this.telParent = telParent;
-	}
-
-	public String getParentRelation() {
-		return parentRelation;
-	}
-
-	public void setParentRelation(String parentRelation) {
-		this.parentRelation = parentRelation;
+	public void setParent(Parent parent) {
+		this.parent = parent;
 	}
 
 	public long getTelEmergency() {
