@@ -31,11 +31,11 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> getUser(@PathVariable("userId") int userId) {
 		try{
-			//if user already create account response with thier information and status found
+			//if user already create account response with their information and status found
 			return new ResponseEntity<User>(userService.findById(userId), HttpStatus.FOUND)	;
 		} catch(NoSuchElementException ex){
-			//if user never visit and don't have account before, create account in db and status created
-			return new ResponseEntity<User>(new User(), HttpStatus.CREATED);
+			//if user never visit and don't have account send not found status
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -46,6 +46,7 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else{
 			//if dont have error in code so add information to user and status created
+
 			return new ResponseEntity<User>(userService.updateUser(newUser) , HttpStatus.CREATED);
 		}
 	}
