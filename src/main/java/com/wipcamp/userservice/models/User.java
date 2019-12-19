@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 import java.sql.Date;
 
@@ -18,27 +22,34 @@ public class User {
 	@Id
 	@GeneratedValue
 	private long id;
+
 	private long lineId;
 	private long facebookId;
 
-	@NonNull
 	private String firstName;
-	@NonNull
 	private String lastName;
 
 	private String firstNameEn;
 	private String lastNameEn;
 	private String nickName;
+
+
+	@Email(message = "Invalid email! Please enter valid email")
+	private String email;
+
 	private Date birthDate;
+
+
+	@Pattern(regexp = "^[0-9]{13}", message = "Citizen ID must be 13 digits")
 	private long citizenId;
+
 	private String gender;
-	private char bloodGroup;
+	private String bloodGroup;
 	private long telNo;
 	private String religion;
 	private String school;
 	private int level;
 	private double gpax;
-	private char shirtSize;
 	private long telEmergency;
 	private String allergicFood;
 	private String congenitalDisease;
@@ -58,8 +69,8 @@ public class User {
 
 
 	public User(long id, long lineId, long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
-			String nickName, Date birthDate, long citizenId, String gender, char bloodGroup, long telNo, Address address,
-			String religion, String school, int level, double gpax, char shirtSize, Parent parent, long telEmergency,
+			String nickName, Date birthDate, long citizenId, String gender, String bloodGroup, long telNo, Address address,
+			String religion, String school, int level, double gpax, Parent parent, long telEmergency,
 			String allergicFood, String congenitalDisease, String congenitalDrug) {
 		this.id = id;
 		this.lineId = lineId;
@@ -79,7 +90,6 @@ public class User {
 		this.school = school;
 		this.level = level;
 		this.gpax = gpax;
-		this.shirtSize = shirtSize;
 		this.parent = parent;
 		this.telEmergency = telEmergency;
 		this.allergicFood = allergicFood;
@@ -179,11 +189,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public char getBloodGroup() {
+	public String getBloodGroup() {
 		return bloodGroup;
 	}
 
-	public void setBloodGroup(char bloodGroup) {
+	public void setBloodGroup(String bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
 
@@ -233,14 +243,6 @@ public class User {
 
 	public void setGpax(double gpax) {
 		this.gpax = gpax;
-	}
-
-	public char getShirtSize() {
-		return shirtSize;
-	}
-
-	public void setShirtSize(char shirtSize) {
-		this.shirtSize = shirtSize;
 	}
 
 	public Major getMajor() {
