@@ -13,7 +13,9 @@ public class UserService {
 
 	public User addUser(User newUser) { return userRepository.save(newUser); }
 
-	public User findById(int i) {
-		return userRepository.findById(Long.valueOf(i)).get();
+	public User updateUser(User newUser) { return userRepository.save(newUser); }
+
+	public User findById(long i) {
+		return userRepository.findById(i).get();
 	}
 }
