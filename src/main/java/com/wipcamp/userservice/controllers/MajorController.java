@@ -31,30 +31,22 @@ public class MajorController {
 	@GetMapping("")
 	public ResponseEntity<List<Major>> getAllMajor(HttpServletRequest request){
 		try{
-			List<Major> allMajor = majorService.getAllMajor();
-			if(allMajor.isEmpty()){
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No major in database" );
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			} else{
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Major size is " + allMajor.size());
-				return new ResponseEntity<List<Major>>(allMajor,HttpStatus.FOUND);
-			}
+			List<Major> allMajor = majorService.getAllMajor(request);
+			return new ResponseEntity<List<Major>>(allMajor,HttpStatus.FOUND);
 		} catch (NoSuchElementException ex){
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No major in database" );
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 	//Get single major when mapping major_id , return status found when major_id match in database
 	@GetMapping("/{majorId}")
 	public ResponseEntity<Major> getMajorByMajorId(@PathVariable("majorId") Long majorId , HttpServletRequest request){
-		try{
-			Major currentMajor = majorService.findMajorById(majorId);
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Major is " + currentMajor.getName());
-			return new ResponseEntity<Major>(currentMajor,HttpStatus.FOUND);
-		} catch(NoSuchElementException ex){
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Major not found" );
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+			Major currentMajor = majorService.findMajorById(majorId , request);
+			if(currentMajor == null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			} else{
+				return new ResponseEntity<Major>(currentMajor,HttpStatus.FOUND);
+			}
 	}
 
 }
