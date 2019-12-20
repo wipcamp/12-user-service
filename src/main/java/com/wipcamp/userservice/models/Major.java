@@ -1,5 +1,7 @@
 package com.wipcamp.userservice.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Major {
 
 	private String description;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "major")
 	private List<Question> questions;
 
