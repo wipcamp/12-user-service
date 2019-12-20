@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -20,14 +21,15 @@ import javax.validation.constraints.Pattern;
 import java.sql.Date;
 
 @Entity
-@Table(name = "users")
-@SequenceGenerator(name = "port_gen", sequenceName = "port_gen",  initialValue = 120000)
+@Table(name = "users",
+		uniqueConstraints= @UniqueConstraint(columnNames={"wipId"}))
+@SequenceGenerator(name = "wipIdIncrement",  initialValue = 120000, allocationSize = 10000)
 public class User {
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "port_gen")
+	@GeneratedValue
 	private long wipId;
 	private Long lineId;
 	private Long facebookId;
