@@ -27,7 +27,7 @@ import java.sql.Date;
 public class User {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 
 	@GeneratedValue
 	private long wipId;
