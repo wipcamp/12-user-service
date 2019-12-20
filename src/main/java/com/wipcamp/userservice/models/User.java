@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -19,6 +20,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users",
@@ -76,6 +78,9 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
+
+	@OneToMany(mappedBy = "user")
+	private List<Answer> answerList;
 
 	public User() {
 	}
@@ -318,5 +323,17 @@ public class User {
 
 	public void setMajor(Major major) {
 		this.major = major;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<Answer> getAnswerList() {
+		return answerList;
+	}
+
+	public void setAnswerList(List<Answer> answerList) {
+		this.answerList = answerList;
 	}
 }
