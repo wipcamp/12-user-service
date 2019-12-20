@@ -36,6 +36,15 @@ public class Question {
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answerList;
 
+	public Question() {
+	}
+
+	public Question(String name, Major major, List<Answer> answerList) {
+		this.name = name;
+		this.major = major;
+		this.answerList = answerList;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -44,12 +53,11 @@ public class Question {
 		this.id = id;
 	}
 
-	@NonNull
 	public String getName() {
 		return name;
 	}
 
-	public void setName(@NonNull String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
