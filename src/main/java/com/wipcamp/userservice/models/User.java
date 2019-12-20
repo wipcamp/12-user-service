@@ -2,12 +2,15 @@ package com.wipcamp.userservice.models;
 
 import org.springframework.lang.NonNull;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -18,13 +21,16 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "users")
+@SequenceGenerator(name = "port_gen", sequenceName = "port_gen",  initialValue = 120000)
 public class User {
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
-	private long lineId;
-	private long facebookId;
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "port_gen")
+	private long wipId;
+	private Long lineId;
+	private Long facebookId;
 
 	private String firstName;
 	private String lastName;
@@ -39,18 +45,20 @@ public class User {
 
 	private Date birthDate;
 
-
-	@Pattern(regexp = "^[0-9]{13}", message = "Citizen ID must be 13 digits")
-	private long citizenId;
+	private String citizenId;
 
 	private String gender;
 	private String bloodGroup;
-	private long telNo;
+	@Column(nullable = true)
+	private Long telNo;
 	private String religion;
 	private String school;
-	private int level;
-	private double gpax;
-	private long telEmergency;
+	@Column(nullable = true)
+	private Integer level;
+	@Column(nullable = true)
+	private Long telEmergency;
+	@Column(nullable = true)
+	private Double gpax;
 	private String allergicFood;
 	private String congenitalDisease;
 	private String congenitalDrug;
@@ -67,12 +75,15 @@ public class User {
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
 
+	public User() {
+	}
 
-	public User(long id, long lineId, long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
-			String nickName, Date birthDate, long citizenId, String gender, String bloodGroup, long telNo, Address address,
-			String religion, String school, int level, double gpax, Parent parent, long telEmergency,
-			String allergicFood, String congenitalDisease, String congenitalDrug) {
-		this.id = id;
+	public User(Long lineId, Long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
+			String nickName, @Email(message = "Invalid email! Please enter valid email") String email, Date birthDate,
+			String citizenId,
+			String gender, String bloodGroup, Long telNo, String religion, String school, Integer level, Long telEmergency,
+			Double gpax,
+			String allergicFood, String congenitalDisease, String congenitalDrug, Address address, Parent parent, Major major) {
 		this.lineId = lineId;
 		this.facebookId = facebookId;
 		this.firstName = firstName;
@@ -80,48 +91,54 @@ public class User {
 		this.firstNameEn = firstNameEn;
 		this.lastNameEn = lastNameEn;
 		this.nickName = nickName;
+		this.email = email;
 		this.birthDate = birthDate;
 		this.citizenId = citizenId;
 		this.gender = gender;
 		this.bloodGroup = bloodGroup;
 		this.telNo = telNo;
-		this.address = address;
 		this.religion = religion;
 		this.school = school;
 		this.level = level;
-		this.gpax = gpax;
-		this.parent = parent;
 		this.telEmergency = telEmergency;
+		this.gpax = gpax;
 		this.allergicFood = allergicFood;
 		this.congenitalDisease = congenitalDisease;
 		this.congenitalDrug = congenitalDrug;
+		this.address = address;
+		this.parent = parent;
+		this.major = major;
 	}
 
-	public User() {
-
-	}
-
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getLineId() {
+	public long getWipId() {
+		return wipId;
+	}
+
+	public void setWipId(long wipId) {
+		this.wipId = wipId;
+	}
+
+	public Long getLineId() {
 		return lineId;
 	}
 
-	public void setLineId(long lineId) {
+	public void setLineId(Long lineId) {
 		this.lineId = lineId;
 	}
 
-	public long getFacebookId() {
+	public Long getFacebookId() {
 		return facebookId;
 	}
 
-	public void setFacebookId(long facebookId) {
+	public void setFacebookId(Long facebookId) {
 		this.facebookId = facebookId;
 	}
 
@@ -165,6 +182,14 @@ public class User {
 		this.nickName = nickName;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -173,11 +198,11 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public long getCitizenId() {
+	public String getCitizenId() {
 		return citizenId;
 	}
 
-	public void setCitizenId(long citizenId) {
+	public void setCitizenId(String citizenId) {
 		this.citizenId = citizenId;
 	}
 
@@ -197,20 +222,12 @@ public class User {
 		this.bloodGroup = bloodGroup;
 	}
 
-	public long getTelNo() {
+	public Long getTelNo() {
 		return telNo;
 	}
 
-	public void setTelNo(long telNo) {
+	public void setTelNo(Long telNo) {
 		this.telNo = telNo;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public String getReligion() {
@@ -229,44 +246,28 @@ public class User {
 		this.school = school;
 	}
 
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 
-	public double getGpax() {
-		return gpax;
-	}
-
-	public void setGpax(double gpax) {
-		this.gpax = gpax;
-	}
-
-	public Major getMajor() {
-		return major;
-	}
-
-	public void setMajor(Major major) {
-		this.major = major;
-	}
-
-	public Parent getParent() {
-		return parent;
-	}
-
-	public void setParent(Parent parent) {
-		this.parent = parent;
-	}
-
-	public long getTelEmergency() {
+	public Long getTelEmergency() {
 		return telEmergency;
 	}
 
-	public void setTelEmergency(long telEmergency) {
+	public void setTelEmergency(Long telEmergency) {
 		this.telEmergency = telEmergency;
+	}
+
+	public Double getGpax() {
+		return gpax;
+	}
+
+	public void setGpax(Double gpax) {
+		this.gpax = gpax;
 	}
 
 	public String getAllergicFood() {
@@ -291,5 +292,29 @@ public class User {
 
 	public void setCongenitalDrug(String congenitalDrug) {
 		this.congenitalDrug = congenitalDrug;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
+
+	public Major getMajor() {
+		return major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
 	}
 }
