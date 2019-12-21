@@ -41,11 +41,11 @@ public class UserController {
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
-//	@GetMapping("/create")
-////	public ResponseEntity<User> createUser(){
-////		User user = new User();
-////		return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
-////	}
+	@GetMapping("/create")
+	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request){
+		ResponseForm result = userService.createUser(request);
+		return new ResponseEntity<>(result, result.getHttpCode());
+	}
 	//Example of Mapping User
 //	@GetMapping("/{userId}")
 //	@ResponseBody
