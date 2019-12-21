@@ -25,6 +25,6 @@ public class AnswerController {
 	public ResponseEntity<ResponseForm> createAnswer(@RequestBody @Valid StoreAnswerRequest request, @PathVariable long userId,
 			@PathVariable long majorId){
 		ResponseForm result = this.answerService.createAnswer(request,userId,majorId);
-		return new ResponseEntity<>(result, result.getCode());
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 }
