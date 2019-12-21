@@ -26,6 +26,6 @@ public class QuestionService {
 	}
 
 	public List<Question> getQuestionListByMajorId(Long majorId){
-		return questionRepository.findAllQuestionByMajorId(majorId);
+		return questionRepository.findByMajorId(majorId);
 	}
 }
