@@ -3,6 +3,8 @@ package com.wipcamp.userservice.controllers;
 import com.wipcamp.userservice.models.User;
 import com.wipcamp.userservice.services.UserService;
 
+import com.wipcamp.userservice.utils.ResponseForm;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@CrossOrigin("*")
+@CrossOrigin("${CROSSSITEDOMAIN}")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -38,29 +40,35 @@ public class UserController {
 
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	@GetMapping("/create")
-	public ResponseEntity<User> createUser(){
-		User user = new User();
-		return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
-	}
+
+//	@GetMapping("/create")
+////	public ResponseEntity<User> createUser(){
+////		User user = new User();
+////		return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
+////	}
 	//Example of Mapping User
+//	@GetMapping("/{userId}")
+//	@ResponseBody
+//	public ResponseEntity<User> getUser(@PathVariable("userId") long userId , HttpServletRequest request) {
+//		try{
+//			User currentUser = userService.findById(userId);
+//			//if user already create account response with their information and status found --> Check account which line_id or facebook_id is match this user so return information of them.
+//			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User is " + currentUser.getFirstNameEn() + currentUser.getLastNameEn());
+//			return new ResponseEntity<User>(currentUser, HttpStatus.FOUND)	;
+//		} catch(NoSuchElementException ex){
+//			//if user never visit and don't have account send not found status
+//			logger.warn(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "user not found");
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//	}
+
 	@GetMapping("/{userId}")
-	@ResponseBody
-	public ResponseEntity<User> getUser(@PathVariable("userId") long userId , HttpServletRequest request) {
-		try{
-			User currentUser = userService.findById(userId);
-			//if user already create account response with their information and status found --> Check account which line_id or facebook_id is match this user so return information of them.
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User is " + currentUser.getFirstNameEn() + currentUser.getLastNameEn());
-			return new ResponseEntity<User>(currentUser, HttpStatus.FOUND)	;
-		} catch(NoSuchElementException ex){
-			//if user never visit and don't have account send not found status
-			logger.warn(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "user not found");
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<ResponseForm> getUserByUserId(@PathVariable("userId") long userId , HttpServletRequest request){
+		ResponseForm result = userService.getUserByUserId(userId , request);
+		return new ResponseEntity<>(result,result.getHttpCode());
 	}
 
 	@PutMapping("/{userId}")
-	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<User> updateUserInformation(
 			@PathVariable("userId") long userId,
 			@Valid @RequestBody User user,
