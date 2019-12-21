@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -41,7 +42,7 @@ public class UserController {
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
-	@GetMapping("/create")
+	@PostMapping("/create")
 	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request){
 		ResponseForm result = userService.createUser(request);
 		return new ResponseEntity<>(result, result.getHttpCode());
