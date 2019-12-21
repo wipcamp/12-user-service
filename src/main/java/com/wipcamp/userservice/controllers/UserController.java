@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -36,6 +38,11 @@ public class UserController {
 
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 
+	@GetMapping("/create")
+	public ResponseEntity<User> createUser(){
+		User user = new User();
+		return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
+	}
 	//Example of Mapping User
 	@GetMapping("/{userId}")
 	@ResponseBody
@@ -70,8 +77,6 @@ public class UserController {
 			if(!userOptional.isPresent()){
 				return ResponseEntity.notFound().build();
 			}
-
-
 			return new ResponseEntity<User>(userService.updateUser(user) , HttpStatus.CREATED);
 		}
 	}
