@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
-	@Query("FROM Question q where q.major.id = :majorId")
-	List<Question> findAllQuestionByMajorId(@Param("majorId") Long majorId);
+	List<Question> findByMajorId(@Param("majorId") Long majorId);
 
 }
