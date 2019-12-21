@@ -1,5 +1,7 @@
 package com.wipcamp.userservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.NonNull;
 
@@ -85,14 +87,17 @@ public class User {
 	@Column(nullable = true)
 	private String congenitalDrug;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="address_id",referencedColumnName = "id")
 	private Address address;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="parent_id",referencedColumnName = "id")
 	private Parent parent;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
