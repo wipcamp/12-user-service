@@ -1,5 +1,6 @@
 package com.wipcamp.userservice.models;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
@@ -23,39 +24,53 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "users",
-		uniqueConstraints= @UniqueConstraint(columnNames={"wipId"}))
-@SequenceGenerator(name = "wipIdIncrement",  initialValue = 120000, allocationSize = 10000)
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"wipId"}))
 public class User {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
 
-	@GeneratedValue
+
+
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long wipId;
 	private Long lineId;
+	@Column(nullable = true)
 	private Long facebookId;
 
+	@Column(nullable = true)
 	private String firstName;
+	@Column(nullable = true)
 	private String lastName;
 
+	@Column(nullable = true)
 	private String firstNameEn;
+	@Column(nullable = true)
 	private String lastNameEn;
+	@Column(nullable = true)
 	private String nickName;
 
 
-	@Email(message = "Invalid email! Please enter valid email")
+
+	@Column(nullable = true)
 	private String email;
 
+	@Column(nullable = true)
 	private Date birthDate;
 
+	@Column(nullable = true)
 	private String citizenId;
 
+	@Column(nullable = true)
 	private String gender;
+	@Column(nullable = true)
 	private String bloodGroup;
 	@Column(nullable = true)
 	private Long telNo;
+	@Column(nullable = true)
 	private String religion;
+	@Column(nullable = true)
 	private String school;
 	@Column(nullable = true)
 	private Integer level;
@@ -63,8 +78,11 @@ public class User {
 	private Long telEmergency;
 	@Column(nullable = true)
 	private Double gpax;
+	@Column(nullable = true)
 	private String allergicFood;
+	@Column(nullable = true)
 	private String congenitalDisease;
+	@Column(nullable = true)
 	private String congenitalDrug;
 
 	@OneToOne
@@ -86,7 +104,7 @@ public class User {
 	}
 
 	public User(Long lineId, Long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
-			String nickName, @Email(message = "Invalid email! Please enter valid email") String email, Date birthDate,
+			String nickName, String email, Date birthDate,
 			String citizenId,
 			String gender, String bloodGroup, Long telNo, String religion, String school, Integer level, Long telEmergency,
 			Double gpax,
@@ -335,5 +353,17 @@ public class User {
 
 	public void setAnswerList(List<Answer> answerList) {
 		this.answerList = answerList;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", wipId=" + wipId + ", lineId=" + lineId + ", facebookId=" + facebookId + ", firstName='"
+				+ firstName + '\'' + ", lastName='" + lastName + '\'' + ", firstNameEn='" + firstNameEn + '\'' + ", lastNameEn='"
+				+ lastNameEn + '\'' + ", nickName='" + nickName + '\'' + ", email='" + email + '\'' + ", birthDate=" + birthDate
+				+ ", citizenId='" + citizenId + '\'' + ", gender='" + gender + '\'' + ", bloodGroup='" + bloodGroup + '\'' + ", telNo="
+				+ telNo + ", religion='" + religion + '\'' + ", school='" + school + '\'' + ", level=" + level + ", telEmergency="
+				+ telEmergency + ", gpax=" + gpax + ", allergicFood='" + allergicFood + '\'' + ", congenitalDisease='" + congenitalDisease
+				+ '\'' + ", congenitalDrug='" + congenitalDrug + '\'' + ", address=" + address + ", parent=" + parent + ", major=" + major
+				+ ", answerList=" + answerList + '}';
 	}
 }
