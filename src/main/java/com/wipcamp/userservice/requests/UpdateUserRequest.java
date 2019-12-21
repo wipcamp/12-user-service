@@ -8,7 +8,7 @@ public class UpdateUserRequest extends User {
 	private String addr_district;
 
 	private String parent_relation;
-	private long parent_telno;
+	private Long parent_telno;
 
 	public String getAddr_province() {
 		return addr_province;
@@ -37,11 +37,11 @@ public class UpdateUserRequest extends User {
 		this.parent_relation = parent_relation;
 	}
 
-	public long getParent_telno() {
+	public Long getParent_telno() {
 		return parent_telno;
 	}
 
-	public void setParent_telno(long parent_telno) {
+	public void setParent_telno(Long parent_telno) {
 		super.getParent().setTelNo(parent_telno);
 		this.parent_telno = parent_telno;
 	}
