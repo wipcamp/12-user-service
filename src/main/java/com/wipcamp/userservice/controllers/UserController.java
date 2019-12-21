@@ -76,12 +76,11 @@ public class UserController {
 			ModelMap model){
 
 		if (theBindingResult.hasErrors()){
-			//if binding result has error so return bad request
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		} else{
-			//if dont have error in code so add information to user and status created
+				//if binding result has error so return bad request
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}else{
+				//if dont have error in code so add information to user and status created
 			Optional<User> userOptional = userService.findByOptionalId(userId);
-
 			if(!userOptional.isPresent()){
 				return ResponseEntity.notFound().build();
 			}
