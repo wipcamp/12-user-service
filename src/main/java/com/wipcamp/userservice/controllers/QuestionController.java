@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin("${CROSSSITEDOMAIN}")
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
