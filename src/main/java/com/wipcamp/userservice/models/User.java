@@ -75,7 +75,7 @@ public class User {
 	@Column(nullable = true)
 	private String school;
 	@Column(nullable = true)
-	private Integer level;
+	private String level;
 	@Column(nullable = true)
 	private Long telEmergency;
 	@Column(nullable = true)
@@ -109,11 +109,10 @@ public class User {
 	}
 
 	public User(Long lineId, Long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
-			String nickName, String email, Date birthDate,
-			String citizenId,
-			String gender, String bloodGroup, Long telNo, String religion, String school, Integer level, Long telEmergency,
-			Double gpax,
-			String allergicFood, String congenitalDisease, String congenitalDrug, Address address, Parent parent, Major major) {
+			String nickName, String email, Date birthDate, String citizenId, String gender, String bloodGroup, Long telNo,
+			String religion, String school, String level, Long telEmergency, Double gpax, String allergicFood,
+			String congenitalDisease,
+			String congenitalDrug, Address address, Parent parent, Major major, List<Answer> answerList) {
 		this.lineId = lineId;
 		this.facebookId = facebookId;
 		this.firstName = firstName;
@@ -138,6 +137,7 @@ public class User {
 		this.address = address;
 		this.parent = parent;
 		this.major = major;
+		this.answerList = answerList;
 	}
 
 	public Long getId() {
@@ -276,11 +276,11 @@ public class User {
 		this.school = school;
 	}
 
-	public Integer getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(Integer level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
