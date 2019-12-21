@@ -44,8 +44,9 @@ public class QuestionController {
 		return new ResponseEntity<Question>(questionService.getSingleQuestion(questionId),HttpStatus.FOUND);
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/major/{majorId}")
 	public ResponseEntity<List<Question>>getAllQuestionByMajorid(@PathVariable("majorId") long majorId , HttpServletRequest request){
-		return new ResponseEntity<List<Question>>(questionService.getQuestionListByMajorId(majorId),HttpStatus.FOUND);
+		return new ResponseEntity<List<Question>>(questionService.getQuestionListByMajorId(majorId),HttpStatus.OK);
 	}
 }

@@ -39,7 +39,7 @@ public class MajorController {
 	@GetMapping("")
 	public ResponseEntity<ResponseForm> getAllMajor(HttpServletRequest request){
 		ResponseForm result = majorService.getAllMajor(request);
-		return new ResponseEntity<>(result, result.getHttpCode());
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
 	//Get single major when mapping major_id , return status found when major_id match in database
@@ -55,6 +55,6 @@ public class MajorController {
 	@GetMapping("/{majorId}")
 	public ResponseEntity<ResponseForm> getMajorByMajorId(@PathVariable("majorId") long majorId , HttpServletRequest request){
 		ResponseForm result = majorService.getMajor(majorId , request);
-		return new ResponseEntity<>(result,result.getHttpCode());
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }
