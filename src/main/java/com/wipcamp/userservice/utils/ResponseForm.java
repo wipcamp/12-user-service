@@ -1,5 +1,7 @@
 package com.wipcamp.userservice.utils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
@@ -17,8 +19,13 @@ public abstract class ResponseForm {
 	@NonNull
 	private boolean success;
 
-	public HttpStatus getCode() {
+	@JsonIgnore
+	public HttpStatus getHttpCode() {
 		return code;
+	}
+
+	public int getCode() {
+		return code.value();
 	}
 
 	public void setCode(HttpStatus code) {
