@@ -1,6 +1,7 @@
 package com.wipcamp.userservice.controllers;
 
 import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.requests.UpdateUserRequest;
 import com.wipcamp.userservice.services.UserService;
 
 import com.wipcamp.userservice.utils.ResponseForm;
@@ -72,7 +73,7 @@ public class UserController {
 	@PutMapping("/{userId}")
 	public ResponseEntity<User> updateUserInformation(
 			@PathVariable("userId") long userId,
-			@Valid @RequestBody User user,
+			@Valid @RequestBody UpdateUserRequest user,
 			BindingResult theBindingResult,
 			ModelMap model){
 
