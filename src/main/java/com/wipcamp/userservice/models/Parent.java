@@ -21,9 +21,20 @@ public class Parent {
 	@NonNull
 	private String relation;
 
+	public Parent() {
+	}
+
 	public Parent(long telNo, String relation) {
 		this.telNo = telNo;
 		this.relation = relation;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public long getTelNo() {
