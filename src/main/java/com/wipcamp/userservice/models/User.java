@@ -87,12 +87,10 @@ public class User {
 	@Column(nullable = true)
 	private String congenitalDrug;
 
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="address_id",referencedColumnName = "id")
 	private Address address;
 
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="parent_id",referencedColumnName = "id")
 	private Parent parent;
