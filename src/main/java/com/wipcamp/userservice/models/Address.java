@@ -12,11 +12,22 @@ public class Address {
 	@GeneratedValue
 	private int id;
 	private String province;
-	private String distict;
+	private String district;
 
-	public Address(String province, String distict) {
+	public Address() {
+	}
+
+	public Address(String province, String district) {
 		this.province = province;
-		this.distict = distict;
+		this.district = district;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getProvince() {
@@ -27,11 +38,11 @@ public class Address {
 		this.province = province;
 	}
 
-	public String getDistict() {
-		return distict;
+	public String getDistrict() {
+		return district;
 	}
 
-	public void setDistict(String distict) {
-		this.distict = distict;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 }
