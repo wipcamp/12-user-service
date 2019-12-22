@@ -38,28 +38,6 @@ public class QuestionService {
 		return questionRepository.findById(questionId).get();
 	}
 
-//	public List<Question> getAllQuestion(){
-//		return questionRepository.findAll();
-//	}
-
-//	public List<Question> getQuestionListByMajorId(Long majorId){
-//		return questionRepository.findByMajorId(majorId);
-//	}
-	public ResponseForm getQuestionListByMajorId(Long majorId , HttpServletRequest request){
-		ResponseForm result = new FailureResponse();
-
-		List<Question> allQuestion = this.questionRepository.findByMajorId(majorId);
-
-		if (allQuestion.isEmpty()) {
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No question in this major found in database." );
-			((FailureResponse) result).setError("No question in this major found in database.");
-		} else{
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Question size in this major is " + allQuestion.size());
-			result = new SuccessResponse<Question>(HttpStatus.OK, allQuestion);
-		}
-		return result;
-	}
-
 	public ResponseForm getAllQuestion(HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 
