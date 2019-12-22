@@ -86,7 +86,7 @@ public class UserController {
 			if(!userOptional.isPresent()){
 				return ResponseEntity.notFound().build();
 			}
-			return new ResponseEntity<User>(userService.updateUser(user) , HttpStatus.CREATED);
+			return new ResponseEntity<User>(userService.updateUser(user,userId) , HttpStatus.CREATED);
 		}
 	}
 }
