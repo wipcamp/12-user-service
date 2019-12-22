@@ -11,6 +11,7 @@ import com.wipcamp.userservice.utils.ResponseForm;
 
 import com.wipcamp.userservice.utils.SuccessResponse;
 
+import org.apache.catalina.mapper.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserService {
 
 	Logger logger = LoggerFactory.getLogger(MajorController.class);
 
-	public UserService(UserRepository userRepository){
+	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
@@ -41,24 +42,26 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		User user = new User();
 
-		Long lineId = Long.valueOf((int) Math.floor(Math.random()*100000) + 1);
-		if(userRepository.findByLineId(lineId) != null ){
-			if(userRepository.findByLineId(lineId).getId() == lineId)
-			((FailureResponse) result).setError("User Exist, Cannot create new user.");
-		} else{
+		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
+		if (userRepository.findByLineId(lineId) != null) {
+			if (userRepository.findByLineId(lineId).getId() == lineId) {
+				((FailureResponse) result).setError("User Exist, Cannot create new user.");
+			}
+		} else {
 			System.out.println("LINE ID : " + lineId);
 			user.setLineId(lineId);
 			System.out.println("THIS IS USER : " + user.toString());
-			try{
+			try {
 				userRepository.save(user);
 				User saveUser = userRepository.findByLineId(lineId);
 				ArrayList<User> userList = new ArrayList<>();
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
 				user = userRepository.findByLineId(lineId);
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getId() + " | SUCCESS" );
-			} catch (Exception ex){
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database." );
+				logger.info(
+						System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getId() + " | SUCCESS");
+			} catch (Exception ex) {
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
 				((FailureResponse) result).setError("Cannot create user in database.");
 
 			}
@@ -66,22 +69,29 @@ public class UserService {
 		return result;
 	}
 
-	public User updateUser(User user) {
-		return userRepository.save(user);
+	public User updateUser(User user, long userId) {
+		User queryUser = userRepository.findById(userId).orElse(null);
+		if (queryUser == null) {
+			return null;
+		} else {
+			user.setId(queryUser.getId());
+			return userRepository.save(user);
+		}
 	}
 
-	public Optional<User> findByOptionalId(long userId) { return userRepository.findById(userId); }
+	public Optional<User> findByOptionalId(long userId) {
+		return userRepository.findById(userId);
+	}
 
-
-	public ResponseForm getAllUser(HttpServletRequest request){
+	public ResponseForm getAllUser(HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 
 		List<User> allUser = this.userRepository.findAll();
 
 		if (allUser.isEmpty()) {
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No User in database" );
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No User in database");
 			((FailureResponse) result).setError("No User found in database.");
-		} else{
+		} else {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
 			result = new SuccessResponse<User>(HttpStatus.OK, allUser);
 		}
@@ -91,13 +101,14 @@ public class UserService {
 	public ResponseForm getUserByUserId(long userId, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 
-		try{
+		try {
 			User currentUser = this.userRepository.findById(userId).get();
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
+			logger.info(
+					System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
-		} catch(NoSuchElementException ex){
+		} catch (NoSuchElementException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User not found");
 		}
 		return result;
