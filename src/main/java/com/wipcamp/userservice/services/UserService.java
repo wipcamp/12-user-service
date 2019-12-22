@@ -1,7 +1,11 @@
 package com.wipcamp.userservice.services;
 
 import com.wipcamp.userservice.controllers.MajorController;
+import com.wipcamp.userservice.models.Address;
+import com.wipcamp.userservice.models.Parent;
 import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.repositories.AddressRepository;
+import com.wipcamp.userservice.repositories.ParentRepository;
 import com.wipcamp.userservice.repositories.UserRepository;
 
 import com.wipcamp.userservice.utils.FailureResponse;
@@ -27,7 +31,13 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	Logger logger = LoggerFactory.getLogger(MajorController.class);
+	@Autowired
+	ParentRepository parentRepository;
+
+	@Autowired
+	AddressRepository addressRepository;
+
+	private Logger logger = LoggerFactory.getLogger(MajorController.class);
 
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -64,14 +74,32 @@ public class UserService {
 		return result;
 	}
 
-	public User updateUser(User user, long userId) {
+	public ResponseForm updateUser(User user, long userId) {
 		User queryUser = userRepository.findById(userId).orElse(null);
+		ResponseForm result = new FailureResponse();
 		if (queryUser == null) {
-			return null;
+			((FailureResponse) result).setError("User not found");
 		} else {
 			user.setId(queryUser.getId());
-			return userRepository.save(user);
+			if (user.getAddress() != null) {
+				if(queryUser.getAddress() != null){
+					user.getAddress().setId(queryUser.getAddress().getId());
+				}
+					addressRepository.save(user.getAddress());
+			}
+			if (user.getParent() != null) {
+				if(queryUser.getParent() != null){
+					user.getParent().setId(queryUser.getParent().getId());
+				}
+				parentRepository.save(user.getParent());
+			}
+			userRepository.save(user);
+
+			ArrayList<User> userList = new ArrayList<>();
+			userList.add(user);
+			result = new SuccessResponse<User>(userList);
 		}
+		return result;
 	}
 
 	public Optional<User> findByOptionalId(long userId) {
