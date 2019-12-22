@@ -33,8 +33,6 @@ public class User {
 	@Column(name = "id")
 	private long id;
 
-
-
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long wipId;
 	private Long lineId;
@@ -138,11 +136,11 @@ public class User {
 		this.answerList = answerList;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -344,10 +342,6 @@ public class User {
 
 	public void setMajor(Major major) {
 		this.major = major;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public List<Answer> getAnswerList() {
