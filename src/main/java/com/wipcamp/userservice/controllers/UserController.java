@@ -34,53 +34,23 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	Logger logger = LoggerFactory.getLogger(UserController.class);
-
-
-	@PostMapping("/create")
-	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request){
+	@PostMapping("")
+	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request) {
 		ResponseForm result = userService.createUser(request);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
-	//Example of Mapping User
-//	@GetMapping("/{userId}")
-//	@ResponseBody
-//	public ResponseEntity<User> getUser(@PathVariable("userId") long userId , HttpServletRequest request) {
-//		try{
-//			User currentUser = userService.findById(userId);
-//			//if user already create account response with their information and status found --> Check account which line_id or facebook_id is match this user so return information of them.
-//			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User is " + currentUser.getFirstNameEn() + currentUser.getLastNameEn());
-//			return new ResponseEntity<User>(currentUser, HttpStatus.FOUND)	;
-//		} catch(NoSuchElementException ex){
-//			//if user never visit and don't have account send not found status
-//			logger.warn(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "user not found");
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
 
 	@GetMapping("/{userId}")
-	public ResponseEntity<ResponseForm> getUserByUserId(@PathVariable("userId") long userId , HttpServletRequest request){
-		ResponseForm result = userService.getUserByUserId(userId , request);
-		return new ResponseEntity<>(result,result.getHttpCode());
+	public ResponseEntity<ResponseForm> getUserByUserId(@PathVariable("userId") long userId, HttpServletRequest request) {
+		ResponseForm result = userService.getUserByUserId(userId, request);
+		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
 	@PutMapping("/{userId}")
-	public ResponseEntity<User> updateUserInformation(
-			@PathVariable("userId") long userId,
-			@Valid @RequestBody User user,
-			BindingResult theBindingResult,
-			ModelMap model){
-
-		if (theBindingResult.hasErrors()){
-				//if binding result has error so return bad request
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}else{
-				//if dont have error in code so add information to user and status created
-			Optional<User> userOptional = userService.findByOptionalId(userId);
-			if(!userOptional.isPresent()){
-				return ResponseEntity.notFound().build();
-			}
-			return new ResponseEntity<User>(userService.updateUser(user,userId) , HttpStatus.CREATED);
-		}
+	public ResponseEntity<ResponseForm> updateUserInformation(@PathVariable("userId") long userId, @Valid @RequestBody User user,
+			BindingResult theBindingResult, ModelMap model) {
+		ResponseForm result = userService.updateUser(user, userId);
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 }
+

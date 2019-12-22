@@ -22,46 +22,20 @@ import java.util.List;
 
 @CrossOrigin("${CROSSSITEDOMAIN}")
 @RestController
-@RequestMapping("/question")
 public class QuestionController {
 	@Autowired
 	QuestionService questionService;
 
-	Logger logger = LoggerFactory.getLogger(QuestionController.class);
-
-//	@GetMapping("/all")
-//	public ResponseEntity<List<Question>> getAllQuestion(HttpServletRequest request){
-//		List<Question> allQuestion = questionService.getAllQuestion();
-//		if(allQuestion.isEmpty()) {
-//			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No question in database" );
-//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//		} else{
-//			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Question size is " + allQuestion.size());
-//			return new ResponseEntity<List<Question>>(questionService.getAllQuestion(),HttpStatus.FOUND);
-//		}
-//	}
-
-	@GetMapping("")
+	@GetMapping("/questions")
 	public ResponseEntity<ResponseForm> getAllQuestion(HttpServletRequest request){
 		ResponseForm result = questionService.getAllQuestion(request);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
-
-//	@GetMapping("/{questionId}")
-//	public ResponseEntity<Question> getQuestionByQuestionId(@PathVariable("questionId") long questionId , HttpServletRequest request){
-//		return new ResponseEntity<Question>(questionService.getSingleQuestion(questionId),HttpStatus.FOUND);
-//	}
-
-	@GetMapping("/{questionId}")
+	@GetMapping("/question/{questionId}")
 	public ResponseEntity<ResponseForm> getQuestionByQuestionId(@PathVariable("questionId") long questionId , HttpServletRequest request){
 		ResponseForm result = questionService.getQuestionByQuestionId(questionId , request);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
-	@GetMapping("/major/{majorId}")
-	public ResponseEntity<ResponseForm> getAllQuestionByMajorid(@PathVariable("majorId") long majorId , HttpServletRequest request){
-		ResponseForm result = questionService.getQuestionListByMajorId(majorId , request);
-		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
-	}
 }
