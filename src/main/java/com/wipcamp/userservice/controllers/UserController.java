@@ -73,7 +73,7 @@ public class UserController {
 	@PutMapping("/{userId}")
 	public ResponseEntity<User> updateUserInformation(
 			@PathVariable("userId") long userId,
-			@Valid @RequestBody UpdateUserRequest user,
+			@Valid @RequestBody User user,
 			BindingResult theBindingResult,
 			ModelMap model){
 

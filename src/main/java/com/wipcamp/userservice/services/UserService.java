@@ -5,6 +5,7 @@ import com.wipcamp.userservice.models.Major;
 import com.wipcamp.userservice.models.User;
 import com.wipcamp.userservice.repositories.UserRepository;
 
+import com.wipcamp.userservice.requests.UpdateUserRequest;
 import com.wipcamp.userservice.utils.FailureResponse;
 import com.wipcamp.userservice.utils.ResponseForm;
 
@@ -65,7 +66,9 @@ public class UserService {
 		return result;
 	}
 
-	public User updateUser(User newUser) { return userRepository.save(newUser); }
+	public User updateUser(User user) {
+		return userRepository.save(user);
+	}
 
 	public Optional<User> findByOptionalId(long userId) { return userRepository.findById(userId); }
 
