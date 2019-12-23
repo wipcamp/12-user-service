@@ -62,22 +62,15 @@ public class AnswerService {
 					((FailureResponse) result).setError("Major not found");
 				} else {
 					ArrayList<Integer> questionIdFromMajor = new ArrayList<>();
-					major.getQuestions().forEach((question) -> questionIdFromMajor.add(question.getId()));
+					major.getQuestionList().forEach((question) -> questionIdFromMajor.add(question.getId()));
 
 					ArrayList<Integer> questionIdFromRequest = new ArrayList<>();
 					request.getAnswers().forEach((requestAnswer) -> questionIdFromRequest.add(requestAnswer.getQuestion_id()));
 
 					if (questionIdFromMajor.equals(questionIdFromRequest)) {
-						List<Question> questionList = major.getQuestions();
+						List<Question> questionList = major.getQuestionList();
 
-						class ResultCreateAnswer {
-							public User user;
-							public List<Answer> answer = new ArrayList<>();
-						}
-
-						ArrayList<ResultCreateAnswer> resultData = new ArrayList<>();
-						resultData.add(new ResultCreateAnswer());
-						resultData.get(0).user = userFromPath;
+						ArrayList<Answer> resultData = new ArrayList<>();
 
 						for (int i = 0; i < questionList.size(); i++) {
 							Question question = questionList.get(i);
@@ -85,11 +78,11 @@ public class AnswerService {
 								if (question.getId() == answerRequest.getQuestion_id()) {
 									Answer answer = new Answer(userFromPath, question, answerRequest.getAnswer_content());
 									answerRepository.save(answer);
-									resultData.get(0).answer.add(answer);
+									resultData.add(answer);
 								}
 							}
 						}
-						result = new SuccessResponse<ResultCreateAnswer>(HttpStatus.OK, resultData);
+						result = new SuccessResponse<Answer>(HttpStatus.OK, resultData);
 					} else {
 						((FailureResponse) result).setError("Question Id from request and major does not match");
 					}
