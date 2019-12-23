@@ -73,6 +73,8 @@ public class User {
 	@Column(nullable = true)
 	private String school;
 	@Column(nullable = true)
+	private String schoolMajor;
+	@Column(nullable = true)
 	private String level;
 	@Column(nullable = true)
 	private Long telEmergency;
@@ -93,7 +95,6 @@ public class User {
 	@JoinColumn(name="parent_id",referencedColumnName = "id")
 	private Parent parent;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
@@ -106,9 +107,8 @@ public class User {
 
 	public User(Long lineId, Long facebookId, String firstName, String lastName, String firstNameEn, String lastNameEn,
 			String nickName, String email, Date birthDate, String citizenId, String gender, String bloodGroup, Long telNo,
-			String religion, String school, String level, Long telEmergency, Double gpax, String allergicFood,
-			String congenitalDisease,
-			String congenitalDrug, Address address, Parent parent, Major major, List<Answer> answerList) {
+			String religion, String school, String schoolMajor, String level, Long telEmergency, Double gpax, String allergicFood,
+			String congenitalDisease, String congenitalDrug, Address address, Parent parent, Major major, List<Answer> answerList) {
 		this.lineId = lineId;
 		this.facebookId = facebookId;
 		this.firstName = firstName;
@@ -124,6 +124,7 @@ public class User {
 		this.telNo = telNo;
 		this.religion = religion;
 		this.school = school;
+		this.schoolMajor = schoolMajor;
 		this.level = level;
 		this.telEmergency = telEmergency;
 		this.gpax = gpax;
@@ -350,6 +351,14 @@ public class User {
 
 	public void setAnswerList(List<Answer> answerList) {
 		this.answerList = answerList;
+	}
+
+	public String getSchoolMajor() {
+		return schoolMajor;
+	}
+
+	public void setSchoolMajor(String schoolMajor) {
+		this.schoolMajor = schoolMajor;
 	}
 
 	@Override
