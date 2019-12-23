@@ -20,17 +20,16 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "answers")
 public class Answer {
-	@JsonIgnore
+
 	@Id
 	@GeneratedValue
 	private int id;
 
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id",referencedColumnName = "id")
 	private User user;
 
-	@JsonBackReference
 	@NonNull
 	@ManyToOne
 	@JoinColumn(name="question_id",referencedColumnName = "id")
