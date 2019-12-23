@@ -26,6 +26,9 @@ public class Major {
 	@OneToMany(mappedBy = "major")
 	private List<User> users;
 
+	public Major() {
+	}
+
 	public long getId() {
 		return id;
 	}
