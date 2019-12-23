@@ -2,6 +2,8 @@ package com.wipcamp.userservice.services;
 
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.Address;
+import com.wipcamp.userservice.models.Answer;
+import com.wipcamp.userservice.models.Major;
 import com.wipcamp.userservice.models.Parent;
 import com.wipcamp.userservice.models.User;
 import com.wipcamp.userservice.repositories.AddressRepository;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -102,32 +105,13 @@ public class UserService {
 		return result;
 	}
 
-	public Optional<User> findByOptionalId(long userId) {
-		return userRepository.findById(userId);
-	}
-
-	public ResponseForm getAllUser(HttpServletRequest request) {
-		ResponseForm result = new FailureResponse();
-
-		List<User> allUser = this.userRepository.findAll();
-
-		if (allUser.isEmpty()) {
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No User in database");
-			((FailureResponse) result).setError("No User found in database.");
-		} else {
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
-			result = new SuccessResponse<User>(HttpStatus.OK, allUser);
-		}
-		return result;
-	}
-
 	public ResponseForm getUserByUserId(long userId, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 
 		try {
 			User currentUser = this.userRepository.findById(userId).get();
-			logger.info(
-					System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
+
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
