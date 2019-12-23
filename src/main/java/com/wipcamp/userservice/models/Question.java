@@ -26,13 +26,13 @@ public class Question {
 
 	@NonNull
 	private String name;
-
+	
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
 
-
+	@JsonBackReference
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answerList;
 
