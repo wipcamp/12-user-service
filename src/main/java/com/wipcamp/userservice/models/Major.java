@@ -1,5 +1,6 @@
 package com.wipcamp.userservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,10 +22,11 @@ public class Major {
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "major")
-	private List<Question> questions;
+	private List<Question> questionList;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "major")
-	private List<User> users;
+	private List<User> userList;
 
 	public Major() {
 	}
@@ -53,19 +55,19 @@ public class Major {
 		this.description = description;
 	}
 
-	public List<Question> getQuestions() {
-		return questions;
+	public List<Question> getQuestionList() {
+		return questionList;
 	}
 
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
+	public void setQuestionList(List<Question> questionList) {
+		this.questionList = questionList;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public List<User> getUserList() {
+		return userList;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
 }
