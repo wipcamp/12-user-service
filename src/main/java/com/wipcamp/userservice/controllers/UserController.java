@@ -52,5 +52,11 @@ public class UserController {
 		ResponseForm result = userService.updateUser(user, userId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
+
+	@GetMapping("/line/{lineId}")
+	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") long lineId , HttpServletRequest request){
+		ResponseForm result = userService.getUserByLineId(lineId , request);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
 }
 
