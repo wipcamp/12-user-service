@@ -50,7 +50,11 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		User user = new User();
 
+
+		//Mock up fake line id , must change!
 		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
+
+
 		if (userRepository.findByLineId(lineId) != null) {
 			if (userRepository.findByLineId(lineId).getId() == lineId) {
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
@@ -117,6 +121,20 @@ public class UserService {
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
 		} catch (NoSuchElementException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User not found");
+		}
+		return result;
+	}
+
+	public ResponseForm getUserByLineId(long lineId, HttpServletRequest request) {
+		ResponseForm result = new FailureResponse();
+		try{
+			User currentUser = this.userRepository.findByLineId(lineId);
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Line ID : " + currentUser.getLineId());
+			ArrayList<User> user = new ArrayList<>();
+			user.add(currentUser);
+			result = new SuccessResponse<User>(HttpStatus.OK , user);
+		} catch(NoSuchElementException ex){
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By Line ID , User not found");
 		}
 		return result;
 	}
