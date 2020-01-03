@@ -1,5 +1,6 @@
 package com.wipcamp.userservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -273,6 +274,14 @@ public class User {
 		this.school = school;
 	}
 
+	public String getSchoolMajor() {
+		return schoolMajor;
+	}
+
+	public void setSchoolMajor(String schoolMajor) {
+		this.schoolMajor = schoolMajor;
+	}
+
 	public String getLevel() {
 		return level;
 	}
@@ -353,23 +362,15 @@ public class User {
 		this.answerList = answerList;
 	}
 
-	public String getSchoolMajor() {
-		return schoolMajor;
-	}
-
-	public void setSchoolMajor(String schoolMajor) {
-		this.schoolMajor = schoolMajor;
-	}
-
 	@Override
 	public String toString() {
 		return "User{" + "id=" + id + ", wipId=" + wipId + ", lineId=" + lineId + ", facebookId=" + facebookId + ", firstName='"
 				+ firstName + '\'' + ", lastName='" + lastName + '\'' + ", firstNameEn='" + firstNameEn + '\'' + ", lastNameEn='"
 				+ lastNameEn + '\'' + ", nickName='" + nickName + '\'' + ", email='" + email + '\'' + ", birthDate=" + birthDate
 				+ ", citizenId='" + citizenId + '\'' + ", gender='" + gender + '\'' + ", bloodGroup='" + bloodGroup + '\'' + ", telNo="
-				+ telNo + ", religion='" + religion + '\'' + ", school='" + school + '\'' + ", level=" + level + ", telEmergency="
-				+ telEmergency + ", gpax=" + gpax + ", allergicFood='" + allergicFood + '\'' + ", congenitalDisease='" + congenitalDisease
-				+ '\'' + ", congenitalDrug='" + congenitalDrug + '\'' + ", address=" + address + ", parent=" + parent + ", major=" + major
-				+ ", answerList=" + answerList + '}';
+				+ telNo + ", religion='" + religion + '\'' + ", school='" + school + '\'' + ", schoolMajor='" + schoolMajor + '\''
+				+ ", level='" + level + '\'' + ", telEmergency=" + telEmergency + ", gpax=" + gpax + ", allergicFood='" + allergicFood
+				+ '\'' + ", congenitalDisease='" + congenitalDisease + '\'' + ", congenitalDrug='" + congenitalDrug + '\'' + ", address="
+				+ address + ", parent=" + parent + ", major=" + major + ", answerList=" + answerList + '}';
 	}
 }
