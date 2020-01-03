@@ -27,12 +27,12 @@ public class Question {
 	@NonNull
 	private String name;
 	
-	@JsonBackReference
+	@JsonBackReference(value = "questionMajor")
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
 
-	@JsonBackReference
+	@JsonBackReference(value = "questionAnswers")
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answerList;
 
