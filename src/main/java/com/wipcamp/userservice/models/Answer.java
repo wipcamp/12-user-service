@@ -3,6 +3,8 @@ package com.wipcamp.userservice.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
@@ -25,7 +27,7 @@ public class Answer {
 	@GeneratedValue
 	private int id;
 
-	@JsonBackReference
+	@JsonBackReference(value = "answerUser")
 	@ManyToOne
 	@JoinColumn(name="user_id",referencedColumnName = "id")
 	private User user;
