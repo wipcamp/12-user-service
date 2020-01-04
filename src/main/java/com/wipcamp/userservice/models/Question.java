@@ -1,6 +1,7 @@
 package com.wipcamp.userservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.springframework.lang.NonNull;
@@ -32,7 +33,7 @@ public class Question {
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
 
-	@JsonBackReference(value = "questionAnswers")
+	@JsonIgnore
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answerList;
 
