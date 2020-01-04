@@ -1,8 +1,10 @@
 package com.wipcamp.userservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,11 +23,13 @@ public class Major {
 
 	private String description;
 
-	@JsonBackReference(value = "majorQuestions")
+	@JsonManagedReference(value = "majorQuestions")
+	@JsonIgnore
 	@OneToMany(mappedBy = "major")
 	private List<Question> questionList;
 
-	@JsonBackReference(value = "majorUsers")
+	@JsonManagedReference(value = "majorUsers")
+	@JsonIgnore
 	@OneToMany(mappedBy = "major")
 	private List<User> userList;
 
