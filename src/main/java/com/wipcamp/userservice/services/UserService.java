@@ -148,4 +148,32 @@ public class UserService {
 		}
 		return result;
 	}
+
+	public ResponseForm updateUserByToken(User user) {
+		User queryUser = userRepository.findById((long) 1).orElse(null);
+		ResponseForm result = new FailureResponse();
+		if (queryUser == null) {
+			((FailureResponse) result).setError("User not found");
+		} else {
+			user.setId(queryUser.getId());
+			if (user.getAddress() != null) {
+				if(queryUser.getAddress() != null){
+					user.getAddress().setId(queryUser.getAddress().getId());
+				}
+				addressRepository.save(user.getAddress());
+			}
+			if (user.getParent() != null) {
+				if(queryUser.getParent() != null){
+					user.getParent().setId(queryUser.getParent().getId());
+				}
+				parentRepository.save(user.getParent());
+			}
+			userRepository.save(user);
+
+			ArrayList<User> userList = new ArrayList<>();
+			userList.add(user);
+			result = new SuccessResponse<User>(userList);
+		}
+		return result;
+	}
 }
