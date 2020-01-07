@@ -143,6 +143,9 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		try{
 			//Find by token method here
+		} catch(Exception ex){
+
 		}
+		return result;
 	}
 }
