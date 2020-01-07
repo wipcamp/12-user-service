@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,6 +57,12 @@ public class UserController {
 	@GetMapping("/line/{lineId}")
 	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") long lineId , HttpServletRequest request){
 		ResponseForm result = userService.getUserByLineId(lineId , request);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+
+	@GetMapping("/me")
+	public ResponseEntity<ResponseForm> getUserByToken(@RequestHeader(name = "Authorization", required = true) String token , HttpServletRequest request){
+		ResponseForm result = userService.getUserByToken(token);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }
