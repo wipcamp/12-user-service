@@ -138,4 +138,11 @@ public class UserService {
 		}
 		return result;
 	}
+
+	public ResponseForm getUserByToken(String token) {
+		ResponseForm result = new FailureResponse();
+		try{
+			//Find by token method here
+		}
+	}
 }
