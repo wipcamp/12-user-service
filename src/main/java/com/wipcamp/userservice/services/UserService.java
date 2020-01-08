@@ -56,7 +56,7 @@ public class UserService {
 
 
 		if (userRepository.findByLineId(lineId) != null) {
-			if (userRepository.findByLineId(lineId).getId() == lineId) {
+			if (userRepository.findByLineId(lineId).getLineId() == lineId) {
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
 			}
 		} else {
@@ -71,7 +71,7 @@ public class UserService {
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
 				user = userRepository.findByLineId(lineId);
 				logger.info(
-						System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getId() + " | SUCCESS");
+						System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId() + " | SUCCESS");
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
 				((FailureResponse) result).setError("Cannot create user in database.");
@@ -87,7 +87,7 @@ public class UserService {
 		if (queryUser == null) {
 			((FailureResponse) result).setError("User not found");
 		} else {
-			user.setId(queryUser.getId());
+			user.setWipId(queryUser.getWipId());
 			if (user.getAddress() != null) {
 				if(queryUser.getAddress() != null){
 					user.getAddress().setId(queryUser.getAddress().getId());
@@ -114,7 +114,7 @@ public class UserService {
 
 		try {
 			User currentUser = this.userRepository.findById(userId).get();
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
@@ -145,7 +145,7 @@ public class UserService {
 			//waiting for decode tokens --> token contain wipid
 			long mockup_wipid = 111111;
 			User currentUser = userRepository.findByWipId(mockup_wipid);
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
@@ -162,7 +162,7 @@ public class UserService {
 		if (queryUser == null) {
 			((FailureResponse) result).setError("User not found");
 		} else {
-			user.setId(queryUser.getId());
+			user.setWipId(queryUser.getWipId());
 			if (user.getAddress() != null) {
 				if(queryUser.getAddress() != null){
 					user.getAddress().setId(queryUser.getAddress().getId());
