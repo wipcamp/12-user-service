@@ -139,12 +139,19 @@ public class UserService {
 		return result;
 	}
 
-	public ResponseForm getUserByToken(String token) {
+	public ResponseForm getUserByToken(String token , HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 		try{
-			//Find by token method here
-		} catch(Exception ex){
+			//waiting for decode tokens --> token contain wipid
+			long mockup_wipid = 111111;
+			User currentUser = userRepository.findByWipId(mockup_wipid);
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getId());
 
+			ArrayList<User> user = new ArrayList<>();
+			user.add(currentUser);
+			result = new SuccessResponse<User>(HttpStatus.OK, user);
+		} catch(Exception ex){
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By WIP ID , User not found");
 		}
 		return result;
 	}
