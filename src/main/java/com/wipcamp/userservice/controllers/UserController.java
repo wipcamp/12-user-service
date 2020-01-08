@@ -62,7 +62,7 @@ public class UserController {
 
 	@GetMapping("/me")
 	public ResponseEntity<ResponseForm> getUserByToken(@RequestHeader(name = "Authorization", required = true) String token , HttpServletRequest request){
-		ResponseForm result = userService.getUserByToken(token);
+		ResponseForm result = userService.getUserByToken(token , request);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
