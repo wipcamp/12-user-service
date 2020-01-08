@@ -52,44 +52,54 @@ public class AnswerService {
 		//
 		//		}
 		else {
-			if (!userFromPath.getAnswerList().isEmpty()) {
-				((FailureResponse) result).setError("This user has answered this the question already");
+
+			Major major = this.majorRepository.findById(majorId).orElse(null);
+
+			if (null == major) {
+				((FailureResponse) result).setError("Major not found");
 			} else {
+				userFromPath.setMajor(major);
 
-				Major major = this.majorRepository.findById(majorId).orElse(null);
+				ArrayList<Integer> questionIdFromMajor = new ArrayList<>();
+				major.getQuestionList().forEach((question) -> questionIdFromMajor.add(question.getId()));
 
-				if (null == major) {
-					((FailureResponse) result).setError("Major not found");
-				} else {
-					userFromPath.setMajor(major);
+				ArrayList<Integer> questionIdFromRequest = new ArrayList<>();
+				request.getAnswers().forEach((requestAnswer) -> questionIdFromRequest.add(requestAnswer.getQuestion_id()));
 
-					ArrayList<Integer> questionIdFromMajor = new ArrayList<>();
-					major.getQuestionList().forEach((question) -> questionIdFromMajor.add(question.getId()));
+				Collections.sort(questionIdFromMajor);
+				Collections.sort(questionIdFromRequest);
 
-					ArrayList<Integer> questionIdFromRequest = new ArrayList<>();
-					request.getAnswers().forEach((requestAnswer) -> questionIdFromRequest.add(requestAnswer.getQuestion_id()));
+				if (questionIdFromMajor.equals(questionIdFromRequest)) {
 
-					if (questionIdFromMajor.equals(questionIdFromRequest)) {
-						List<Question> questionList = major.getQuestionList();
+					if(!userFromPath.getAnswerList().isEmpty()){
+						for (Answer answer : userFromPath.getAnswerList()) {
+							answerRepository.delete(answer);
+						}
+					}
 
-						ArrayList<Answer> resultData = new ArrayList<>();
+					List<Question> questionList = major.getQuestionList();
 
-						for (int i = 0; i < questionList.size(); i++) {
-							Question question = questionList.get(i);
-							for (AnswerRequest answerRequest : request.getAnswers()) {
-								if (question.getId() == answerRequest.getQuestion_id()) {
-									Answer answer = new Answer(userFromPath, question, answerRequest.getAnswer_content());
-									answerRepository.save(answer);
-									resultData.add(answer);
-								}
+					ArrayList<Answer> resultData = new ArrayList<>();
+
+					for (int i = 0; i < questionList.size(); i++) {
+						Question question = questionList.get(i);
+						for (AnswerRequest answerRequest : request.getAnswers()) {
+							if (question.getId() == answerRequest.getQuestion_id()) {
+								Answer answer = new Answer(userFromPath, question, answerRequest.getAnswer_content());
+								answerRepository.save(answer);
+								resultData.add(answer);
 							}
 						}
-						result = new SuccessResponse<Answer>(HttpStatus.OK, resultData);
-					} else {
-						((FailureResponse) result).setError("Question Id from request and major does not match");
 					}
+					userFromPath.setAnswerList(resultData);
+					userRepository.save(userFromPath);
+					
+					result = new SuccessResponse<Answer>(HttpStatus.OK, resultData);
+				} else {
+					((FailureResponse) result).setError("Question Id from request and major does not match");
 				}
 			}
+
 		}
 		return result;
 	}
