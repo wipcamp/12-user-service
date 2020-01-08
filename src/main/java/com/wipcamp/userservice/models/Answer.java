@@ -29,7 +29,7 @@ public class Answer {
 
 	@JsonBackReference(value = "answerUser")
 	@ManyToOne
-	@JoinColumn(name="user_id",referencedColumnName = "id")
+	@JoinColumn(name="user_id",referencedColumnName = "wip_id")
 	private User user;
 
 	@NonNull
