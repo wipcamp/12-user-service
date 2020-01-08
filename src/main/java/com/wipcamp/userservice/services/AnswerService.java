@@ -61,6 +61,8 @@ public class AnswerService {
 				if (null == major) {
 					((FailureResponse) result).setError("Major not found");
 				} else {
+					userFromPath.setMajor(major);
+
 					ArrayList<Integer> questionIdFromMajor = new ArrayList<>();
 					major.getQuestionList().forEach((question) -> questionIdFromMajor.add(question.getId()));
 
