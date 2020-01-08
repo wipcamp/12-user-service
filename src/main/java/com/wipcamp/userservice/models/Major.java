@@ -23,12 +23,11 @@ public class Major {
 
 	private String description;
 
-	@JsonManagedReference(value = "majorQuestions")
 	@JsonIgnore
+	@JsonManagedReference(value = "majorQuestions")
 	@OneToMany(mappedBy = "major")
 	private List<Question> questionList;
 
-	@JsonManagedReference(value = "majorUsers")
 	@JsonIgnore
 	@OneToMany(mappedBy = "major")
 	private List<User> userList;
