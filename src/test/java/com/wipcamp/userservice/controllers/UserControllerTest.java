@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserControllerTest {
     @Test
     void getUserByToken() {
+    	//waiting for jwt decode for get user by token
     }
 
     @Test
