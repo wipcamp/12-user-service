@@ -30,31 +30,30 @@ import java.util.Optional;
 
 @CrossOrigin("${CROSSSITEDOMAIN}")
 @RestController
-@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	UserService userService;
 
-	@PostMapping("")
+	@PostMapping("/user")
 	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request) {
 		ResponseForm result = userService.createUser(request);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
-	@GetMapping("/{userId}")
+	@GetMapping("/user/{userId}")
 	public ResponseEntity<ResponseForm> getUserByUserId(@PathVariable("userId") long userId, HttpServletRequest request) {
 		ResponseForm result = userService.getUserByUserId(userId, request);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
-	@PutMapping("/{userId}")
+	@PutMapping("/user/{userId}")
 	public ResponseEntity<ResponseForm> updateUserInformation(@PathVariable("userId") long userId, @Valid @RequestBody User user,
 			BindingResult theBindingResult, ModelMap model) {
 		ResponseForm result = userService.updateUser(user, userId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
-	@GetMapping("/line/{lineId}")
+	@GetMapping("/user/line/{lineId}")
 	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") long lineId , HttpServletRequest request){
 		ResponseForm result = userService.getUserByLineId(lineId , request);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
