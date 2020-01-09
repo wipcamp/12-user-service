@@ -143,7 +143,8 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		try{
 			//waiting for decode tokens --> token contain wipid
-			long mockup_wipid = 111111;
+			//must receive header before use this method
+			long mockup_wipid = 120000;
 			User currentUser = userRepository.findByWipId(mockup_wipid);
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
