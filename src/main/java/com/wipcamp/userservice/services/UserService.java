@@ -1,12 +1,10 @@
 package com.wipcamp.userservice.services;
 
 import com.wipcamp.userservice.controllers.MajorController;
-import com.wipcamp.userservice.models.Address;
-import com.wipcamp.userservice.models.Answer;
-import com.wipcamp.userservice.models.Major;
-import com.wipcamp.userservice.models.Parent;
+import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
 import com.wipcamp.userservice.repositories.AddressRepository;
+import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
 import com.wipcamp.userservice.repositories.ParentRepository;
 import com.wipcamp.userservice.repositories.UserRepository;
 
@@ -14,6 +12,8 @@ import com.wipcamp.userservice.utils.FailureResponse;
 import com.wipcamp.userservice.utils.ResponseForm;
 
 import com.wipcamp.userservice.utils.SuccessResponse;
+
+import lombok.AllArgsConstructor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +23,13 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class UserService {
+
 	@Autowired
 	UserRepository userRepository;
 
@@ -40,11 +39,10 @@ public class UserService {
 	@Autowired
 	AddressRepository addressRepository;
 
-	private Logger logger = LoggerFactory.getLogger(MajorController.class);
+	@Autowired
+	GeneralAnswerRepository generalAnswerRepository;
 
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	private Logger logger = LoggerFactory.getLogger(MajorController.class);
 
 	public ResponseForm createUser(HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
@@ -56,7 +54,7 @@ public class UserService {
 
 
 		if (userRepository.findByLineId(lineId) != null) {
-			if (userRepository.findByLineId(lineId).getLineId() == lineId) {
+			if (userRepository.findByLineId(lineId).get().getLineId() == lineId) {
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
 			}
 		} else {
@@ -65,11 +63,11 @@ public class UserService {
 			System.out.println("THIS IS USER : " + user.toString());
 			try {
 				userRepository.save(user);
-				User saveUser = userRepository.findByLineId(lineId);
+				User saveUser = userRepository.findByLineId(lineId).get();
 				ArrayList<User> userList = new ArrayList<>();
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
-				user = userRepository.findByLineId(lineId);
+				user = userRepository.findByLineId(lineId).get();
 				logger.info(
 						System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId() + " | SUCCESS");
 			} catch (Exception ex) {
@@ -128,7 +126,7 @@ public class UserService {
 	public ResponseForm getUserByLineId(long lineId, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 		try{
-			User currentUser = this.userRepository.findByLineId(lineId);
+			User currentUser = this.userRepository.findByLineId(lineId).get();
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Line ID : " + currentUser.getLineId());
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
@@ -145,7 +143,7 @@ public class UserService {
 			//waiting for decode tokens --> token contain wipid
 			//must receive header before use this method
 			long mockup_wipid = 120000;
-			User currentUser = userRepository.findByWipId(mockup_wipid);
+			User currentUser = userRepository.findById(mockup_wipid).get();
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
 			ArrayList<User> user = new ArrayList<>();
@@ -181,6 +179,29 @@ public class UserService {
 			ArrayList<User> userList = new ArrayList<>();
 			userList.add(user);
 			result = new SuccessResponse<User>(userList);
+		}
+		return result;
+	}
+
+	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
+		ResponseForm result = new FailureResponse();
+		User queryUser = userRepository.findById(userId).orElse(null);
+
+		if(null == queryUser){
+			((FailureResponse) result).setError("User not found");
+		}else{
+			if(queryUser.getGeneralAnswer() == null){
+				generalAnswerRepository.save(generalAnswer);
+				queryUser.setGeneralAnswer(generalAnswer);
+				userRepository.save(queryUser);
+				queryUser = userRepository.findById(queryUser.getWipId()).get();
+			}else{
+				generalAnswer.setId(queryUser.getGeneralAnswer().getId());
+				generalAnswerRepository.save(generalAnswer);
+			}
+			ArrayList<User> resultData = new ArrayList<>();
+			resultData.add(queryUser);
+			result = new SuccessResponse<>(resultData);
 		}
 		return result;
 	}
