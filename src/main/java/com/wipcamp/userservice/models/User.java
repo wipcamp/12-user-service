@@ -1,13 +1,6 @@
 package com.wipcamp.userservice.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
-import lombok.Getter;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,11 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 
 import java.sql.Date;
 import java.util.List;
@@ -98,6 +86,10 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="parent_id",referencedColumnName = "id")
 	private Parent parent;
+
+	@OneToOne
+	@JoinColumn(name="general_answer_id",referencedColumnName = "id")
+	private GeneralAnswer generalAnswer;
 
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
