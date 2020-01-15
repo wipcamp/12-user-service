@@ -60,10 +60,8 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		User user = new User();
 
-
 		//Mock up fake line id , must change!
 		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
-
 
 		if (userRepository.findByLineId(lineId) != null) {
 			if (userRepository.findByLineId(lineId).get().getLineId() == lineId) {
@@ -80,8 +78,8 @@ public class UserService {
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
 				user = userRepository.findByLineId(lineId).get();
-				logger.info(
-						System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId() + " | SUCCESS");
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId()
+						+ " | SUCCESS");
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
 				((FailureResponse) result).setError("Cannot create user in database.");
@@ -128,7 +126,8 @@ public class UserService {
 
 		try {
 			User currentUser = this.userRepository.findById(userId).get();
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
+			logger.info(
+					System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
@@ -141,34 +140,35 @@ public class UserService {
 
 	public ResponseForm getUserByLineId(long lineId, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
-		try{
+		try {
 			User currentUser = this.userRepository.findByLineId(lineId).get();
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Line ID : " + currentUser.getLineId());
+			logger.info(
+					System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Line ID : " + currentUser.getLineId());
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
-			result = new SuccessResponse<User>(HttpStatus.OK , user);
-		} catch(NoSuchElementException ex){
+			result = new SuccessResponse<User>(HttpStatus.OK, user);
+		} catch (NoSuchElementException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By Line ID , User not found");
 		}
 		return result;
 	}
 
-	public ResponseForm getUserByToken(String token , HttpServletRequest request) {
+	public ResponseForm getUserByToken(String token, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
-			String wipid = jwtUtility.getClaimFromToken(token,"wipid");
-		try{
+		String wipid = jwtUtility.getClaimFromToken(token, "wipid");
+		try {
 			//waiting for decode tokens --> token contain wipid
 			//must receive header before use this method
 			User currentUser = userRepository.findById(Long.valueOf(wipid)).get();
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
+			logger.info(
+					System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
-		} catch (NullPointerException ex){
+		} catch (NullPointerException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot get WipId from JWT Token");
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By WIP ID , User not found");
 		}
 		return result;
@@ -178,7 +178,7 @@ public class UserService {
 		String wipid = null;
 		try {
 			wipid = jwtUtility.getClaimFromToken(token, "wipid");
-		}catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			logger.info(System.currentTimeMillis() + " | Cannot get WipId from JWT Token");
 		}
 		return this.updateUser(user, Long.parseLong(wipid));
@@ -207,15 +207,15 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		User queryUser = userRepository.findById(userId).orElse(null);
 
-		if(null == queryUser){
+		if (null == queryUser) {
 			((FailureResponse) result).setError("User not found");
-		}else{
-			if(queryUser.getGeneralAnswer() == null){
+		} else {
+			if (queryUser.getGeneralAnswer() == null) {
 				generalAnswerRepository.save(generalAnswer);
 				queryUser.setGeneralAnswer(generalAnswer);
 				userRepository.save(queryUser);
 				queryUser = userRepository.findById(queryUser.getWipId()).get();
-			}else{
+			} else {
 				generalAnswer.setId(queryUser.getGeneralAnswer().getId());
 				generalAnswerRepository.save(generalAnswer);
 			}
