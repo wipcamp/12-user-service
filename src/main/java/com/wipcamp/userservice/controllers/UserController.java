@@ -1,5 +1,6 @@
 package com.wipcamp.userservice.controllers;
 
+import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
 import com.wipcamp.userservice.services.UserService;
 
@@ -56,6 +57,12 @@ public class UserController {
 	public ResponseEntity<ResponseForm> updateUserInformation(@PathVariable("userId") long userId, @Valid @RequestBody User user,
 			BindingResult theBindingResult, ModelMap model) {
 		ResponseForm result = userService.updateUser(user, userId);
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
+	}
+
+	@PostMapping("/user/{userId}/general")
+	public ResponseEntity<ResponseForm> updateUserGeneralAnswer(@PathVariable("userId") long userId, @Valid @RequestBody GeneralAnswer generalAnswer) {
+		ResponseForm result = userService.updateUserGeneralAnswer(generalAnswer, userId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
