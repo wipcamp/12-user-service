@@ -79,8 +79,8 @@ public class UserController {
 	}
 
 	@PutMapping("/me")
-	public ResponseEntity<ResponseForm> updateUserByToken(@RequestBody User user){
-		ResponseForm result = userService.updateUserByToken(user);
+	public ResponseEntity<ResponseForm> updateUserByToken(@RequestHeader(name = "Authorization", required = true) String token,@RequestBody User user){
+		ResponseForm result = userService.updateUserByToken(token, user);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }
