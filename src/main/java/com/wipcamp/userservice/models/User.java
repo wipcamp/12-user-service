@@ -97,4 +97,7 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Answer> answerList;
+
+	@Column(nullable = true)
+	private String status;
 }
