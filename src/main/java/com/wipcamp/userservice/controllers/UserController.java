@@ -40,6 +40,12 @@ public class UserController {
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
+	@GetMapping("/user")
+	public ResponseEntity<ResponseForm> getAllUser(HttpServletRequest request){
+		ResponseForm result = userService.getAllUser(request);
+		return new ResponseEntity<>(result, result.getHttpCode());
+	}
+
 	@GetMapping("/user/{userId}")
 	public ResponseEntity<ResponseForm> getUserByUserId(@PathVariable("userId") long userId, HttpServletRequest request) {
 		ResponseForm result = userService.getUserByUserId(userId, request);

@@ -1,10 +1,6 @@
 package com.wipcamp.userservice.services;
 
 import com.wipcamp.userservice.controllers.MajorController;
-import com.wipcamp.userservice.models.Address;
-import com.wipcamp.userservice.models.Answer;
-import com.wipcamp.userservice.models.Major;
-import com.wipcamp.userservice.models.Parent;
 import com.wipcamp.userservice.models.User;
 import com.wipcamp.userservice.repositories.AddressRepository;
 import com.wipcamp.userservice.repositories.ParentRepository;
@@ -181,6 +177,25 @@ public class UserService {
 			ArrayList<User> userList = new ArrayList<>();
 			userList.add(user);
 			result = new SuccessResponse<User>(userList);
+		}
+		return result;
+	}
+
+	public ResponseForm getAllUser(HttpServletRequest request) {
+		ResponseForm result = new FailureResponse();
+		try {
+			List<User> allUser = userRepository.findAll();
+			if (allUser.isEmpty()) {
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database" );
+				((FailureResponse) result).setError("No user found in database.");
+			} else{
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
+				result = new SuccessResponse<User>(HttpStatus.OK, allUser);
+			}
+
+			result = new SuccessResponse<User>(HttpStatus.OK, allUser);
+		} catch (Exception ex) {
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Exception of get all user");
 		}
 		return result;
 	}
