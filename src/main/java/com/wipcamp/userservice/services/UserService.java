@@ -1,5 +1,6 @@
 package com.wipcamp.userservice.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
@@ -9,11 +10,16 @@ import com.wipcamp.userservice.repositories.ParentRepository;
 import com.wipcamp.userservice.repositories.UserRepository;
 
 import com.wipcamp.userservice.utils.FailureResponse;
+import com.wipcamp.userservice.utils.JwtUtility;
 import com.wipcamp.userservice.utils.ResponseForm;
 
 import com.wipcamp.userservice.utils.SuccessResponse;
 
-import lombok.AllArgsConstructor;
+import io.jsonwebtoken.Claims;
+
+import io.jsonwebtoken.Jwt;
+
+import io.jsonwebtoken.Jwts;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +30,10 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
@@ -41,6 +50,9 @@ public class UserService {
 
 	@Autowired
 	GeneralAnswerRepository generalAnswerRepository;
+
+	@Autowired
+	JwtUtility jwtUtility;
 
 	private Logger logger = LoggerFactory.getLogger(MajorController.class);
 
@@ -85,26 +97,30 @@ public class UserService {
 		if (queryUser == null) {
 			((FailureResponse) result).setError("User not found");
 		} else {
-			user.setWipId(queryUser.getWipId());
-			if (user.getAddress() != null) {
-				if(queryUser.getAddress() != null){
-					user.getAddress().setId(queryUser.getAddress().getId());
-				}
-					addressRepository.save(user.getAddress());
-			}
-			if (user.getParent() != null) {
-				if(queryUser.getParent() != null){
-					user.getParent().setId(queryUser.getParent().getId());
-				}
-				parentRepository.save(user.getParent());
-			}
-			userRepository.save(user);
+			updateUserWithNewUser(user, queryUser);
 
 			ArrayList<User> userList = new ArrayList<>();
 			userList.add(user);
 			result = new SuccessResponse<User>(userList);
 		}
 		return result;
+	}
+
+	private void updateUserWithNewUser(User newUser, User queryUser) {
+		newUser.setWipId(queryUser.getWipId());
+		if (newUser.getAddress() != null) {
+			if (queryUser.getAddress() != null) {
+				newUser.getAddress().setId(queryUser.getAddress().getId());
+			}
+			addressRepository.save(newUser.getAddress());
+		}
+		if (newUser.getParent() != null) {
+			if (queryUser.getParent() != null) {
+				newUser.getParent().setId(queryUser.getParent().getId());
+			}
+			parentRepository.save(newUser.getParent());
+		}
+		userRepository.save(newUser);
 	}
 
 	public ResponseForm getUserByUserId(long userId, HttpServletRequest request) {
@@ -139,48 +155,33 @@ public class UserService {
 
 	public ResponseForm getUserByToken(String token , HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
+			String wipid = jwtUtility.getClaimFromToken(token,"wipid");
 		try{
 			//waiting for decode tokens --> token contain wipid
 			//must receive header before use this method
-			long mockup_wipid = 120000;
-			User currentUser = userRepository.findById(mockup_wipid).get();
+			User currentUser = userRepository.findById(Long.valueOf(wipid)).get();
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current User ID : " + currentUser.getWipId());
 
 			ArrayList<User> user = new ArrayList<>();
 			user.add(currentUser);
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
-		} catch(Exception ex){
+		} catch (NullPointerException ex){
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot get WipId from JWT Token");
+		}
+		catch(Exception ex){
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By WIP ID , User not found");
 		}
 		return result;
 	}
 
-	public ResponseForm updateUserByToken(User user) {
-		User queryUser = userRepository.findById((long) 1).orElse(null);
-		ResponseForm result = new FailureResponse();
-		if (queryUser == null) {
-			((FailureResponse) result).setError("User not found");
-		} else {
-			user.setWipId(queryUser.getWipId());
-			if (user.getAddress() != null) {
-				if(queryUser.getAddress() != null){
-					user.getAddress().setId(queryUser.getAddress().getId());
-				}
-				addressRepository.save(user.getAddress());
-			}
-			if (user.getParent() != null) {
-				if(queryUser.getParent() != null){
-					user.getParent().setId(queryUser.getParent().getId());
-				}
-				parentRepository.save(user.getParent());
-			}
-			userRepository.save(user);
-
-			ArrayList<User> userList = new ArrayList<>();
-			userList.add(user);
-			result = new SuccessResponse<User>(userList);
+	public ResponseForm updateUserByToken(String token, User user) {
+		String wipid = null;
+		try {
+			wipid = jwtUtility.getClaimFromToken(token, "wipid");
+		}catch (NullPointerException e){
+			logger.info(System.currentTimeMillis() + " | Cannot get WipId from JWT Token");
 		}
-		return result;
+		return this.updateUser(user, Long.parseLong(wipid));
 	}
 
 	public ResponseForm getAllUser(HttpServletRequest request) {
