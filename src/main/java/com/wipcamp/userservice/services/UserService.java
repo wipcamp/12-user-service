@@ -29,8 +29,9 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -184,23 +185,24 @@ public class UserService {
 		return this.updateUser(user, Long.parseLong(wipid));
 	}
 
-	public ResponseForm getAllUser(HttpServletRequest request) {
+	public ResponseForm getAllUser(String filter, String option, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
-		try {
 			List<User> allUser = userRepository.findAll();
-			if (allUser.isEmpty()) {
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
-				((FailureResponse) result).setError("No user found in database.");
-			} else {
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
-				result = new SuccessResponse<User>(HttpStatus.OK, allUser);
+			if(option.isEmpty()){
+				if (allUser.isEmpty()) {
+					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
+					((FailureResponse) result).setError("No user found in database.");
+				} else {
+					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
+					result = new SuccessResponse<User>(HttpStatus.OK, allUser);
+				}
+			} else if(filter.equalsIgnoreCase("graph")){
+				if(option.equalsIgnoreCase("daily")){
+					List<List<User>> userOfWeek = getDailyUser();
+					result = new SuccessResponse<List<User>>(HttpStatus.OK,userOfWeek);
+				}
 			}
-
-			result = new SuccessResponse<User>(HttpStatus.OK, allUser);
-		} catch (Exception ex) {
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Exception of get all user");
-		}
-		return result;
+			return result;
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
@@ -224,5 +226,16 @@ public class UserService {
 			result = new SuccessResponse<>(resultData);
 		}
 		return result;
+	}
+
+	public List<List<User>> getDailyUser(){
+		LocalDate previousDate = LocalDate.now().minusDays(7);
+		List<List<User>> userOfWeek = new ArrayList<>();
+		for (int i = 1 ; i <= 7 ; i++){
+			Date thisDate = Date.valueOf(previousDate.plusDays(i));
+			List<User> currentUserOfDate = userRepository.findByCreatedAt(thisDate);
+			userOfWeek.add(currentUserOfDate);
+		}
+		return userOfWeek;
 	}
 }
