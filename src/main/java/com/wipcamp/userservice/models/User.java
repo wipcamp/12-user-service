@@ -2,6 +2,8 @@ package com.wipcamp.userservice.models;
 
 import lombok.Data;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -78,6 +80,12 @@ public class User {
 	private String congenitalDisease;
 	@Column(nullable = true)
 	private String congenitalDrug;
+	@CreationTimestamp
+	private Date createdAt;
+	@CreationTimestamp
+	private Date updatedAt;
+
+
 
 	@OneToOne
 	@JoinColumn(name="address_id",referencedColumnName = "id")
