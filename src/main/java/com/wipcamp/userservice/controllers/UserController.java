@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +44,9 @@ public class UserController {
 	}
 
 	@GetMapping("/user")
-	public ResponseEntity<ResponseForm> getAllUser(HttpServletRequest request){
-		ResponseForm result = userService.getAllUser(request);
+	@ResponseBody
+	public ResponseEntity<ResponseForm> getAllUser(@RequestParam(name="filter") String filter, @RequestParam(name="option") String option, HttpServletRequest request){
+		ResponseForm result = userService.getAllUser(filter,option,request);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
