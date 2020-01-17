@@ -76,9 +76,9 @@ public class UserService {
 
 		//Mock up fake line id , must change!
 		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
-		Optional<User> currentUserByLineId = userRepository.findByLineId(lineId);
-		if (currentUserByLineId == null) {
-			if (currentUserByLineId.get().getLineId() == lineId) {
+		User currentUserByLineId = userRepository.findByLineId(lineId).orElse(null);
+		if(currentUserByLineId != null){
+			if(currentUserByLineId.getLineId() == lineId){
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
 			}
 		} else {
@@ -87,13 +87,12 @@ public class UserService {
 			System.out.println("THIS IS USER : " + user.toString());
 			try {
 				userRepository.save(user);
-				User saveUser = currentUserByLineId.get();
+				User saveUser = userRepository.findByLineId(lineId).get();
 				ArrayList<User> userList = new ArrayList<>();
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
 				user = userRepository.findByLineId(lineId).get();
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId()
-						+ " | SUCCESS");
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId() + " | SUCCESS");
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
 				((FailureResponse) result).setError("Cannot create user in database.");
