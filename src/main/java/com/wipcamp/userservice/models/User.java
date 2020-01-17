@@ -61,7 +61,7 @@ public class User {
 	@Column(nullable = true)
 	private String bloodGroup;
 	@Column(nullable = true)
-	private Long telNo;
+	private String telNo;
 	@Column(nullable = true)
 	private String religion;
 	@Column(nullable = true)
@@ -71,7 +71,7 @@ public class User {
 	@Column(nullable = true)
 	private String level;
 	@Column(nullable = true)
-	private Long telEmergency;
+	private String telEmergency;
 	@Column(nullable = true)
 	private Double gpax;
 	@Column(nullable = true)
@@ -108,4 +108,8 @@ public class User {
 
 	@Column(nullable = true)
 	private String status;
+
+	public void setId(long wipId){
+		this.wipId = wipId;
+	}
 }

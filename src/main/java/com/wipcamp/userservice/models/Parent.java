@@ -1,5 +1,7 @@
 package com.wipcamp.userservice.models;
 
+import lombok.Data;
+
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "parents")
+@Data
 public class Parent {
 
 	@Id
@@ -16,40 +19,8 @@ public class Parent {
 	private int id;
 
 	@NonNull
-	private long telNo;
+	private String telNo;
 
 	@NonNull
 	private String relation;
-
-	public Parent() {
-	}
-
-	public Parent(long telNo, String relation) {
-		this.telNo = telNo;
-		this.relation = relation;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public long getTelNo() {
-		return telNo;
-	}
-
-	public void setTelNo(long telNo) {
-		this.telNo = telNo;
-	}
-
-	public String getRelation() {
-		return relation;
-	}
-
-	public void setRelation(String relation) {
-		this.relation = relation;
-	}
 }
