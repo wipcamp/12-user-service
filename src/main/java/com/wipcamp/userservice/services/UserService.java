@@ -1,6 +1,5 @@
 package com.wipcamp.userservice.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
@@ -15,12 +14,6 @@ import com.wipcamp.userservice.utils.ResponseForm;
 
 import com.wipcamp.userservice.utils.SuccessResponse;
 
-import io.jsonwebtoken.Claims;
-
-import io.jsonwebtoken.Jwt;
-
-import io.jsonwebtoken.Jwts;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
@@ -64,7 +58,7 @@ public class UserService {
 		//Mock up fake line id , must change!
 		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
 
-		if (userRepository.findByLineId(lineId) != null) {
+		if (userRepository.findByLineId(lineId).orElse(null) != null) {
 			if (userRepository.findByLineId(lineId).get().getLineId() == lineId) {
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
 			}
@@ -224,6 +218,31 @@ public class UserService {
 			ArrayList<User> resultData = new ArrayList<>();
 			resultData.add(queryUser);
 			result = new SuccessResponse<>(resultData);
+		}
+		return result;
+	}
+
+	public ResponseForm updateUserStatue(String status, long userId) {
+		ResponseForm result = new FailureResponse();
+		User queryUser = userRepository.findById(userId).orElse(null);
+		return updateUserStatus(status, result, queryUser);
+	}
+
+	public ResponseForm updateUserStatueByToken(String status, String token) {
+		ResponseForm result = new FailureResponse();
+		String wipid = jwtUtility.getClaimFromToken(token, "wipid");
+		User queryUser = userRepository.findById(Long.valueOf(wipid)).orElse(null);
+		return updateUserStatus(status, result, queryUser);
+	}
+
+	private ResponseForm updateUserStatus(String status, ResponseForm result, User queryUser) {
+		if(queryUser == null){
+			((FailureResponse) result).setError("User not found");
+		}else{
+			queryUser.setStatus(status);
+			userRepository.save(queryUser);
+			User[] resultData = {queryUser};
+			result = new SuccessResponse<User>(Arrays.asList(resultData));
 		}
 		return result;
 	}

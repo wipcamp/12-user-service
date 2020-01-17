@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +70,13 @@ public class UserController {
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
+	@PostMapping("/user/{userId}/status")
+	public ResponseEntity<ResponseForm> updateUserStatus(@PathVariable("userId") long userId,
+			@RequestBody @Valid @Pattern(regexp = "(accepted,registered,answered,success)",message = "status must only in pattern") String status){
+		ResponseForm result = userService.updateUserStatue(status, userId);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+
 	@GetMapping("/user/line/{lineId}")
 	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") long lineId , HttpServletRequest request){
 		ResponseForm result = userService.getUserByLineId(lineId , request);
@@ -84,6 +92,13 @@ public class UserController {
 	@PutMapping("/me")
 	public ResponseEntity<ResponseForm> updateUserByToken(@RequestHeader(name = "Authorization", required = true) String token,@RequestBody User user){
 		ResponseForm result = userService.updateUserByToken(token, user);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+
+	@PostMapping("/me/status")
+	public ResponseEntity<ResponseForm> updateUserStatusByToken(@RequestHeader(name = "Authorization", required = true) String token,
+			@RequestBody @Valid @Pattern(regexp = "(accepted,registered,answered,success)",message = "status must only in pattern") String status){
+		ResponseForm result = userService.updateUserStatueByToken(status, token);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }
