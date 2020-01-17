@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -63,9 +64,9 @@ public class UserService {
 
 		//Mock up fake line id , must change!
 		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
-
-		if (userRepository.findByLineId(lineId) != null) {
-			if (userRepository.findByLineId(lineId).get().getLineId() == lineId) {
+		Optional<User> currentUserByLineId = userRepository.findByLineId(lineId);
+		if (currentUserByLineId == null) {
+			if (currentUserByLineId.get().getLineId() == lineId) {
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
 			}
 		} else {
@@ -74,7 +75,7 @@ public class UserService {
 			System.out.println("THIS IS USER : " + user.toString());
 			try {
 				userRepository.save(user);
-				User saveUser = userRepository.findByLineId(lineId).get();
+				User saveUser = currentUserByLineId.get();
 				ArrayList<User> userList = new ArrayList<>();
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
