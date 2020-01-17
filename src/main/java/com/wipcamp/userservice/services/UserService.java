@@ -1,18 +1,13 @@
 package com.wipcamp.userservice.services;
 
-import com.wipcamp.userservice.controllers.MajorController;
-import com.wipcamp.userservice.models.GeneralAnswer;
-import com.wipcamp.userservice.models.User;
-import com.wipcamp.userservice.repositories.AddressRepository;
-import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
-import com.wipcamp.userservice.repositories.ParentRepository;
-import com.wipcamp.userservice.repositories.UserRepository;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
 
-import com.wipcamp.userservice.utils.FailureResponse;
-import com.wipcamp.userservice.utils.JwtUtility;
-import com.wipcamp.userservice.utils.ResponseForm;
-
-import com.wipcamp.userservice.utils.SuccessResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,16 +15,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.NoSuchElementException;
+import com.wipcamp.userservice.controllers.MajorController;
+import com.wipcamp.userservice.models.GeneralAnswer;
+import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.repositories.AddressRepository;
+import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
+import com.wipcamp.userservice.repositories.ParentRepository;
+import com.wipcamp.userservice.repositories.UserRepository;
+import com.wipcamp.userservice.utils.FailureResponse;
+import com.wipcamp.userservice.utils.JwtUtility;
+import com.wipcamp.userservice.utils.ResponseForm;
+import com.wipcamp.userservice.utils.SuccessResponse;
 
 @Service
 public class UserService {
