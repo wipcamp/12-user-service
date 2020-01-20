@@ -3,6 +3,7 @@ package com.wipcamp.userservice.models;
 import lombok.Data;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -82,7 +83,7 @@ public class User {
 	private String congenitalDrug;
 	@CreationTimestamp
 	private Date createdAt;
-	@CreationTimestamp
+	@UpdateTimestamp
 	private Date updatedAt;
 
 

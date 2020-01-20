@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.reponses.GraphDailyResponse;
 import com.wipcamp.userservice.repositories.AddressRepository;
 import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
 import com.wipcamp.userservice.repositories.ParentRepository;
