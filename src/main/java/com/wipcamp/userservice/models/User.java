@@ -1,5 +1,7 @@
 package com.wipcamp.userservice.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -80,10 +83,13 @@ public class User {
 	private String congenitalDisease;
 	@Column(nullable = true)
 	private String congenitalDrug;
+
 	@CreationTimestamp
-	private Date createdAt;
+	@JsonFormat(timezone = "GMT+07:00")
+	private Timestamp createdAt;
 	@CreationTimestamp
-	private Date updatedAt;
+	@JsonFormat(timezone = "GMT+07:00")
+	private Timestamp updatedAt;
 
 
 

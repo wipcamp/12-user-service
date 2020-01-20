@@ -91,7 +91,6 @@ public class UserService {
 				ArrayList<User> userList = new ArrayList<>();
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
-				user = userRepository.findByLineId(lineId).get();
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId() + " | SUCCESS");
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
