@@ -44,7 +44,7 @@ public class UserController {
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/users")
 	@ResponseBody
 	public ResponseEntity<ResponseForm> getAllUser(@RequestParam(name="filter") String filter, @RequestParam(name="option") String option, HttpServletRequest request){
 		ResponseForm result = userService.getAllUser(filter,option,request);
