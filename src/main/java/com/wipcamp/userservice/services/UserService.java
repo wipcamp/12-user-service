@@ -1,7 +1,10 @@
 package com.wipcamp.userservice.services;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -196,10 +200,11 @@ public class UserService {
 		return this.updateUser(user, Long.parseLong(wipid));
 	}
 
-	public ResponseForm getAllUser(String filter, String option, HttpServletRequest request) {
+	public ResponseForm getAllUser(String filter, String option, String date ,HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 			List<User> allUser = userRepository.findAll();
-			if(option.isEmpty()){
+			if(filter.isEmpty()){
+				System.out.println("1111111111");
 				if (allUser.isEmpty()) {
 					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
 					((FailureResponse) result).setError("No user found in database.");
@@ -208,11 +213,18 @@ public class UserService {
 					result = new SuccessResponse<User>(HttpStatus.OK, allUser);
 				}
 			} else if(filter.equalsIgnoreCase("graph")){
+				System.out.println("222222222");
 				if(option.equalsIgnoreCase("daily")){
-					List<List<User>> userOfWeek = getDailyUser();
-					result = new SuccessResponse<List<User>>(HttpStatus.OK,userOfWeek);
+					System.out.println("3333333");
+					List<Integer> userOfWeek = getDailyUser();
+					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfWeek);
+				} else if(option.equalsIgnoreCase("hourly")){
+					System.out.println("55555555");
+					List<Integer> userOfDay = getHourlyUser(date);
+					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfDay);
 				}
 			}
+			System.out.println("OLEEEEE");
 			return result;
 	}
 
@@ -264,14 +276,24 @@ public class UserService {
 		return result;
 	}
 
-	public List<List<User>> getDailyUser(){
+	public List<Integer> getDailyUser(){
 		LocalDate previousDate = LocalDate.now().minusDays(7);
-		List<List<User>> userOfWeek = new ArrayList<>();
+		List<Integer> userOfWeek = new ArrayList<>();
 		for (int i = 1 ; i <= 7 ; i++){
 			Date thisDate = Date.valueOf(previousDate.plusDays(i));
-			List<User> currentUserOfDate = userRepository.findByCreatedAt(thisDate);
-			userOfWeek.add(currentUserOfDate);
+			List<Integer> currentUserOfDate = userRepository.findDailyUser(String.valueOf(thisDate));
+			userOfWeek.add(currentUserOfDate.size());
 		}
 		return userOfWeek;
 	}
+
+	public List<Integer> getHourlyUser(String date){
+		List<Integer> userOfDay = new ArrayList<>();
+		for(int i = 1 ; i <= 24 ; i++){
+			List<User> userPerHour = userRepository.findUserPerHour(date,String.valueOf(i));
+			userOfDay.add(userPerHour.size());
+		}
+		return userOfDay;
+	}
+
 }
