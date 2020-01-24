@@ -1,6 +1,4 @@
-package com.wipcamp.userservice.reponses;
-
-import lombok.Data;
+package com.wipcamp.userservice.responses;
 
 import java.util.Date;
 
