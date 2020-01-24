@@ -1,10 +1,7 @@
 package com.wipcamp.userservice.services;
 
 import java.sql.Date;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +9,8 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.jni.Local;
+import com.wipcamp.userservice.responses.PercentResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Service;
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
-import com.wipcamp.userservice.reponses.GraphDailyResponse;
 import com.wipcamp.userservice.repositories.AddressRepository;
 import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
 import com.wipcamp.userservice.repositories.ParentRepository;
@@ -31,29 +28,6 @@ import com.wipcamp.userservice.utils.FailureResponse;
 import com.wipcamp.userservice.utils.JwtUtility;
 import com.wipcamp.userservice.utils.ResponseForm;
 import com.wipcamp.userservice.utils.SuccessResponse;
-
-import io.jsonwebtoken.Claims;
-
-import io.jsonwebtoken.Jwt;
-
-import io.jsonwebtoken.Jwts;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -224,9 +198,22 @@ public class UserService {
 					List<Integer> userOfDay = getHourlyUser(date);
 					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfDay);
 				}
+			}else if(filter.equalsIgnoreCase("percent")){
+				PercentResponse percentResponse = getPercentUser();
+				List<PercentResponse> responseData = new ArrayList<>();
+				responseData.add(percentResponse);
+				result = new SuccessResponse<PercentResponse>(responseData);
 			}
 			System.out.println("OLEEEEE");
 			return result;
+	}
+
+	private PercentResponse getPercentUser() {
+		LocalDate todayDate = LocalDate.now();
+		List<Integer> yesterdayUserCount = userRepository.findDailyUser(String.valueOf(todayDate.minusDays(1)));
+		List<Integer> todayUserCount = userRepository.findDailyUser(String.valueOf(todayDate));
+		double percent = ((double)todayUserCount.size() / (double)yesterdayUserCount.size())*100;
+		return new PercentResponse(yesterdayUserCount.size(),todayUserCount.size(), (int) percent);
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
