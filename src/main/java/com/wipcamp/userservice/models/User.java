@@ -90,8 +90,9 @@ public class User {
 
 	@CreationTimestamp
 	@JsonFormat(timezone = "GMT+07:00")
+	@Column(updatable = false)
 	private Timestamp createdAt;
-	@CreationTimestamp
+	@UpdateTimestamp
 	@JsonFormat(timezone = "GMT+07:00")
 	private Timestamp updatedAt;
 
