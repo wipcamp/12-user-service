@@ -9,7 +9,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class PercentResponse {
+public class UserPercentResponse {
 	@Getter
 	@Setter
 	private int yesterday,today,percent;
