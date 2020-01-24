@@ -9,7 +9,8 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.wipcamp.userservice.responses.PercentResponse;
+import com.wipcamp.userservice.responses.UserInformationResponse;
+import com.wipcamp.userservice.responses.UserPercentResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -199,21 +200,34 @@ public class UserService {
 					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfDay);
 				}
 			}else if(filter.equalsIgnoreCase("percent")){
-				PercentResponse percentResponse = getPercentUser();
-				List<PercentResponse> responseData = new ArrayList<>();
+				UserPercentResponse percentResponse = getPercentUser();
+				List<UserPercentResponse> responseData = new ArrayList<>();
 				responseData.add(percentResponse);
-				result = new SuccessResponse<PercentResponse>(responseData);
+				result = new SuccessResponse<UserPercentResponse>(responseData);
+			}else if(filter.equalsIgnoreCase("information")){
+				UserInformationResponse userInformationResponse = getUserInformation();
+				List<UserInformationResponse> responseData = new ArrayList<>();
+				responseData.add(userInformationResponse);
+				result = new SuccessResponse<UserInformationResponse>(responseData);
 			}
 			System.out.println("OLEEEEE");
 			return result;
 	}
 
-	private PercentResponse getPercentUser() {
+	private UserInformationResponse getUserInformation() {
+		int registered = userRepository.countByStatus("registered");
+		int answered = userRepository.countByStatus("answered");
+		int submitted = userRepository.countByStatus("submitted");
+		int total = registered + answered + submitted;
+		return new UserInformationResponse(total,registered,answered,submitted);
+	}
+
+	private UserPercentResponse getPercentUser() {
 		LocalDate todayDate = LocalDate.now();
 		List<Integer> yesterdayUserCount = userRepository.findDailyUser(String.valueOf(todayDate.minusDays(1)));
 		List<Integer> todayUserCount = userRepository.findDailyUser(String.valueOf(todayDate));
 		double percent = ((double)todayUserCount.size() / (double)yesterdayUserCount.size())*100;
-		return new PercentResponse(yesterdayUserCount.size(),todayUserCount.size(), (int) percent);
+		return new UserPercentResponse(yesterdayUserCount.size(),todayUserCount.size(), (int) percent);
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
