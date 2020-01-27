@@ -87,15 +87,8 @@ public class User {
 	private String congenitalDisease;
 	@Column(nullable = true)
 	private String congenitalDrug;
-
-	@CreationTimestamp
-	@JsonFormat(timezone = "GMT+07:00")
-	@Column(updatable = false)
-	private Timestamp createdAt;
-	@UpdateTimestamp
-	@JsonFormat(timezone = "GMT+07:00")
-	private Timestamp updatedAt;
-
+	@Column(nullable = true)
+	private String computerWorks;
 
 
 	@OneToOne
@@ -119,6 +112,14 @@ public class User {
 
 	@Column(nullable = true)
 	private String status;
+
+	@CreationTimestamp
+	@JsonFormat(timezone = "GMT+07:00")
+	@Column(updatable = false)
+	private Timestamp createdAt;
+	@UpdateTimestamp
+	@JsonFormat(timezone = "GMT+07:00")
+	private Timestamp updatedAt;
 
 	public void setId(long wipId){
 		this.wipId = wipId;
