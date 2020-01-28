@@ -22,4 +22,8 @@ public class GeneralAnswer {
 	private String firstAnswer;
 
 	private String secondAnswer;
+
+	private String thirdAnswer;
+
+	private String forthAnswer;
 }
