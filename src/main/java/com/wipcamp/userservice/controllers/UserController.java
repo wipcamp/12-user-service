@@ -2,6 +2,7 @@ package com.wipcamp.userservice.controllers;
 
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
 import com.wipcamp.userservice.services.UserService;
 
 import com.wipcamp.userservice.utils.ResponseForm;
@@ -74,8 +75,8 @@ public class UserController {
 
 	@PostMapping("/user/{userId}/status")
 	public ResponseEntity<ResponseForm> updateUserStatus(@PathVariable("userId") long userId,
-			@RequestBody @Valid @Pattern(regexp = "(accepted,registered,answered,success)",message = "status must only in pattern") String status){
-		ResponseForm result = userService.updateUserStatue(status, userId);
+			@RequestBody @Valid UpdateUserStatusRequest userStatusRequest){
+		ResponseForm result = userService.updateUserStatue(userStatusRequest ,userId);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
@@ -99,8 +100,8 @@ public class UserController {
 
 	@PostMapping("/me/status")
 	public ResponseEntity<ResponseForm> updateUserStatusByToken(@RequestHeader(name = "Authorization", required = true) String token,
-			@RequestBody @Valid @Pattern(regexp = "(accepted,registered,answered,success)",message = "status must only in pattern") String status){
-		ResponseForm result = userService.updateUserStatueByToken(status, token);
+			@RequestBody @Valid UpdateUserStatusRequest userStatusRequest){
+		ResponseForm result = userService.updateUserStatueByToken(userStatusRequest ,token);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }
