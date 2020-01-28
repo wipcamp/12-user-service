@@ -72,15 +72,7 @@ public class User {
 	@Column(nullable = true)
 	private String religion;
 	@Column(nullable = true)
-	private String school;
-	@Column(nullable = true)
-	private String schoolMajor;
-	@Column(nullable = true)
-	private String level;
-	@Column(nullable = true)
 	private String telEmergency;
-	@Column(nullable = true)
-	private Double gpax;
 	@Column(nullable = true)
 	private String allergicFood;
 	@Column(nullable = true)
@@ -89,11 +81,14 @@ public class User {
 	private String congenitalDrug;
 	@Column(nullable = true)
 	private String computerWorks;
-
+	@Column(nullable = true)
+	private String province;
+	@Column(nullable = true)
+	private String knowWhence;
 
 	@OneToOne
-	@JoinColumn(name="address_id",referencedColumnName = "id")
-	private Address address;
+	@JoinColumn(name="school_id",referencedColumnName = "id")
+	private School school;
 
 	@OneToOne
 	@JoinColumn(name="parent_id",referencedColumnName = "id")
@@ -103,6 +98,10 @@ public class User {
 	@JoinColumn(name="general_answer_id",referencedColumnName = "id")
 	private GeneralAnswer generalAnswer;
 
+	@OneToOne
+	@JoinColumn(name="user_status_id",referencedColumnName = "id")
+	private UserStatus userStatus;
+
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
 	private Major major;
@@ -110,8 +109,6 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Answer> answerList;
 
-	@Column(nullable = true)
-	private String status;
 
 	@CreationTimestamp
 	@JsonFormat(timezone = "GMT+07:00")
