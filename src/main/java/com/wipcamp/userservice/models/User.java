@@ -2,6 +2,8 @@ package com.wipcamp.userservice.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 import lombok.NoArgsConstructor;
@@ -33,10 +35,13 @@ import java.util.List;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "wipId_generator")
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Column(name = "wip_id")
 	private long wipId;
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Long lineId;
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Column(nullable = true)
 	private Long facebookId;
 
