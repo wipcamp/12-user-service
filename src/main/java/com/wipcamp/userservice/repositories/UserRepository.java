@@ -19,6 +19,4 @@ public interface UserRepository extends JpaRepository<User , Long> {
 
 	@Query(value = "SELECT * FROM users WHERE DATE(created_at) = :date AND HOUR(created_at) = :hour", nativeQuery=true)
 	List<User> findUserPerHour(@Param("date") String date , @Param("hour") String hour);
-
-	Integer countByStatus(String status);
 }

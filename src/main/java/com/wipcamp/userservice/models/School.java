@@ -2,28 +2,36 @@ package com.wipcamp.userservice.models;
 
 import lombok.Data;
 
+import lombok.NoArgsConstructor;
+
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "general_answers")
+@Table(name = "schools")
 @Data
-public class GeneralAnswer {
+@NoArgsConstructor
+public class School {
 
 	@Id
 	@GeneratedValue
 	private int id;
 
-	private String firstAnswer;
+	@NonNull
+	private String name;
 
-	private String secondAnswer;
+	@NonNull
+	private String level;
 
-	private String thirdAnswer;
+	@NonNull
+	private String major;
 
-	private String forthAnswer;
+	@NonNull
+	private String gpax;
+
+
 }

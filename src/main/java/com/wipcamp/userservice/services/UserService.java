@@ -9,6 +9,10 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.wipcamp.userservice.models.UserStatus;
+import com.wipcamp.userservice.repositories.SchoolRepository;
+import com.wipcamp.userservice.repositories.UserStatusRepository;
+import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
 import com.wipcamp.userservice.responses.UserInformationResponse;
 import com.wipcamp.userservice.responses.UserPercentResponse;
 
@@ -21,7 +25,6 @@ import org.springframework.stereotype.Service;
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
-import com.wipcamp.userservice.repositories.AddressRepository;
 import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
 import com.wipcamp.userservice.repositories.ParentRepository;
 import com.wipcamp.userservice.repositories.UserRepository;
@@ -40,10 +43,13 @@ public class UserService {
 	ParentRepository parentRepository;
 
 	@Autowired
-	AddressRepository addressRepository;
+	SchoolRepository schoolRepository;
 
 	@Autowired
 	GeneralAnswerRepository generalAnswerRepository;
+
+	@Autowired
+	UserStatusRepository userStatusRepository;
 
 	@Autowired
 	JwtUtility jwtUtility;
@@ -57,8 +63,8 @@ public class UserService {
 		//Mock up fake line id , must change!
 		Long lineId = Long.valueOf((int) Math.floor(Math.random() * 100000) + 1);
 		User currentUserByLineId = userRepository.findByLineId(lineId).orElse(null);
-		if(currentUserByLineId != null){
-			if(currentUserByLineId.getLineId() == lineId){
+		if (currentUserByLineId != null) {
+			if (currentUserByLineId.getLineId() == lineId) {
 				((FailureResponse) result).setError("User Exist, Cannot create new user.");
 			}
 		} else {
@@ -71,7 +77,8 @@ public class UserService {
 				ArrayList<User> userList = new ArrayList<>();
 				userList.add(saveUser);
 				result = new SuccessResponse<User>(HttpStatus.CREATED, userList);
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId() + " | SUCCESS");
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Create User " + user.getWipId()
+						+ " | SUCCESS");
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
 				((FailureResponse) result).setError("Cannot create user in database.");
@@ -98,18 +105,19 @@ public class UserService {
 
 	private void updateUserWithNewUser(User newUser, User queryUser) {
 		newUser.setWipId(queryUser.getWipId());
-		if (newUser.getAddress() != null) {
-			if (queryUser.getAddress() != null) {
-				newUser.getAddress().setId(queryUser.getAddress().getId());
-			}
-			addressRepository.save(newUser.getAddress());
-		}
 		if (newUser.getParent() != null) {
 			if (queryUser.getParent() != null) {
 				newUser.getParent().setId(queryUser.getParent().getId());
 			}
 			parentRepository.save(newUser.getParent());
 		}
+		if (newUser.getSchool() != null) {
+			if (queryUser.getSchool() != null) {
+				newUser.getSchool().setId(queryUser.getSchool().getId());
+			}
+			schoolRepository.save(newUser.getSchool());
+		}
+		newUser.setLineId(queryUser.getLineId());
 		userRepository.save(newUser);
 	}
 
@@ -176,10 +184,10 @@ public class UserService {
 		return this.updateUser(user, Long.parseLong(wipid));
 	}
 
-	public ResponseForm getAllUser(String filter, String option, String date ,HttpServletRequest request) {
+	public ResponseForm getAllUser(String filter, String option, String date, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
-			List<User> allUser = userRepository.findAll();
-			if(filter == null){
+		List<User> allUser = userRepository.findAll();
+		if(filter == null){
 				if (allUser == null) {
 					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
 					((FailureResponse) result).setError("No user found in database.");
@@ -206,23 +214,25 @@ public class UserService {
 				responseData.add(userInformationResponse);
 				result = new SuccessResponse<UserInformationResponse>(responseData);
 			}
-			return result;
+		return result;
 	}
 
 	private UserInformationResponse getUserInformation() {
-		int registered = userRepository.countByStatus("registered");
-		int answered = userRepository.countByStatus("answered");
-		int submitted = userRepository.countByStatus("submitted");
-		int total = registered + answered + submitted;
-		return new UserInformationResponse(total,registered,answered,submitted);
+		int accepted = userStatusRepository.countByIsAccepted(true);
+		int registered = userStatusRepository.countByIsRegistered(true);
+		int generalAnswered = userStatusRepository.countByIsGeneralAnswered(true);
+		int majorAnswered = userStatusRepository.countByIsMajorAnswered(true);
+		int submitted = userStatusRepository.countByIsSubmitted(true);
+		int total = Math.toIntExact(userStatusRepository.count());
+		return new UserInformationResponse(total, accepted, registered, generalAnswered, majorAnswered, submitted);
 	}
 
 	private UserPercentResponse getPercentUser() {
 		LocalDate todayDate = LocalDate.now();
 		List<Integer> yesterdayUserCount = userRepository.findDailyUser(String.valueOf(todayDate.minusDays(1)));
 		List<Integer> todayUserCount = userRepository.findDailyUser(String.valueOf(todayDate));
-		double percent = ((double)todayUserCount.size() / (double)yesterdayUserCount.size())*100;
-		return new UserPercentResponse(yesterdayUserCount.size(),todayUserCount.size(), (int) percent);
+		double percent = ((double) todayUserCount.size() / (double) yesterdayUserCount.size()) * 100;
+		return new UserPercentResponse(yesterdayUserCount.size(), todayUserCount.size(), (int) percent);
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
@@ -248,28 +258,54 @@ public class UserService {
 		return result;
 	}
 
-	public ResponseForm updateUserStatue(String status, long userId) {
+	public ResponseForm updateUserStatue(UpdateUserStatusRequest userStatusRequest, long userId) {
 		ResponseForm result = new FailureResponse();
 		User queryUser = userRepository.findById(userId).orElse(null);
-		return updateUserStatus(status, result, queryUser);
+		return updateUserStatus(userStatusRequest, result, queryUser);
 	}
 
-	public ResponseForm updateUserStatueByToken(String status, String token) {
+	public ResponseForm updateUserStatueByToken(UpdateUserStatusRequest updateUserStatusRequest, String token) {
 		ResponseForm result = new FailureResponse();
 		String wipid = jwtUtility.getClaimFromToken(token, "wipid");
 		User queryUser = userRepository.findById(Long.valueOf(wipid)).orElse(null);
-		return updateUserStatus(status, result, queryUser);
+		return updateUserStatus(updateUserStatusRequest, result, queryUser);
 	}
 
-	private ResponseForm updateUserStatus(String status, ResponseForm result, User queryUser) {
-		if(queryUser == null){
+	private ResponseForm updateUserStatus(UpdateUserStatusRequest updateUserStatusRequest, ResponseForm result, User queryUser) {
+		if (queryUser == null) {
 			((FailureResponse) result).setError("User not found");
-		}else{
-			queryUser.setStatus(status);
+		} else {
+			UserStatus userStatus = new UserStatus();
+			switch (updateUserStatusRequest.getStatus()) {
+			case "accept":
+				userStatus.setAccepted(true);
+				break;
+			case "register":
+				userStatus.setRegistered(true);
+				break;
+			case "general":
+				userStatus.setGeneralAnswered(true);
+				break;
+			case "major":
+				userStatus.setMajorAnswered(true);
+				break;
+			case "submit":
+				userStatus.setSubmitted(true);
+				break;
+			default:
+				((FailureResponse) result).setError("Status does not match the pattern");
+				break;
+			}
+			if (queryUser.getUserStatus() != null) {
+				userStatus.setId(queryUser.getUserStatus().getId());
+			}
+			userStatusRepository.save(userStatus);
+			queryUser.setUserStatus(userStatus);
 			userRepository.save(queryUser);
 			User[] resultData = {queryUser};
 			result = new SuccessResponse<User>(Arrays.asList(resultData));
 		}
+
 		return result;
 	}
 
@@ -281,7 +317,7 @@ public class UserService {
 			previousDate = LocalDate.parse(date).minusDays(1);
 		}
 		List<Integer> userOfWeek = new ArrayList<>();
-		for (int i = 1 ; i <= 7 ; i++){
+		for (int i = 1; i <= 7; i++) {
 			Date thisDate = Date.valueOf(previousDate.plusDays(i));
 			List<Integer> currentUserOfDate = userRepository.findDailyUser(String.valueOf(thisDate));
 			userOfWeek.add(currentUserOfDate.size());
@@ -289,10 +325,10 @@ public class UserService {
 		return userOfWeek;
 	}
 
-	public List<Integer> getHourlyUser(String date){
+	public List<Integer> getHourlyUser(String date) {
 		List<Integer> userOfDay = new ArrayList<>();
-		for(int i = 1 ; i <= 24 ; i++){
-			List<User> userPerHour = userRepository.findUserPerHour(date,String.valueOf(i));
+		for (int i = 1; i <= 24; i++) {
+			List<User> userPerHour = userRepository.findUserPerHour(date, String.valueOf(i));
 			userOfDay.add(userPerHour.size());
 		}
 		return userOfDay;
