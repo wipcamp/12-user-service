@@ -179,9 +179,8 @@ public class UserService {
 	public ResponseForm getAllUser(String filter, String option, String date ,HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 			List<User> allUser = userRepository.findAll();
-			if(filter.isEmpty()){
-				System.out.println("1111111111");
-				if (allUser.isEmpty()) {
+			if(filter == null){
+				if (allUser == null) {
 					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
 					((FailureResponse) result).setError("No user found in database.");
 				} else {
@@ -189,13 +188,10 @@ public class UserService {
 					result = new SuccessResponse<User>(HttpStatus.OK, allUser);
 				}
 			} else if(filter.equalsIgnoreCase("graph")){
-				System.out.println("222222222");
 				if(option.equalsIgnoreCase("daily")){
-					System.out.println("3333333");
-					List<Integer> userOfWeek = getDailyUser();
+					List<Integer> userOfWeek = getDailyUser(date);
 					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfWeek);
 				} else if(option.equalsIgnoreCase("hourly")){
-					System.out.println("55555555");
 					List<Integer> userOfDay = getHourlyUser(date);
 					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfDay);
 				}
@@ -210,7 +206,6 @@ public class UserService {
 				responseData.add(userInformationResponse);
 				result = new SuccessResponse<UserInformationResponse>(responseData);
 			}
-			System.out.println("OLEEEEE");
 			return result;
 	}
 
@@ -278,8 +273,13 @@ public class UserService {
 		return result;
 	}
 
-	public List<Integer> getDailyUser(){
-		LocalDate previousDate = LocalDate.now().minusDays(7);
+	public List<Integer> getDailyUser(String date){
+		LocalDate previousDate;
+		if(date == null){
+			previousDate = LocalDate.now().minusDays(7);
+		} else{
+			previousDate = LocalDate.parse(date).minusDays(1);
+		}
 		List<Integer> userOfWeek = new ArrayList<>();
 		for (int i = 1 ; i <= 7 ; i++){
 			Date thisDate = Date.valueOf(previousDate.plusDays(i));
@@ -297,5 +297,6 @@ public class UserService {
 		}
 		return userOfDay;
 	}
+
 
 }
