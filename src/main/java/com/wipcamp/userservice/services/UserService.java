@@ -117,6 +117,7 @@ public class UserService {
 			}
 			schoolRepository.save(newUser.getSchool());
 		}
+		newUser.setLineId(queryUser.getLineId());
 		userRepository.save(newUser);
 	}
 
@@ -222,11 +223,13 @@ public class UserService {
 	}
 
 	private UserInformationResponse getUserInformation() {
-		int registered = userRepository.countByStatus("registered");
-		int answered = userRepository.countByStatus("answered");
-		int submitted = userRepository.countByStatus("submitted");
-		int total = registered + answered + submitted;
-		return new UserInformationResponse(total, registered, answered, submitted);
+		int accepted = userStatusRepository.countByIsAccepted(true);
+		int registered = userStatusRepository.countByIsRegistered(true);
+		int generalAnswered = userStatusRepository.countByIsGeneralAnswered(true);
+		int majorAnswered = userStatusRepository.countByIsMajorAnswered(true);
+		int submitted = userStatusRepository.countByIsSubmitted(true);
+		int total = Math.toIntExact(userStatusRepository.count());
+		return new UserInformationResponse(total, accepted, registered, generalAnswered, majorAnswered, submitted);
 	}
 
 	private UserPercentResponse getPercentUser() {
