@@ -280,7 +280,12 @@ public class UserService {
 		if (queryUser == null) {
 			((FailureResponse) result).setError("User not found");
 		} else {
-			UserStatus userStatus = new UserStatus();
+			UserStatus userStatus;
+			if (queryUser.getUserStatus() != null) {
+				userStatus = queryUser.getUserStatus();
+			}else{
+				userStatus = new UserStatus();
+			}
 			switch (updateUserStatusRequest.getStatus()) {
 			case "accept":
 				userStatus.setAccepted(true);
@@ -300,9 +305,6 @@ public class UserService {
 			default:
 				((FailureResponse) result).setError("Status does not match the pattern");
 				break;
-			}
-			if (queryUser.getUserStatus() != null) {
-				userStatus.setId(queryUser.getUserStatus().getId());
 			}
 			userStatusRepository.save(userStatus);
 			queryUser.setUserStatus(userStatus);
