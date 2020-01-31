@@ -187,38 +187,33 @@ public class UserService {
 	public ResponseForm getAllUser(String filter, String option, String date, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 		List<User> allUser = userRepository.findAll();
-		if (filter.isEmpty()) {
-			System.out.println("1111111111");
-			if (allUser.isEmpty()) {
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
-				((FailureResponse) result).setError("No user found in database.");
-			} else {
-				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
-				result = new SuccessResponse<User>(HttpStatus.OK, allUser);
+		if(filter == null){
+				if (allUser == null) {
+					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
+					((FailureResponse) result).setError("No user found in database.");
+				} else {
+					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
+					result = new SuccessResponse<User>(HttpStatus.OK, allUser);
+				}
+			} else if(filter.equalsIgnoreCase("graph")){
+				if(option.equalsIgnoreCase("daily")){
+					List<Integer> userOfWeek = getDailyUser(date);
+					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfWeek);
+				} else if(option.equalsIgnoreCase("hourly")){
+					List<Integer> userOfDay = getHourlyUser(date);
+					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfDay);
+				}
+			}else if(filter.equalsIgnoreCase("percent")){
+				UserPercentResponse percentResponse = getPercentUser();
+				List<UserPercentResponse> responseData = new ArrayList<>();
+				responseData.add(percentResponse);
+				result = new SuccessResponse<UserPercentResponse>(responseData);
+			}else if(filter.equalsIgnoreCase("information")){
+				UserInformationResponse userInformationResponse = getUserInformation();
+				List<UserInformationResponse> responseData = new ArrayList<>();
+				responseData.add(userInformationResponse);
+				result = new SuccessResponse<UserInformationResponse>(responseData);
 			}
-		} else if (filter.equalsIgnoreCase("graph")) {
-			System.out.println("222222222");
-			if (option.equalsIgnoreCase("daily")) {
-				System.out.println("3333333");
-				List<Integer> userOfWeek = getDailyUser();
-				result = new SuccessResponse<Integer>(HttpStatus.OK, userOfWeek);
-			} else if (option.equalsIgnoreCase("hourly")) {
-				System.out.println("55555555");
-				List<Integer> userOfDay = getHourlyUser(date);
-				result = new SuccessResponse<Integer>(HttpStatus.OK, userOfDay);
-			}
-		} else if (filter.equalsIgnoreCase("percent")) {
-			UserPercentResponse percentResponse = getPercentUser();
-			List<UserPercentResponse> responseData = new ArrayList<>();
-			responseData.add(percentResponse);
-			result = new SuccessResponse<UserPercentResponse>(responseData);
-		} else if (filter.equalsIgnoreCase("information")) {
-			UserInformationResponse userInformationResponse = getUserInformation();
-			List<UserInformationResponse> responseData = new ArrayList<>();
-			responseData.add(userInformationResponse);
-			result = new SuccessResponse<UserInformationResponse>(responseData);
-		}
-		System.out.println("OLEEEEE");
 		return result;
 	}
 
@@ -316,8 +311,13 @@ public class UserService {
 		return result;
 	}
 
-	public List<Integer> getDailyUser() {
-		LocalDate previousDate = LocalDate.now().minusDays(7);
+	public List<Integer> getDailyUser(String date){
+		LocalDate previousDate;
+		if(date == null){
+			previousDate = LocalDate.now().minusDays(7);
+		} else{
+			previousDate = LocalDate.parse(date).minusDays(1);
+		}
 		List<Integer> userOfWeek = new ArrayList<>();
 		for (int i = 1; i <= 7; i++) {
 			Date thisDate = Date.valueOf(previousDate.plusDays(i));
@@ -335,5 +335,6 @@ public class UserService {
 		}
 		return userOfDay;
 	}
+
 
 }
