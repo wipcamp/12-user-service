@@ -11,7 +11,6 @@ import javax.validation.constraints.Pattern;
 @Data
 @NoArgsConstructor
 public class UpdateUserStatusRequest {
-	@Pattern(regexp = "(accept,register,general,answer,submit)",message = "status must only in pattern")
+	@Pattern(regexp = "(accept|register|general|major|submit)",message = "status must only in pattern")
 	private String status;
-	private boolean value;
 }
