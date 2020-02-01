@@ -415,7 +415,7 @@ public class UserService {
 	public ResponseForm uploadDocumentByToken(MultipartFile file, String token) {
 		Integer wipid = null;
 		try {
-			wipid = jwtUtility.getClaimFromToken(token, "wipid");
+			wipid = jwtUtility.getClaimFromToken(token, "wipId");
 		} catch (NullPointerException e) {
 			logger.info(System.currentTimeMillis() + " | JWT doesn't have wipId Field");
 		}
