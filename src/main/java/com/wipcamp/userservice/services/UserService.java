@@ -287,9 +287,25 @@ public class UserService {
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
-		ResponseForm result = new FailureResponse();
 		User queryUser = userRepository.findById(userId).orElse(null);
+		return updateGeneralAnswer(generalAnswer, queryUser);
+	}
 
+	public ResponseForm updateUserGeneralAnswerByToken(GeneralAnswer generalAnswer, String token) {
+		ResponseForm result = new FailureResponse();
+		Integer wipId = null;
+		try {
+			wipId = jwtUtility.getClaimFromToken(token, "wipId");
+		} catch (NullPointerException e) {
+			((FailureResponse) result).setError("Cannot get wipId from Jwt Token");
+		}
+		User queryUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
+		result = updateGeneralAnswer(generalAnswer,queryUser);
+		return result;
+	}
+
+	private ResponseForm updateGeneralAnswer(GeneralAnswer generalAnswer, User queryUser) {
+		ResponseForm result = new FailureResponse();
 		if (null == queryUser) {
 			((FailureResponse) result).setError("User not found");
 		} else {

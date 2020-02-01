@@ -108,6 +108,13 @@ public class UserController {
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
+	@PostMapping("/me/general")
+	public ResponseEntity<ResponseForm> updateUserGeneralAnswerByToken(@RequestHeader(name = "Authorization", required = true) String token
+			, @Valid @RequestBody GeneralAnswer generalAnswer) {
+		ResponseForm result = userService.updateUserGeneralAnswerByToken(generalAnswer, token);
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
+	}
+
 	@PostMapping("/me/status")
 	public ResponseEntity<ResponseForm> updateUserStatusByToken(@RequestHeader(name = "Authorization", required = true) String token,
 			@RequestBody @Valid UpdateUserStatusRequest userStatusRequest){
