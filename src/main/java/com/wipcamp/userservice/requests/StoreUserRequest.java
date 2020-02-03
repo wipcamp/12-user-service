@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class StoreUserRequest {
-	long lineId;
+	String lineId;
 }

@@ -41,7 +41,7 @@ public class User {
 	private long wipId;
 
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	private Long lineId;
+	private String lineId;
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Column(nullable = true)
 	private Long facebookId;

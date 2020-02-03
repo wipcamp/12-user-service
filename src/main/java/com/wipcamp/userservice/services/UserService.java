@@ -93,10 +93,10 @@ public class UserService {
 
 	public ResponseForm createUser(HttpServletRequest request, StoreUserRequest storeUserRequest) {
 		ResponseForm result = new FailureResponse();
-		long lineId = storeUserRequest.getLineId();
+		String lineId = storeUserRequest.getLineId();
 		User currentUserByLineId = userRepository.findByLineId(lineId).orElse(null);
 		if (currentUserByLineId != null) {
-			if (currentUserByLineId.getLineId() == lineId) {
+			if (currentUserByLineId.getLineId().equals(lineId) ) {
 				Claims claims = Jwts.claims();
 				claims.setSubject("master.user.service.wip.camp");
 				claims.put("wipId", currentUserByLineId.getWipId());
@@ -185,7 +185,7 @@ public class UserService {
 		return result;
 	}
 
-	public ResponseForm getUserByLineId(long lineId, HttpServletRequest request) {
+	public ResponseForm getUserByLineId(String lineId, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 		try {
 			User currentUser = this.userRepository.findByLineId(lineId).get();

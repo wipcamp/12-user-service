@@ -91,7 +91,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/line/{lineId}")
-	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") long lineId , HttpServletRequest request){
+	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") String lineId , HttpServletRequest request){
 		ResponseForm result = userService.getUserByLineId(lineId , request);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}

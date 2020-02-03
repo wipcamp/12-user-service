@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User , Long> {
-	public Optional<User> findByLineId(long lineId);
+	public Optional<User> findByLineId(String lineId);
 
 	@Query(value = "SELECT * FROM users WHERE DATE(created_at) = :date", nativeQuery=true)
 	public List<Integer> findDailyUser(@Param("date") String date);
