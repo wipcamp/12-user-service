@@ -14,7 +14,7 @@ import com.wipcamp.userservice.repositories.SchoolRepository;
 import com.wipcamp.userservice.repositories.UserStatusRepository;
 import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
 import com.wipcamp.userservice.responses.UserInformationResponse;
-import com.wipcamp.userservice.responses.UserPercentResponse;
+import com.wipcamp.userservice.responses.UserUpdateResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -187,33 +187,33 @@ public class UserService {
 	public ResponseForm getAllUser(String filter, String option, String date, HttpServletRequest request) {
 		ResponseForm result = new FailureResponse();
 		List<User> allUser = userRepository.findAll();
-		if(filter == null){
-				if (allUser == null) {
-					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
-					((FailureResponse) result).setError("No user found in database.");
-				} else {
-					logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
-					result = new SuccessResponse<User>(HttpStatus.OK, allUser);
-				}
-			} else if(filter.equalsIgnoreCase("graph")){
-				if(option.equalsIgnoreCase("daily")){
-					List<Integer> userOfWeek = getDailyUser(date);
-					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfWeek);
-				} else if(option.equalsIgnoreCase("hourly")){
-					List<Integer> userOfDay = getHourlyUser(date);
-					result = new SuccessResponse<Integer>(HttpStatus.OK,userOfDay);
-				}
-			}else if(filter.equalsIgnoreCase("percent")){
-				UserPercentResponse percentResponse = getPercentUser();
-				List<UserPercentResponse> responseData = new ArrayList<>();
-				responseData.add(percentResponse);
-				result = new SuccessResponse<UserPercentResponse>(responseData);
-			}else if(filter.equalsIgnoreCase("information")){
-				UserInformationResponse userInformationResponse = getUserInformation();
-				List<UserInformationResponse> responseData = new ArrayList<>();
-				responseData.add(userInformationResponse);
-				result = new SuccessResponse<UserInformationResponse>(responseData);
+		if (filter == null) {
+			if (allUser == null) {
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
+				((FailureResponse) result).setError("No user found in database.");
+			} else {
+				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
+				result = new SuccessResponse<User>(HttpStatus.OK, allUser);
 			}
+		} else if (filter.equalsIgnoreCase("graph")) {
+			if (option.equalsIgnoreCase("daily")) {
+				List<Integer> userOfWeek = getDailyUser(date);
+				result = new SuccessResponse<Integer>(HttpStatus.OK, userOfWeek);
+			} else if (option.equalsIgnoreCase("hourly")) {
+				List<Integer> userOfDay = getHourlyUser(date);
+				result = new SuccessResponse<Integer>(HttpStatus.OK, userOfDay);
+			}
+		} else if (filter.equalsIgnoreCase("update")) {
+			UserUpdateResponse updateResponse = getUpdateCountUser();
+			List<UserUpdateResponse> responseData = new ArrayList<>();
+			responseData.add(updateResponse);
+			result = new SuccessResponse<UserUpdateResponse>(responseData);
+		} else if (filter.equalsIgnoreCase("information")) {
+			UserInformationResponse userInformationResponse = getUserInformation();
+			List<UserInformationResponse> responseData = new ArrayList<>();
+			responseData.add(userInformationResponse);
+			result = new SuccessResponse<UserInformationResponse>(responseData);
+		}
 		return result;
 	}
 
@@ -227,12 +227,12 @@ public class UserService {
 		return new UserInformationResponse(total, accepted, registered, generalAnswered, majorAnswered, submitted);
 	}
 
-	private UserPercentResponse getPercentUser() {
+	private UserUpdateResponse getUpdateCountUser() {
 		LocalDate todayDate = LocalDate.now();
 		List<Integer> yesterdayUserCount = userRepository.findDailyUser(String.valueOf(todayDate.minusDays(1)));
 		List<Integer> todayUserCount = userRepository.findDailyUser(String.valueOf(todayDate));
-		double percent = ((double) todayUserCount.size() / (double) yesterdayUserCount.size()) * 100;
-		return new UserPercentResponse(yesterdayUserCount.size(), todayUserCount.size(), (int) percent);
+		int count = todayUserCount.size() - yesterdayUserCount.size();
+		return new UserUpdateResponse(yesterdayUserCount.size(), todayUserCount.size(), (int) count);
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {
@@ -309,11 +309,11 @@ public class UserService {
 		return result;
 	}
 
-	public List<Integer> getDailyUser(String date){
+	public List<Integer> getDailyUser(String date) {
 		LocalDate previousDate;
-		if(date == null){
+		if (date == null) {
 			previousDate = LocalDate.now().minusDays(7);
-		} else{
+		} else {
 			previousDate = LocalDate.parse(date).minusDays(1);
 		}
 		List<Integer> userOfWeek = new ArrayList<>();
@@ -333,6 +333,5 @@ public class UserService {
 		}
 		return userOfDay;
 	}
-
 
 }
