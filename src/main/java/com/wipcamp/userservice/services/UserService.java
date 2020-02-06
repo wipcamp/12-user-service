@@ -14,24 +14,6 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.wipcamp.userservice.models.UserStatus;
-import com.wipcamp.userservice.repositories.SchoolRepository;
-import com.wipcamp.userservice.repositories.UserStatusRepository;
-import com.wipcamp.userservice.requests.StoreUserRequest;
-import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
-import com.wipcamp.userservice.responses.CreateUserResponse;
-import com.wipcamp.userservice.responses.UserInformationResponse;
-import com.wipcamp.userservice.responses.UserUpdateResponse;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.minio.MinioClient;
-
-import io.minio.ServerSideEncryption;
-import io.minio.errors.MinioException;
-
-import jdk.nashorn.internal.runtime.regexp.RegExp;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.xmlpull.v1.XmlPullParserException;
 
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
@@ -53,7 +36,7 @@ import com.wipcamp.userservice.requests.StoreUserRequest;
 import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
 import com.wipcamp.userservice.responses.CreateUserResponse;
 import com.wipcamp.userservice.responses.UserInformationResponse;
-import com.wipcamp.userservice.responses.UserPercentResponse;
+import com.wipcamp.userservice.responses.UserUpdateResponse;
 import com.wipcamp.userservice.utils.FailureResponse;
 import com.wipcamp.userservice.utils.JwtUtility;
 import com.wipcamp.userservice.utils.ResponseForm;
@@ -63,8 +46,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.minio.MinioClient;
 import io.minio.errors.MinioException;
-
-import org.xmlpull.v1.XmlPullParserException;
 
 @Service
 public class UserService {
