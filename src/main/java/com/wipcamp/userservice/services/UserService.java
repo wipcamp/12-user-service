@@ -1,7 +1,6 @@
 package com.wipcamp.userservice.services;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
@@ -10,50 +9,43 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.wipcamp.userservice.models.UserStatus;
-import com.wipcamp.userservice.repositories.SchoolRepository;
-import com.wipcamp.userservice.repositories.UserStatusRepository;
-import com.wipcamp.userservice.requests.StoreUserRequest;
-import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
-import com.wipcamp.userservice.responses.CreateUserResponse;
-import com.wipcamp.userservice.responses.UserInformationResponse;
-import com.wipcamp.userservice.responses.UserPercentResponse;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.minio.MinioClient;
-
-import io.minio.ServerSideEncryption;
-import io.minio.errors.MinioException;
-
-import jdk.nashorn.internal.runtime.regexp.RegExp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wipcamp.userservice.controllers.MajorController;
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.models.UserStatus;
 import com.wipcamp.userservice.repositories.GeneralAnswerRepository;
 import com.wipcamp.userservice.repositories.ParentRepository;
+import com.wipcamp.userservice.repositories.SchoolRepository;
 import com.wipcamp.userservice.repositories.UserRepository;
+import com.wipcamp.userservice.repositories.UserStatusRepository;
+import com.wipcamp.userservice.requests.StoreUserRequest;
+import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
+import com.wipcamp.userservice.responses.CreateUserResponse;
+import com.wipcamp.userservice.responses.UserInformationResponse;
+import com.wipcamp.userservice.responses.UserPercentResponse;
 import com.wipcamp.userservice.utils.FailureResponse;
 import com.wipcamp.userservice.utils.JwtUtility;
 import com.wipcamp.userservice.utils.ResponseForm;
 import com.wipcamp.userservice.utils.SuccessResponse;
 
-import org.springframework.web.multipart.MultipartFile;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.minio.MinioClient;
+import io.minio.errors.MinioException;
+
 import org.xmlpull.v1.XmlPullParserException;
 
 @Service
@@ -73,6 +65,9 @@ public class UserService {
 
 	@Autowired
 	UserStatusRepository userStatusRepository;
+
+	@Autowired
+	com.wipcamp.userservice.repositories.knowWhenceRepository knowWhenceRepository;
 
 	@Autowired
 	JwtUtility jwtUtility;
@@ -96,7 +91,7 @@ public class UserService {
 		String lineId = storeUserRequest.getLineId();
 		User currentUserByLineId = userRepository.findByLineId(lineId).orElse(null);
 		if (currentUserByLineId != null) {
-			if (currentUserByLineId.getLineId().equals(lineId) ) {
+			if (currentUserByLineId.getLineId().equals(lineId)) {
 				Claims claims = Jwts.claims();
 				claims.setSubject("master.user.service.wip.camp");
 				claims.put("wipId", currentUserByLineId.getWipId());
@@ -164,6 +159,12 @@ public class UserService {
 			}
 			schoolRepository.save(newUser.getSchool());
 		}
+		if (newUser.getKnowWhence() != null) {
+			if (queryUser.getKnowWhence() != null) {
+				newUser.getKnowWhence().setId(queryUser.getKnowWhence().getId());
+			}
+			knowWhenceRepository.save(newUser.getKnowWhence());
+		}
 		newUser.setLineId(queryUser.getLineId());
 		userRepository.save(newUser);
 	}
@@ -210,7 +211,7 @@ public class UserService {
 		}
 		try {
 			User currentUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
-			if(currentUser == null){
+			if (currentUser == null) {
 				((FailureResponse) result).setError("User not found");
 				return result;
 			}
@@ -300,7 +301,7 @@ public class UserService {
 			((FailureResponse) result).setError("Cannot get wipId from Jwt Token");
 		}
 		User queryUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
-		result = updateGeneralAnswer(generalAnswer,queryUser);
+		result = updateGeneralAnswer(generalAnswer, queryUser);
 		return result;
 	}
 
@@ -436,7 +437,7 @@ public class UserService {
 					.substring(file.getOriginalFilename().lastIndexOf('.'), file.getOriginalFilename().length());
 			if (!fileType.equals(".pdf")) {
 				((FailureResponse) result).setError("File type must be pdf");
-			}else if(file.getSize() > 5_242_880){
+			} else if (file.getSize() > 5_242_880) {
 				((FailureResponse) result).setError("File size cannot larger than 5MB");
 			} else {
 				try {
@@ -449,15 +450,15 @@ public class UserService {
 
 					String objectName = userId + "-document" + fileType;
 					HashMap<String, String> header = new HashMap<>();
-					header.put("contentType","application/octet-stream");
+					header.put("contentType", "application/octet-stream");
 
 					minioClient.putObject(MINIOBUCKETNAME, objectName, file.getInputStream(), file.getSize(), header);
 
-					user.setUploadDocumentPath(MINIOENDPOINT+'/'+MINIOBUCKETNAME+'/'+objectName);
+					user.setUploadDocumentPath(MINIOENDPOINT + '/' + MINIOBUCKETNAME + '/' + objectName);
 					userRepository.save(user);
 
 					ArrayList<String> resultData = new ArrayList<>(1);
-					resultData.add("File "+objectName+" has been uploaded to server!");
+					resultData.add("File " + objectName + " has been uploaded to server!");
 					result = new SuccessResponse<String>(resultData);
 				} catch (MinioException e) {
 					((FailureResponse) result).setError("Minio Exception : " + e);

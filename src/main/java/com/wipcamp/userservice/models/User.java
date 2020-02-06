@@ -89,8 +89,6 @@ public class User {
 	private String computerWorks;
 	@Column(nullable = true)
 	private String province;
-	@Column(nullable = true)
-	private String knowWhence;
 
 	@Column(nullable = true)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -111,6 +109,10 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="user_status_id",referencedColumnName = "id")
 	private UserStatus userStatus;
+
+	@OneToOne
+	@JoinColumn(name="user_know_whence",referencedColumnName = "id")
+	private KnowWhence knowWhence;
 
 	@ManyToOne
 	@JoinColumn(name="major_id",referencedColumnName = "id")
