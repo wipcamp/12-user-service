@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -23,10 +25,18 @@ public class AnswerController {
 	@Autowired
 	private AnswerService answerService;
 
-	@PostMapping("/user/{userId}/major/{majorId}/answer")
-	public ResponseEntity<ResponseForm> createAnswer(@RequestBody @Valid StoreAnswerRequest request, @PathVariable long userId,
-			@PathVariable long majorId){
+	@PostMapping("/answer")
+	public ResponseEntity<ResponseForm> createAnswer(@RequestBody @Valid StoreAnswerRequest request, @RequestParam long userId,
+			@RequestParam long majorId){
 		ResponseForm result = this.answerService.createAnswer(request,userId,majorId);
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
+	}
+
+	@PostMapping("/me/answer")
+	public ResponseEntity<ResponseForm> createAnswer(@RequestHeader(name = "Authorization", required = true) String token,
+			@RequestBody @Valid StoreAnswerRequest request,
+			@RequestParam long majorId){
+		ResponseForm result = this.answerService.createAnswerByToken(request,token,majorId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 }

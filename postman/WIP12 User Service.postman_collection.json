@@ -1,0 +1,3281 @@
+{
+	"info": {
+		"_postman_id": "0028ba65-4455-422e-a231-8ac259576dec",
+		"name": "WIP12 User Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lineId\": 55555555\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/user",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user"
+					]
+				},
+				"description": "## Pass lineId to create user or return existing user.\n\n ----\n\n## Response data\n\n\t* message : \"User exist\" or \"Create User\"\n\t* token : \"Jwt Token\""
+			},
+			"response": [
+				{
+					"name": "POST User (create)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lineId\": 55555555\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 15:50:22 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"success\": true,\n    \"data\": [\n        {\n            \"message\": \"Create User\",\n            \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXN0ZXIudXNlci5zZXJ2aWNlLndpcC5jYW1wIiwid2lwSWQiOjEyMDAxMywiaWF0IjoxNTgwNTcyMjIyLCJleHAiOjE1ODA1OTAyMjJ9.ya20WRhm1JghMRCQsVNQ406JcB_fPVDsuASPj_0HsZ4B0qvnpxu0t1j4zYZgxR4bxeK6Cj-CHiyHUYg2mMoTOA\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User (Exist)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lineId\": 55555555\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 15:53:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"message\": \"User Exist\",\n            \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXN0ZXIudXNlci5zZXJ2aWNlLndpcC5jYW1wIiwid2lwSWQiOjEyMDAxMywiaWF0IjoxNTgwNTcyNDA1LCJleHAiOjE1ODA1OTA0MDV9.0fkqpjzchnsu_yFCbgvTzfHu3Jx5O4hMlve4vPNCzZIyzrHtfant8WbN0cl3UYm5hcbC7l2tZkdbtK0GiScTmw\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIADDRESS}}/user/120001",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user",
+						"120001"
+					]
+				},
+				"description": "## Get details of specific userId (wipId)\n\n----\n\n## Response data\n\n\t* Model User"
+			},
+			"response": [
+				{
+					"name": "GET User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 15:55:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120001,\n            \"lineId\": null,\n            \"facebookId\": null,\n            \"firstName\": \"sdadsa\",\n            \"lastName\": \"dsadsa\",\n            \"firstNameEn\": \"dsadsa\",\n            \"lastNameEn\": \"dsadsa\",\n            \"nickName\": \"ewq\",\n            \"email\": \"mint@gmail.com\",\n            \"birthDate\": \"2000-01-01\",\n            \"citizenId\": \"1111111111111\",\n            \"gender\": \"หญิง\",\n            \"bloodGroup\": \"B\",\n            \"telNo\": \"1111111111\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"1111111111\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"แมวว\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"meow\",\n            \"school\": {\n                \"id\": 60,\n                \"name\": \"111\",\n                \"level\": \"ม.5\",\n                \"major\": \"เลข\",\n                \"gpax\": \"3\"\n            },\n            \"parent\": {\n                \"id\": 59,\n                \"telNo\": \"1111111111\",\n                \"relation\": \"ททท\"\n            },\n            \"generalAnswer\": {\n                \"id\": 70,\n                \"firstAnswer\": \"Sasha\",\n                \"secondAnswer\": \"dsadsa\",\n                \"thirdAnswer\": \"dsadsa\",\n                \"forthAnswer\": \"dsdsa\"\n            },\n            \"userStatus\": {\n                \"id\": 69,\n                \"registered\": true,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T10:36:32.000+0700\",\n            \"updatedAt\": \"2020-01-31T15:34:01.000+0700\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Me",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"description": "Jwt Token that return from POST /user",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{APIADDRESS}}/me",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me"
+					]
+				},
+				"description": "## Get details of session user\n\n----\n\n## Response data\n\n\t* Model User"
+			},
+			"response": [
+				{
+					"name": "GET Me",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWTTOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{APIADDRESS}}/me",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 15:58:52 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120013,\n            \"lineId\": 55555555,\n            \"facebookId\": null,\n            \"firstName\": null,\n            \"lastName\": null,\n            \"firstNameEn\": null,\n            \"lastNameEn\": null,\n            \"nickName\": null,\n            \"email\": null,\n            \"birthDate\": null,\n            \"citizenId\": null,\n            \"gender\": null,\n            \"bloodGroup\": null,\n            \"telNo\": null,\n            \"religion\": null,\n            \"telEmergency\": null,\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": null,\n            \"province\": null,\n            \"knowWhence\": null,\n            \"school\": null,\n            \"parent\": null,\n            \"generalAnswer\": null,\n            \"userStatus\": null,\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-02-01T22:50:22.000+0700\",\n            \"updatedAt\": \"2020-02-01T22:50:22.000+0700\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"asd\",\n    \"lastName\": \"asd\",\n    \"firstNameEn\": \"asd\",\n    \"lastNameEn\": \"asd\",\n    \"nickName\": \"asd\",\n    \"email\": \"mail@mail.com\",\n    \"birthDate\": \"1999-01-01\",\n    \"citizenId\": \"1101111111111\",\n    \"gender\": \"ชาย\",\n    \"bloodGroup\": \"A\",\n    \"telNo\": \"0808080808\",\n    \"religion\": \"พุทธ\",\n    \"telEmergency\": \"0808080808\",\n    \"allergicFood\": null,\n    \"congenitalDisease\": null,\n    \"congenitalDrug\": null,\n    \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n    \"province\": \"กระบี่\",\n    \"knowWhence\": \"Camphub\",\n    \"school\": {\n        \"name\": \"หกด\",\n        \"level\": \"ม.4\",\n        \"major\": \"ฟหก\",\n        \"gpax\": \"1.00\"\n    },\n    \"parent\": {\n        \"telNo\": \"0808080808\",\n        \"relation\": \"แม่\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/user/120005",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user",
+						"120005"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "PUT User",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"firstName\": \"asd\",\r\n            \"lastName\": \"asd\",\r\n            \"firstNameEn\": \"asd\",\r\n            \"lastNameEn\": \"asd\",\r\n            \"nickName\": \"asd\",\r\n            \"email\": \"mail@mail.com\",\r\n            \"birthDate\": \"1999-01-01\",\r\n            \"citizenId\": \"1101111111111\",\r\n            \"gender\": \"ชาย\",\r\n            \"bloodGroup\": \"A\",\r\n            \"telNo\": \"0808080808\",\r\n            \"religion\": \"พุทธ\",\r\n            \"telEmergency\": \"0808080808\",\r\n            \"allergicFood\": null,\r\n            \"congenitalDisease\": null,\r\n            \"congenitalDrug\": null,\r\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\r\n            \"province\": \"กระบี่\",\r\n            \"knowWhence\": \"Camphub\",\r\n            \"school\": {\r\n                \"name\": \"หกด\",\r\n                \"level\": \"ม.4\",\r\n                \"major\": \"ฟหก\",\r\n                \"gpax\": \"1.00\"\r\n            },\r\n            \"parent\": {\r\n                \"telNo\": \"0808080808\",\r\n                \"relation\": \"แม่\"\r\n            }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120005",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120005"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:38:56 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120005,\n            \"lineId\": 75270,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 86,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"1.00\"\n            },\n            \"parent\": {\n                \"id\": 85,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": null,\n            \"major\": null,\n            \"answerList\": null,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT Me",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"asd\",\n    \"lastName\": \"asd\",\n    \"firstNameEn\": \"asd\",\n    \"lastNameEn\": \"asd\",\n    \"nickName\": \"asd\",\n    \"email\": \"mail@mail.com\",\n    \"birthDate\": \"1999-01-01\",\n    \"citizenId\": \"1101111111111\",\n    \"gender\": \"ชาย\",\n    \"bloodGroup\": \"A\",\n    \"telNo\": \"0808080808\",\n    \"religion\": \"พุทธ\",\n    \"telEmergency\": \"0808080808\",\n    \"allergicFood\": null,\n    \"congenitalDisease\": null,\n    \"congenitalDrug\": null,\n    \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n    \"province\": \"กระบี่\",\n    \"knowWhence\": \"Camphub\",\n    \"school\": {\n        \"name\": \"หกด\",\n        \"level\": \"ม.4\",\n        \"major\": \"ฟหก\",\n        \"gpax\": \"1.00\"\n    },\n    \"parent\": {\n        \"telNo\": \"0808080808\",\n        \"relation\": \"แม่\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/me",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me"
+					]
+				},
+				"description": "## Update details for session user.\n\n> the request body is a user model\n\n----\n\n## Response data\n\n\t* Model User"
+			},
+			"response": [
+				{
+					"name": "PUT User Copy",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{JWTTOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"asd\",\n    \"lastName\": \"asd\",\n    \"firstNameEn\": \"asd\",\n    \"lastNameEn\": \"asd\",\n    \"nickName\": \"asd\",\n    \"email\": \"mail@mail.com\",\n    \"birthDate\": \"1999-01-01\",\n    \"citizenId\": \"1101111111111\",\n    \"gender\": \"ชาย\",\n    \"bloodGroup\": \"A\",\n    \"telNo\": \"0808080808\",\n    \"religion\": \"พุทธ\",\n    \"telEmergency\": \"0808080808\",\n    \"allergicFood\": null,\n    \"congenitalDisease\": null,\n    \"congenitalDrug\": null,\n    \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n    \"province\": \"กระบี่\",\n    \"knowWhence\": \"Camphub\",\n    \"school\": {\n        \"name\": \"หกด\",\n        \"level\": \"ม.4\",\n        \"major\": \"ฟหก\",\n        \"gpax\": \"1.00\"\n    },\n    \"parent\": {\n        \"telNo\": \"0808080808\",\n        \"relation\": \"แม่\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/me",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:40:04 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120013,\n            \"lineId\": 55555555,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 88,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"1.00\"\n            },\n            \"parent\": {\n                \"id\": 87,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": null,\n            \"major\": null,\n            \"answerList\": null,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST User Status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\":\"submit\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/user/120003/status",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user",
+						"120003",
+						"status"
+					]
+				},
+				"description": "## Update Status for specific User by userId (wipId)\n\n> avilable value for attribute \"status\"\n>  * accept\t\t: for accept user agreement.\n>  * register\t: for finish update a profile for the first time.\n>  * major\t\t: for finish answer the major question.\n>  * general\t\t: for finish answer the general question.\n>  * submit\t\t: for finish upload the document.\n\n----\n\n## Response data\n\n\t* Model User"
+			},
+			"response": [
+				{
+					"name": "POST User Status (Major)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"major\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:00:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": false,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"generalAnswered\": false\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.528+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (Accept)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"accept\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:01:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": false,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": true,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (Register)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"register\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:02:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": true,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": true,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (General)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"general\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:01:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": false,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (Submit)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"submit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:02:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": true,\n                \"majorAnswered\": true,\n                \"submitted\": true,\n                \"accepted\": true,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Me Status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"description": "Jwt Token that return from POST /user",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\":\"major\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/me/status",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me",
+						"status"
+					]
+				},
+				"description": "## Update Status for session user\n\n> avilable value for attribute \"status\"\n>  * accept\t\t: for accept user agreement.\n>  * register\t: for finish update a profile for the first time.\n>  * major\t\t: for finish answer the major question.\n>  * general\t: for finish answer the general question.\n>  * submit\t\t: for finish upload the document.\n\n----\n\n## Response data\n\n\t* Model User"
+			},
+			"response": [
+				{
+					"name": "POST User Status (Major)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"major\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:00:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": false,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"generalAnswered\": false\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.528+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (General)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"general\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:01:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": false,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (Submit)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"submit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:02:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": true,\n                \"majorAnswered\": true,\n                \"submitted\": true,\n                \"accepted\": true,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (Accept)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"accept\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:01:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": false,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": true,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (Register)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"register\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120003/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120003",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:02:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120003,\n            \"lineId\": 27760,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 66,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"100\"\n            },\n            \"parent\": {\n                \"id\": 65,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": null,\n            \"userStatus\": {\n                \"id\": 73,\n                \"registered\": true,\n                \"majorAnswered\": true,\n                \"submitted\": false,\n                \"accepted\": true,\n                \"generalAnswered\": true\n            },\n            \"major\": null,\n            \"answerList\": [],\n            \"createdAt\": \"2020-01-30T11:08:38.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:00:49.000+0700\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST User Major Answer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/answer?userId=120004&majorId=1",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"answer"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "120004",
+							"description": "use userId for another option if not using session."
+						},
+						{
+							"key": "majorId",
+							"value": "1",
+							"description": "specify the major id of the selected major."
+						}
+					]
+				},
+				"description": "## Update Major Answer for specific User by userId (wipId)\n *the answer must according to each question of the major other wise will not succes*\n\n----\n\n## Response data\n\n\t* List of Answer"
+			},
+			"response": [
+				{
+					"name": "POST User Answer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/answer?userId=120004&majorId=1",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"answer"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "120004",
+									"description": "use userId for another option if not using session."
+								},
+								{
+									"key": "majorId",
+									"value": "1",
+									"description": "specify the major id of the selected major."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:33:31 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 81,\n            \"question\": {\n                \"id\": 1,\n                \"name\": \"What is my name\"\n            },\n            \"answerContent\": \"Nope\"\n        },\n        {\n            \"id\": 82,\n            \"question\": {\n                \"id\": 7,\n                \"name\": \"What is the name of my crush\"\n            },\n            \"answerContent\": \"Its 4.20\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Me Major Answer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/me/answer?majorId=1",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me",
+						"answer"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "120004",
+							"description": "use userId for another option if not using session.",
+							"disabled": true
+						},
+						{
+							"key": "majorId",
+							"value": "1",
+							"description": "specify the major id of the selected major."
+						}
+					]
+				},
+				"description": "## Update Major Answer for session user.\n *the answer must according to each question of the major other wise will not succes*\n\n----\n\n## Response data\n\n\t* List of Answer"
+			},
+			"response": [
+				{
+					"name": "POST Me Answer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{JWTTOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/me/answer?majorId=1",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"me",
+								"answer"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "120004",
+									"description": "use userId for another option if not using session.",
+									"disabled": true
+								},
+								{
+									"key": "majorId",
+									"value": "1",
+									"description": "specify the major id of the selected major."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:34:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 83,\n            \"question\": {\n                \"id\": 1,\n                \"name\": \"What is my name\"\n            },\n            \"answerContent\": \"Nope\"\n        },\n        {\n            \"id\": 84,\n            \"question\": {\n                \"id\": 7,\n                \"name\": \"What is the name of my crush\"\n            },\n            \"answerContent\": \"Its 4.20\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST User General Answer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/user/120004/general",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user",
+						"120004",
+						"general"
+					]
+				},
+				"description": "## Update General Answer for specific User by userId (wipId)\n> the answer (request body) must have\n>   * firstAnswer\n>   * secondAnswer\n>   * thirdAnswer\n>   * forthAnswer\n\n----\n\n## Response data\n\n\t* User Model"
+			},
+			"response": [
+				{
+					"name": "POST User General Answer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120004/general",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120004",
+								"general"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:42:41 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120004,\n            \"lineId\": 86161,\n            \"facebookId\": null,\n            \"firstName\": null,\n            \"lastName\": null,\n            \"firstNameEn\": null,\n            \"lastNameEn\": null,\n            \"nickName\": null,\n            \"email\": null,\n            \"birthDate\": null,\n            \"citizenId\": null,\n            \"gender\": null,\n            \"bloodGroup\": null,\n            \"telNo\": null,\n            \"religion\": null,\n            \"telEmergency\": null,\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": null,\n            \"province\": null,\n            \"knowWhence\": null,\n            \"school\": null,\n            \"parent\": null,\n            \"generalAnswer\": {\n                \"id\": 89,\n                \"firstAnswer\": \"Example answer1\",\n                \"secondAnswer\": \"Example answer2\",\n                \"thirdAnswer\": \"Example answer3\",\n                \"forthAnswer\": \"Example answer4\"\n            },\n            \"userStatus\": null,\n            \"major\": {\n                \"id\": 1,\n                \"name\": \"Math\",\n                \"description\": \"Nope\",\n                \"questionList\": [\n                    {\n                        \"id\": 1,\n                        \"name\": \"What is my name\"\n                    },\n                    {\n                        \"id\": 7,\n                        \"name\": \"What is the name of my crush\"\n                    }\n                ]\n            },\n            \"answerList\": [\n                {\n                    \"id\": 81,\n                    \"question\": {\n                        \"id\": 1,\n                        \"name\": \"What is my name\"\n                    },\n                    \"answerContent\": \"Nope\"\n                },\n                {\n                    \"id\": 82,\n                    \"question\": {\n                        \"id\": 7,\n                        \"name\": \"What is the name of my crush\"\n                    },\n                    \"answerContent\": \"Its 4.20\"\n                }\n            ],\n            \"createdAt\": \"2020-01-30T14:13:39.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:42:41.392+0700\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Me General Answer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/me/general",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me",
+						"general"
+					]
+				},
+				"description": "## Update General Answer for session user\n> the answer (request body) must have\n>   * firstAnswer\n>   * secondAnswer\n>   * thirdAnswer\n>   * forthAnswer\n\n----\n\n## Response data\n\n\t* User Model"
+			},
+			"response": [
+				{
+					"name": "POST Me General Answer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{JWTTOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/me/general",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"me",
+								"general"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:53:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120013,\n            \"lineId\": 55555555,\n            \"facebookId\": null,\n            \"firstName\": \"asd\",\n            \"lastName\": \"asd\",\n            \"firstNameEn\": \"asd\",\n            \"lastNameEn\": \"asd\",\n            \"nickName\": \"asd\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1101111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0808080808\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0808080808\",\n            \"allergicFood\": null,\n            \"congenitalDisease\": null,\n            \"congenitalDrug\": null,\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"knowWhence\": \"Camphub\",\n            \"school\": {\n                \"id\": 88,\n                \"name\": \"หกด\",\n                \"level\": \"ม.4\",\n                \"major\": \"ฟหก\",\n                \"gpax\": \"1.00\"\n            },\n            \"parent\": {\n                \"id\": 87,\n                \"telNo\": \"0808080808\",\n                \"relation\": \"แม่\"\n            },\n            \"generalAnswer\": {\n                \"id\": 90,\n                \"firstAnswer\": \"Example answer1\",\n                \"secondAnswer\": \"Example answer2\",\n                \"thirdAnswer\": \"Example answer3\",\n                \"forthAnswer\": \"Example answer4\"\n            },\n            \"userStatus\": null,\n            \"major\": null,\n            \"answerList\": [\n                {\n                    \"id\": 83,\n                    \"question\": {\n                        \"id\": 1,\n                        \"name\": \"What is my name\"\n                    },\n                    \"answerContent\": \"Nope\"\n                },\n                {\n                    \"id\": 84,\n                    \"question\": {\n                        \"id\": 7,\n                        \"name\": \"What is the name of my crush\"\n                    },\n                    \"answerContent\": \"Its 4.20\"\n                }\n            ],\n            \"createdAt\": \"2020-02-01T22:50:22.000+0700\",\n            \"updatedAt\": \"2020-02-01T23:53:32.731+0700\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST User Upload Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Administrator/Downloads/MAMP_phpInfo.pdf"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user",
+						"120001",
+						"uploadDocument"
+					]
+				},
+				"description": "## Upload document for specific User by userId (wipId)\n> the answer (request body) must have\n>   * file : upload file must be (.pdf) and file must not larger than 5MB\n\n----\n\n## Response data\n\n\t* Successful Message"
+			},
+			"response": [
+				{
+					"name": "POST User Upload Document (Wrong File Type)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/283197.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"uploadDocument"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:58:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 500,\n    \"success\": false,\n    \"error\": \"File type must be pdf\"\n}"
+				},
+				{
+					"name": "POST User Upload Document (File Larger than 5MB but not Large than 10MB)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/InterceptorBridge_Windows_1.0.0.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"uploadDocument"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:59:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 500,\n    \"success\": false,\n    \"error\": \"File size cannot larger than 5MB\"\n}"
+				},
+				{
+					"name": "POST User Upload Document (Success)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/MAMP_phpInfo.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"uploadDocument"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:57:41 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        \"File 120001-document.pdf has been uploaded to server!\"\n    ]\n}"
+				},
+				{
+					"name": "POST User Upload Document (File Larger than 10MB)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/N_254.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"uploadDocument"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 16:58:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2020-02-01T16:58:26.698+0000\",\n    \"status\": 500,\n    \"error\": \"Internal Server Error\",\n    \"message\": \"Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException: the request was rejected because its size (30477817) exceeds the configured maximum (10485760)\",\n    \"trace\": \"org.springframework.web.multipart.MaxUploadSizeExceededException: Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException: the request was rejected because its size (30477817) exceeds the configured maximum (10485760)\\r\\n\\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.handleParseFailure(StandardMultipartHttpServletRequest.java:122)\\r\\n\\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.parseRequest(StandardMultipartHttpServletRequest.java:115)\\r\\n\\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.<init>(StandardMultipartHttpServletRequest.java:88)\\r\\n\\tat org.springframework.web.multipart.support.StandardServletMultipartResolver.resolveMultipart(StandardServletMultipartResolver.java:87)\\r\\n\\tat org.springframework.web.servlet.DispatcherServlet.checkMultipart(DispatcherServlet.java:1178)\\r\\n\\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1012)\\r\\n\\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)\\r\\n\\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)\\r\\n\\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)\\r\\n\\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:660)\\r\\n\\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)\\r\\n\\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\\r\\n\\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)\\r\\n\\tat org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)\\r\\n\\tat org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)\\r\\n\\tat org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\\r\\n\\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\\r\\n\\tat org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)\\r\\n\\tat org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)\\r\\n\\tat org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)\\r\\n\\tat org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\\r\\n\\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\\r\\n\\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\\r\\n\\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\\r\\n\\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)\\r\\n\\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\\r\\n\\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)\\r\\n\\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)\\r\\n\\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)\\r\\n\\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\\r\\n\\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)\\r\\n\\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)\\r\\n\\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)\\r\\n\\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)\\r\\n\\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1591)\\r\\n\\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\\r\\n\\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\\r\\n\\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\\r\\n\\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\\r\\n\\tat java.lang.Thread.run(Thread.java:748)\\r\\nCaused by: java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException: the request was rejected because its size (30477817) exceeds the configured maximum (10485760)\\r\\n\\tat org.apache.catalina.connector.Request.parseParts(Request.java:2912)\\r\\n\\tat org.apache.catalina.connector.Request.getParts(Request.java:2770)\\r\\n\\tat org.apache.catalina.connector.RequestFacade.getParts(RequestFacade.java:1098)\\r\\n\\tat javax.servlet.http.HttpServletRequestWrapper.getParts(HttpServletRequestWrapper.java:359)\\r\\n\\tat javax.servlet.http.HttpServletRequestWrapper.getParts(HttpServletRequestWrapper.java:359)\\r\\n\\tat javax.servlet.http.HttpServletRequestWrapper.getParts(HttpServletRequestWrapper.java:359)\\r\\n\\tat javax.servlet.http.HttpServletRequestWrapper.getParts(HttpServletRequestWrapper.java:359)\\r\\n\\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.parseRequest(StandardMultipartHttpServletRequest.java:95)\\r\\n\\t... 74 more\\r\\nCaused by: org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException: the request was rejected because its size (30477817) exceeds the configured maximum (10485760)\\r\\n\\tat org.apache.tomcat.util.http.fileupload.FileUploadBase$FileItemIteratorImpl.<init>(FileUploadBase.java:808)\\r\\n\\tat org.apache.tomcat.util.http.fileupload.FileUploadBase.getItemIterator(FileUploadBase.java:256)\\r\\n\\tat org.apache.tomcat.util.http.fileupload.FileUploadBase.parseRequest(FileUploadBase.java:280)\\r\\n\\tat org.apache.catalina.connector.Request.parseParts(Request.java:2868)\\r\\n\\t... 81 more\\r\\n\",\n    \"path\": \"/user/120001/uploadDocument\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Me Upload Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Administrator/Downloads/MAMP_phpInfo.pdf"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIADDRESS}}/me/uploadDocument",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me",
+						"uploadDocument"
+					]
+				},
+				"description": "## Upload document for session user.\n> the answer (request body) must have\n>   * file : upload file must be (.pdf) and file must not larger than 5MB\n\n----\n\n## Response data\n\n\t* Successful Message"
+			},
+			"response": [
+				{
+					"name": "POST Me Upload Document (Success)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{JWTTOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/MAMP_phpInfo.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/me/uploadDocument",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"me",
+								"uploadDocument"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 17:02:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        \"File 120013-document.pdf has been uploaded to server!\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Users Percent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIADDRESS}}/users?filter=percent",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "percent"
+						}
+					]
+				},
+				"description": "## Get Users information\n> get amount of user that register today and yesterday and percentage.\n\n----\n\n## Response data\n\n\t* yesterday\t: amount,\n\t* today\t\t: amount,\n\t* percent\t: the percentage by (today / yesterday)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users Information",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIADDRESS}}/users?filter=information",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "information"
+						}
+					]
+				},
+				"description": "## Get Users information\n> get amount of user that currently in that status and total user in the system.\n\n----\n\n## Response data\n\n\t* total\t\t\t\t: amount,\n\t* accepted\t\t\t: amount,\n\t* registered\t\t: amount,\n\t* generalAnswered\t: amount,\n\t* majorAnswered\t\t: amount,\n\t* submitted\t\t\t: amount"
+			},
+			"response": [
+				{
+					"name": "GET Users Information",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APIADDRESS}}/users?filter=information",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "information"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 17:07:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"total\": 7,\n            \"accepted\": 2,\n            \"registered\": 4,\n            \"generalAnswered\": 3,\n            \"majorAnswered\": 5,\n            \"submitted\": 1\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Majors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIADDRESS}}/majors",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"majors"
+					]
+				},
+				"description": "## Get All Majors\n> get all majors that currently in the system and also detail of each major\n\n----\n\n## Response data\n\n\t* List of Major model"
+			},
+			"response": [
+				{
+					"name": "GET Majors",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APIADDRESS}}/majors",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"majors"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 17:09:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Math\",\n            \"description\": \"Nope\",\n            \"questionList\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"What is my name\"\n                },\n                {\n                    \"id\": 7,\n                    \"name\": \"What is the name of my crush\"\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Com\",\n            \"description\": \"Non\",\n            \"questionList\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"What is the date today\"\n                },\n                {\n                    \"id\": 3,\n                    \"name\": \"What time is it\"\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Sci\",\n            \"description\": \"Null\",\n            \"questionList\": [\n                {\n                    \"id\": 4,\n                    \"name\": \"What is present year\"\n                },\n                {\n                    \"id\": 5,\n                    \"name\": \"Why u slepp late\"\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Major By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIADDRESS}}/major/1",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"major",
+						"1"
+					]
+				},
+				"description": "## Get Major detail of specific major id\n\n----\n\n## Response data\n\n\t* Major model"
+			},
+			"response": [
+				{
+					"name": "GET Major By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APIADDRESS}}/major/1",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"major",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2020 17:13:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Math\",\n            \"description\": \"Nope\",\n            \"questionList\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"What is my name\"\n                },\n                {\n                    \"id\": 7,\n                    \"name\": \"What is the name of my crush\"\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

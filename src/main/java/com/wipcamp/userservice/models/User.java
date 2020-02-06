@@ -2,6 +2,7 @@ package com.wipcamp.userservice.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -40,7 +41,7 @@ public class User {
 	private long wipId;
 
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	private Long lineId;
+	private String lineId;
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Column(nullable = true)
 	private Long facebookId;
@@ -90,6 +91,10 @@ public class User {
 	private String province;
 	@Column(nullable = true)
 	private String knowWhence;
+
+	@Column(nullable = true)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private String uploadDocumentPath;
 
 	@OneToOne
 	@JoinColumn(name="school_id",referencedColumnName = "id")

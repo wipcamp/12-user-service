@@ -11,6 +11,7 @@ import com.wipcamp.userservice.requests.StoreAnswerRequest;
 
 import com.wipcamp.userservice.requests.models.AnswerRequest;
 import com.wipcamp.userservice.utils.FailureResponse;
+import com.wipcamp.userservice.utils.JwtUtility;
 import com.wipcamp.userservice.utils.ResponseForm;
 
 import com.wipcamp.userservice.utils.SuccessResponse;
@@ -37,20 +38,34 @@ public class AnswerService {
 	@Autowired
 	private MajorRepository majorRepository;
 
+	@Autowired
+	private JwtUtility jwtUtility;
+
 	public ResponseForm createAnswer(StoreAnswerRequest request, long userId, long majorId) {
 
-		ResponseForm result = new FailureResponse();
-
 		User userFromPath = this.userRepository.findById(userId).orElse(null);
-		// User in session later implement
-		User userFromSession;
 
-		if (null == userFromPath /* || userFromSession == null */) {
+		return doCreateAnswer(request, majorId, userFromPath);
+	}
+
+	public ResponseForm createAnswerByToken(StoreAnswerRequest request, String token, long majorId) {
+		ResponseForm result = new FailureResponse();
+		Integer wipId = null;
+		try {
+			wipId = jwtUtility.getClaimFromToken(token, "wipId");
+		} catch (NullPointerException e) {
+			((FailureResponse) result).setError("Cannot get wipId from Jwt Token");
+		}
+		User queryUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
+		result = doCreateAnswer(request,majorId,queryUser);
+		return result;
+	}
+
+	private ResponseForm doCreateAnswer(StoreAnswerRequest request, long majorId, User user) {
+		ResponseForm result = new FailureResponse();
+		if (null == user) {
 			((FailureResponse) result).setError("User not found");
 		}
-		//		else if(userFromPath != userFromSession){
-		//
-		//		}
 		else {
 
 			Major major = this.majorRepository.findById(majorId).orElse(null);
@@ -58,7 +73,7 @@ public class AnswerService {
 			if (null == major) {
 				((FailureResponse) result).setError("Major not found");
 			} else {
-				userFromPath.setMajor(major);
+				user.setMajor(major);
 
 				ArrayList<Integer> questionIdFromMajor = new ArrayList<>();
 				major.getQuestionList().forEach((question) -> questionIdFromMajor.add(question.getId()));
@@ -71,8 +86,8 @@ public class AnswerService {
 
 				if (questionIdFromMajor.equals(questionIdFromRequest)) {
 
-					if(!userFromPath.getAnswerList().isEmpty()){
-						for (Answer answer : userFromPath.getAnswerList()) {
+					if(!user.getAnswerList().isEmpty()){
+						for (Answer answer : user.getAnswerList()) {
 							answerRepository.delete(answer);
 						}
 					}
@@ -85,15 +100,15 @@ public class AnswerService {
 						Question question = questionList.get(i);
 						for (AnswerRequest answerRequest : request.getAnswers()) {
 							if (question.getId() == answerRequest.getQuestion_id()) {
-								Answer answer = new Answer(userFromPath, question, answerRequest.getAnswer_content());
+								Answer answer = new Answer(user, question, answerRequest.getAnswer_content());
 								answerRepository.save(answer);
 								resultData.add(answer);
 							}
 						}
 					}
-					userFromPath.setAnswerList(resultData);
-					userRepository.save(userFromPath);
-					
+					user.setAnswerList(resultData);
+					userRepository.save(user);
+
 					result = new SuccessResponse<Answer>(HttpStatus.OK, resultData);
 				} else {
 					((FailureResponse) result).setError("Question Id from request and major does not match");
@@ -103,4 +118,5 @@ public class AnswerService {
 		}
 		return result;
 	}
+
 }

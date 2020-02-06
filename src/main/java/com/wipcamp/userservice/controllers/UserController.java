@@ -2,6 +2,7 @@ package com.wipcamp.userservice.controllers;
 
 import com.wipcamp.userservice.models.GeneralAnswer;
 import com.wipcamp.userservice.models.User;
+import com.wipcamp.userservice.requests.StoreUserRequest;
 import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
 import com.wipcamp.userservice.services.UserService;
 
@@ -26,10 +27,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -42,8 +45,8 @@ public class UserController {
 	UserService userService;
 
 	@PostMapping("/user")
-	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request) {
-		ResponseForm result = userService.createUser(request);
+	public ResponseEntity<ResponseForm> createUser(HttpServletRequest request,@RequestBody StoreUserRequest storeUserRequest) {
+		ResponseForm result = userService.createUser(request,storeUserRequest);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
@@ -80,8 +83,15 @@ public class UserController {
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
+	@PostMapping("/user/{userId}/uploadDocument")
+	public ResponseEntity<ResponseForm> uploadDocument(@PathVariable("userId") long userId,
+			@RequestParam("file") MultipartFile file){
+		ResponseForm result = userService.uploadDocument(file ,userId);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+
 	@GetMapping("/user/line/{lineId}")
-	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") long lineId , HttpServletRequest request){
+	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") String lineId , HttpServletRequest request){
 		ResponseForm result = userService.getUserByLineId(lineId , request);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
@@ -98,10 +108,23 @@ public class UserController {
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
+	@PostMapping("/me/general")
+	public ResponseEntity<ResponseForm> updateUserGeneralAnswerByToken(@RequestHeader(name = "Authorization", required = true) String token
+			, @Valid @RequestBody GeneralAnswer generalAnswer) {
+		ResponseForm result = userService.updateUserGeneralAnswerByToken(generalAnswer, token);
+		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
+	}
+
 	@PostMapping("/me/status")
 	public ResponseEntity<ResponseForm> updateUserStatusByToken(@RequestHeader(name = "Authorization", required = true) String token,
 			@RequestBody @Valid UpdateUserStatusRequest userStatusRequest){
 		ResponseForm result = userService.updateUserStatueByToken(userStatusRequest ,token);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+	@PostMapping("/me/uploadDocument")
+	public ResponseEntity<ResponseForm> uploadDocumentByToken(@RequestHeader(name = "Authorization", required = true) String token,
+			@RequestParam("file") MultipartFile file){
+		ResponseForm result = userService.uploadDocumentByToken(file, token);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }
