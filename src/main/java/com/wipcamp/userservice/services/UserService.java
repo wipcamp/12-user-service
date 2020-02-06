@@ -14,6 +14,24 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.wipcamp.userservice.models.UserStatus;
+import com.wipcamp.userservice.repositories.SchoolRepository;
+import com.wipcamp.userservice.repositories.UserStatusRepository;
+import com.wipcamp.userservice.requests.StoreUserRequest;
+import com.wipcamp.userservice.requests.UpdateUserStatusRequest;
+import com.wipcamp.userservice.responses.CreateUserResponse;
+import com.wipcamp.userservice.responses.UserInformationResponse;
+import com.wipcamp.userservice.responses.UserUpdateResponse;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.minio.MinioClient;
+
+import io.minio.ServerSideEncryption;
+import io.minio.errors.MinioException;
+
+import jdk.nashorn.internal.runtime.regexp.RegExp;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -255,11 +273,11 @@ public class UserService {
 				List<Integer> userOfDay = getHourlyUser(date);
 				result = new SuccessResponse<Integer>(HttpStatus.OK, userOfDay);
 			}
-		} else if (filter.equalsIgnoreCase("percent")) {
-			UserPercentResponse percentResponse = getPercentUser();
-			List<UserPercentResponse> responseData = new ArrayList<>();
-			responseData.add(percentResponse);
-			result = new SuccessResponse<UserPercentResponse>(responseData);
+		} else if (filter.equalsIgnoreCase("update")) {
+			UserUpdateResponse updateResponse = getUpdateCountUser();
+			List<UserUpdateResponse> responseData = new ArrayList<>();
+			responseData.add(updateResponse);
+			result = new SuccessResponse<UserUpdateResponse>(responseData);
 		} else if (filter.equalsIgnoreCase("information")) {
 			UserInformationResponse userInformationResponse = getUserInformation();
 			List<UserInformationResponse> responseData = new ArrayList<>();
@@ -279,12 +297,12 @@ public class UserService {
 		return new UserInformationResponse(total, accepted, registered, generalAnswered, majorAnswered, submitted);
 	}
 
-	private UserPercentResponse getPercentUser() {
+	private UserUpdateResponse getUpdateCountUser() {
 		LocalDate todayDate = LocalDate.now();
 		List<Integer> yesterdayUserCount = userRepository.findDailyUser(String.valueOf(todayDate.minusDays(1)));
 		List<Integer> todayUserCount = userRepository.findDailyUser(String.valueOf(todayDate));
-		double percent = ((double) todayUserCount.size() / (double) yesterdayUserCount.size()) * 100;
-		return new UserPercentResponse(yesterdayUserCount.size(), todayUserCount.size(), (int) percent);
+		int count = todayUserCount.size() - yesterdayUserCount.size();
+		return new UserUpdateResponse(yesterdayUserCount.size(), todayUserCount.size(), (int) count);
 	}
 
 	public ResponseForm updateUserGeneralAnswer(GeneralAnswer generalAnswer, long userId) {

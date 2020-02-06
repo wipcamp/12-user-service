@@ -9,8 +9,8 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserPercentResponse {
+public class UserUpdateResponse {
 	@Getter
 	@Setter
-	private int yesterday,today,percent;
+	private int yesterday,today,count;
 }
