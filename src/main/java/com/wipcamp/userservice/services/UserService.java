@@ -122,7 +122,7 @@ public class UserService {
 						+ " | SUCCESS");
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
-				((FailureResponse) result).setError("Cannot create user in database.");
+				((FailureResponse) result).setError("Cannot create user in database. Exceptuin = "+ex);
 
 			}
 		}
@@ -181,6 +181,7 @@ public class UserService {
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
 		} catch (NoSuchElementException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User not found");
+			((FailureResponse) result).setError("User not found. Exception = "+ex);
 		}
 		return result;
 	}
@@ -196,6 +197,7 @@ public class UserService {
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
 		} catch (NoSuchElementException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By Line ID , User not found");
+			((FailureResponse)result).setError("Find By Line ID , User not found. Exception = "+ex);
 		}
 		return result;
 	}
@@ -207,6 +209,7 @@ public class UserService {
 			wipId = jwtUtility.getClaimFromToken(token, "wipId");
 		} catch (NullPointerException e) {
 			logger.info(System.currentTimeMillis() + " | JWT doesn't have wipId Field");
+			((FailureResponse)result).setError("JWT doesn't have wipId Field. Exception = "+e);
 		}
 		try {
 			User currentUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
@@ -219,8 +222,10 @@ public class UserService {
 			result = new SuccessResponse<User>(HttpStatus.OK, user);
 		} catch (NullPointerException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot get WipId from JWT Token");
+			((FailureResponse)result).setError("Cannot get WipId from JWT Token. Exception = "+ex);
 		} catch (Exception ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Find By WIP ID , User not found");
+			((FailureResponse)result).setError("Find By WIP ID , User not found. Exception = "+ex);
 		}
 		return result;
 	}
@@ -241,7 +246,6 @@ public class UserService {
 		if (filter == null) {
 			if (allUser == null) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No user in database");
-				((FailureResponse) result).setError("No user found in database.");
 			} else {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "User size is " + allUser.size());
 				result = new SuccessResponse<User>(HttpStatus.OK, allUser);
@@ -297,7 +301,7 @@ public class UserService {
 		try {
 			wipId = jwtUtility.getClaimFromToken(token, "wipId");
 		} catch (NullPointerException e) {
-			((FailureResponse) result).setError("Cannot get wipId from Jwt Token");
+			((FailureResponse) result).setError("Cannot get wipId from Jwt Token. Exception = "+e);
 		}
 		User queryUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
 		result = updateGeneralAnswer(generalAnswer, queryUser);
@@ -338,6 +342,7 @@ public class UserService {
 			wipId = jwtUtility.getClaimFromToken(token, "wipId");
 		} catch (NullPointerException e) {
 			logger.info(System.currentTimeMillis() + " | JWT doesn't have wipId Field");
+			((FailureResponse)result).setError("JWT doesn't have wipId Field. Exception = "+e);
 		}
 		User queryUser = userRepository.findById(Long.valueOf(wipId)).orElse(null);
 		return updateUserStatus(updateUserStatusRequest, result, queryUser);
