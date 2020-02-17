@@ -41,6 +41,7 @@ public class User {
 	private long wipId;
 
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@Column(unique = true)
 	private String lineId;
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Column(nullable = true)
