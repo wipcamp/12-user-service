@@ -28,6 +28,6 @@ public class Wipper {
 	private String surname;
 
 	@ManyToOne
-	@JoinColumn(name="major_id",referencedColumnName = "id")
+	@JoinColumn(name="role_id",referencedColumnName = "id")
 	private Role role;
 }
