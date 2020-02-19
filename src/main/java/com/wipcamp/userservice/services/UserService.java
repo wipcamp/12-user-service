@@ -119,6 +119,7 @@ public class UserService {
 			}
 		} else {
 			User user = new User();
+			user.setUserStatus(new UserStatus());
 			user.setLineId(lineId);
 			try {
 				userRepository.save(user);
