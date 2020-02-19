@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"lineId\": 55555555\n}",
+					"raw": "{\n    \"lineId\": \"55555555\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,7 +39,7 @@
 			},
 			"response": [
 				{
-					"name": "POST User (create)",
+					"name": "POST User (Create)",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -52,7 +52,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"lineId\": 55555555\n}",
+							"raw": "{\n    \"lineId\": \"55555555\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -119,7 +119,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 01 Feb 2020 15:50:22 GMT"
+							"value": "Mon, 03 Feb 2020 05:50:08 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -131,7 +131,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"code\": 201,\n    \"success\": true,\n    \"data\": [\n        {\n            \"message\": \"Create User\",\n            \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXN0ZXIudXNlci5zZXJ2aWNlLndpcC5jYW1wIiwid2lwSWQiOjEyMDAxMywiaWF0IjoxNTgwNTcyMjIyLCJleHAiOjE1ODA1OTAyMjJ9.ya20WRhm1JghMRCQsVNQ406JcB_fPVDsuASPj_0HsZ4B0qvnpxu0t1j4zYZgxR4bxeK6Cj-CHiyHUYg2mMoTOA\"\n        }\n    ]\n}"
+					"body": "{\n    \"code\": 201,\n    \"success\": true,\n    \"data\": [\n        {\n            \"message\": \"Create User\",\n            \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXN0ZXIudXNlci5zZXJ2aWNlLndpcC5jYW1wIiwid2lwSWQiOjEyMDAwMCwiaWF0IjoxNTgwNzA5MDA4LCJleHAiOjE1ODA3MjcwMDh9.v5FSlbPAU5KvRoXi_qaTOGce_kV4Ij0Et7ZalEcNitPaxTAFij6p7PscyaLcYsOD2AnVrrqWXWb5LwM9xXb3zQ\"\n        }\n    ]\n}"
 				},
 				{
 					"name": "POST User (Exist)",
@@ -147,7 +147,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"lineId\": 55555555\n}",
+							"raw": "{\n    \"lineId\": \"55555555\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -214,7 +214,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 01 Feb 2020 15:53:25 GMT"
+							"value": "Mon, 03 Feb 2020 05:59:30 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -226,7 +226,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"message\": \"User Exist\",\n            \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXN0ZXIudXNlci5zZXJ2aWNlLndpcC5jYW1wIiwid2lwSWQiOjEyMDAxMywiaWF0IjoxNTgwNTcyNDA1LCJleHAiOjE1ODA1OTA0MDV9.0fkqpjzchnsu_yFCbgvTzfHu3Jx5O4hMlve4vPNCzZIyzrHtfant8WbN0cl3UYm5hcbC7l2tZkdbtK0GiScTmw\"\n        }\n    ]\n}"
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"message\": \"User Exist\",\n            \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXN0ZXIudXNlci5zZXJ2aWNlLndpcC5jYW1wIiwid2lwSWQiOjEyMDAwMCwiaWF0IjoxNTgwNzA5NTcwLCJleHAiOjE1ODA3Mjc1NzB9.QZFIT9X9mqD4bj4LoTgoTt4QIgtND1yzSzwkygeyf3B7rbeXLapltTij0euZVGohSY_psyTgNDKWjVNCAHZDQQ\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -455,7 +455,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"asd\",\n    \"lastName\": \"asd\",\n    \"firstNameEn\": \"asd\",\n    \"lastNameEn\": \"asd\",\n    \"nickName\": \"asd\",\n    \"email\": \"mail@mail.com\",\n    \"birthDate\": \"1999-01-01\",\n    \"citizenId\": \"1101111111111\",\n    \"gender\": \"ชาย\",\n    \"bloodGroup\": \"A\",\n    \"telNo\": \"0808080808\",\n    \"religion\": \"พุทธ\",\n    \"telEmergency\": \"0808080808\",\n    \"allergicFood\": null,\n    \"congenitalDisease\": null,\n    \"congenitalDrug\": null,\n    \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n    \"province\": \"กระบี่\",\n    \"knowWhence\": \"Camphub\",\n    \"school\": {\n        \"name\": \"หกด\",\n        \"level\": \"ม.4\",\n        \"major\": \"ฟหก\",\n        \"gpax\": \"1.00\"\n    },\n    \"parent\": {\n        \"telNo\": \"0808080808\",\n        \"relation\": \"แม่\"\n    }\n}",
+					"raw": "{\n  \"firstName\": \"เย้\",\n  \"firstNameEn\": \"sfas\",\n  \"lastName\": \"แง้แง้แง้\",\n  \"lastNameEn\": \"asdf\",\n  \"nickName\": \"ดีครับ\",\n  \"citizenId\": \"1111111111111\",\n  \"telNo\": \"0121221212\",\n  \"gender\": \"ชาย\",\n  \"birthDate\": \"1999-01-01\",\n  \"bloodGroup\": \"A\",\n  \"religion\": \"พุทธ\",\n  \"email\": \"mail@mail.com\",\n  \"allergicFood\": \"กกก\",\n  \"congenitalDisease\": \"ฟหก\",\n  \"congenitalDrug\": \"แแแ\",\n  \"parent\": {\n    \"relation\": \"KKK\",\n    \"telNo\": \"0121221212\"\n  },\n  \"school\": {\n    \"name\": \"asd\",\n    \"level\": \"ม.5\",\n    \"major\": \"asd\",\n    \"gpax\": \"3.95\"\n  },\n  \"telEmergency\": \"0121221212\",\n  \"province\": \"กระบี่\",\n  \"knowWhence\": {\n    \"facebook\": false,\n    \"dekd\": false,\n    \"sit\": false,\n    \"camphub\": true,\n    \"etc\": \"\"\n  },\n  \"\": \"male\",\n  \"computerWorks\": \"ฟหกดฟหกดฟหกด\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -463,13 +463,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{APIADDRESS}}/user/120005",
+					"raw": "{{APIADDRESS}}/user/120001",
 					"host": [
 						"{{APIADDRESS}}"
 					],
 					"path": [
 						"user",
-						"120005"
+						"120001"
 					]
 				}
 			},
@@ -720,13 +720,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"status\":\"submit\"\n}",
+					"raw": "{\n\t\"status\":\"acceptData\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -734,19 +734,213 @@
 					}
 				},
 				"url": {
-					"raw": "{{APIADDRESS}}/user/120003/status",
+					"raw": "{{APIADDRESS}}/user/120001/status",
 					"host": [
 						"{{APIADDRESS}}"
 					],
 					"path": [
 						"user",
-						"120003",
+						"120001",
 						"status"
 					]
 				},
-				"description": "## Update Status for specific User by userId (wipId)\n\n> avilable value for attribute \"status\"\n>  * accept\t\t: for accept user agreement.\n>  * register\t: for finish update a profile for the first time.\n>  * major\t\t: for finish answer the major question.\n>  * general\t\t: for finish answer the general question.\n>  * submit\t\t: for finish upload the document.\n\n----\n\n## Response data\n\n\t* Model User"
+				"description": "## Update Status for specific User by userId (wipId)\n\n> avilable value for attribute \"status\"\n>  * acceptUse\t\t: for accept term of use.\n>  * acceptData\t\t: for accept term of storing data.\n>  * register\t: for finish update a profile for the first time.\n>  * major\t\t: for finish answer the major question.\n>  * general\t\t: for finish answer the general question.\n>  * submit\t\t: for finish upload the document.\n>  * documentFail\t: for who is have a document problem.\n\n----\n\n## Response data\n\n\t* Model User"
 			},
 			"response": [
+				{
+					"name": "POST User Status (DocumentFail)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"documentFail\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2020 07:08:55 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120001,\n            \"lineId\": \"1\",\n            \"facebookId\": null,\n            \"firstName\": \"เย้\",\n            \"lastName\": \"แง้แง้แง้\",\n            \"firstNameEn\": \"sfas\",\n            \"lastNameEn\": \"asdf\",\n            \"nickName\": \"ดีครับ\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1111111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0121221212\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0121221212\",\n            \"allergicFood\": \"กกก\",\n            \"congenitalDisease\": \"ฟหก\",\n            \"congenitalDrug\": \"แแแ\",\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"school\": {\n                \"id\": 2,\n                \"name\": \"asd\",\n                \"level\": \"ม.5\",\n                \"major\": \"asd\",\n                \"gpax\": \"3.95\"\n            },\n            \"parent\": {\n                \"id\": 1,\n                \"telNo\": \"0121221212\",\n                \"relation\": \"KKK\"\n            },\n            \"generalAnswer\": {\n                \"id\": 4,\n                \"firstAnswer\": \"asdasd\",\n                \"secondAnswer\": \"asdasd\",\n                \"thirdAnswer\": \"asdasd\",\n                \"forthAnswer\": \"asdasd\"\n            },\n            \"userStatus\": {\n                \"id\": 5,\n                \"registered\": false,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"majorAnswered\": true,\n                \"generalAnswered\": true,\n                \"acceptedStoreData\": true,\n                \"documentFailed\": true\n            },\n            \"knowWhence\": {\n                \"id\": 3,\n                \"facebook\": false,\n                \"camphub\": true,\n                \"dekd\": false,\n                \"sit\": false,\n                \"etc\": \"\"\n            },\n            \"major\": {\n                \"id\": 3,\n                \"name\": \"UXUI\",\n                \"description\": \"Major C\",\n                \"questionList\": [\n                    {\n                        \"id\": 5,\n                        \"name\": \"What pipe gonna do next\"\n                    },\n                    {\n                        \"id\": 6,\n                        \"name\": \"What is pipe tel no\"\n                    }\n                ]\n            },\n            \"answerList\": [\n                {\n                    \"id\": 6,\n                    \"question\": {\n                        \"id\": 5,\n                        \"name\": \"What pipe gonna do next\"\n                    },\n                    \"answerContent\": \"sdasd\"\n                },\n                {\n                    \"id\": 7,\n                    \"question\": {\n                        \"id\": 6,\n                        \"name\": \"What is pipe tel no\"\n                    },\n                    \"answerContent\": \"asdasd\"\n                }\n            ],\n            \"createdAt\": \"2020-02-12T19:28:26.000+0700\",\n            \"updatedAt\": \"2020-02-17T18:31:23.000+0700\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "POST User Status (AcceptData)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"acceptData\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/status",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2020 07:09:56 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"wipId\": 120001,\n            \"lineId\": \"1\",\n            \"facebookId\": null,\n            \"firstName\": \"เย้\",\n            \"lastName\": \"แง้แง้แง้\",\n            \"firstNameEn\": \"sfas\",\n            \"lastNameEn\": \"asdf\",\n            \"nickName\": \"ดีครับ\",\n            \"email\": \"mail@mail.com\",\n            \"birthDate\": \"1999-01-01\",\n            \"citizenId\": \"1111111111111\",\n            \"gender\": \"ชาย\",\n            \"bloodGroup\": \"A\",\n            \"telNo\": \"0121221212\",\n            \"religion\": \"พุทธ\",\n            \"telEmergency\": \"0121221212\",\n            \"allergicFood\": \"กกก\",\n            \"congenitalDisease\": \"ฟหก\",\n            \"congenitalDrug\": \"แแแ\",\n            \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n            \"province\": \"กระบี่\",\n            \"school\": {\n                \"id\": 2,\n                \"name\": \"asd\",\n                \"level\": \"ม.5\",\n                \"major\": \"asd\",\n                \"gpax\": \"3.95\"\n            },\n            \"parent\": {\n                \"id\": 1,\n                \"telNo\": \"0121221212\",\n                \"relation\": \"KKK\"\n            },\n            \"generalAnswer\": {\n                \"id\": 4,\n                \"firstAnswer\": \"asdasd\",\n                \"secondAnswer\": \"asdasd\",\n                \"thirdAnswer\": \"asdasd\",\n                \"forthAnswer\": \"asdasd\"\n            },\n            \"userStatus\": {\n                \"id\": 5,\n                \"registered\": false,\n                \"submitted\": false,\n                \"accepted\": false,\n                \"majorAnswered\": true,\n                \"generalAnswered\": true,\n                \"acceptedStoreData\": true,\n                \"documentFailed\": true\n            },\n            \"knowWhence\": {\n                \"id\": 3,\n                \"facebook\": false,\n                \"camphub\": true,\n                \"dekd\": false,\n                \"sit\": false,\n                \"etc\": \"\"\n            },\n            \"major\": {\n                \"id\": 3,\n                \"name\": \"UXUI\",\n                \"description\": \"Major C\",\n                \"questionList\": [\n                    {\n                        \"id\": 5,\n                        \"name\": \"What pipe gonna do next\"\n                    },\n                    {\n                        \"id\": 6,\n                        \"name\": \"What is pipe tel no\"\n                    }\n                ]\n            },\n            \"answerList\": [\n                {\n                    \"id\": 6,\n                    \"question\": {\n                        \"id\": 5,\n                        \"name\": \"What pipe gonna do next\"\n                    },\n                    \"answerContent\": \"sdasd\"\n                },\n                {\n                    \"id\": 7,\n                    \"question\": {\n                        \"id\": 6,\n                        \"name\": \"What is pipe tel no\"\n                    },\n                    \"answerContent\": \"asdasd\"\n                }\n            ],\n            \"createdAt\": \"2020-02-12T19:28:26.000+0700\",\n            \"updatedAt\": \"2020-02-17T18:31:23.000+0700\"\n        }\n    ]\n}"
+				},
 				{
 					"name": "POST User Status (Major)",
 					"originalRequest": {
@@ -1271,7 +1465,7 @@
 						"status"
 					]
 				},
-				"description": "## Update Status for session user\n\n> avilable value for attribute \"status\"\n>  * accept\t\t: for accept user agreement.\n>  * register\t: for finish update a profile for the first time.\n>  * major\t\t: for finish answer the major question.\n>  * general\t: for finish answer the general question.\n>  * submit\t\t: for finish upload the document.\n\n----\n\n## Response data\n\n\t* Model User"
+				"description": "## Update Status for session user\n\n> avilable value for attribute \"status\"\n>  * acceptUse\t\t: for accept term of use.\n>  * acceptData\t\t: for accept term of storing data.\n>  * register\t: for finish update a profile for the first time.\n>  * major\t\t: for finish answer the major question.\n>  * general\t\t: for finish answer the general question.\n>  * submit\t\t: for finish upload the document.\n>  * documentFail\t: for who is have a document problem.\n\n----\n\n## Response data\n\n\t* Model User"
 			},
 			"response": [
 				{
@@ -2988,7 +3182,7 @@
 						}
 					]
 				},
-				"description": "## Get Users information\n> get amount of user that currently in that status and total user in the system.\n\n----\n\n## Response data\n\n\t* total\t\t\t\t: amount,\n\t* accepted\t\t\t: amount,\n\t* registered\t\t: amount,\n\t* generalAnswered\t: amount,\n\t* majorAnswered\t\t: amount,\n\t* submitted\t\t\t: amount"
+				"description": "## Get Users information\n> get amount of user that currently in that status and total user in the system.\n\n----\n\n## Response data\n\n\t* total\t\t\t\t: amount,\n\t* accepted\t\t\t: amount,\n\t* acceptedStoreData\t: amount,\n\t* registered\t\t: amount,\n\t* generalAnswered\t: amount,\n\t* majorAnswered\t\t: amount,\n\t* submitted\t\t\t: amount,\n\t* documentFailed\t: amount"
 			},
 			"response": [
 				{
@@ -3062,7 +3256,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 01 Feb 2020 17:07:46 GMT"
+							"value": "Wed, 19 Feb 2020 07:07:09 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -3074,7 +3268,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"total\": 7,\n            \"accepted\": 2,\n            \"registered\": 4,\n            \"generalAnswered\": 3,\n            \"majorAnswered\": 5,\n            \"submitted\": 1\n        }\n    ]\n}"
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        {\n            \"total\": 1,\n            \"accepted\": 0,\n            \"acceptedStoreData\": 1,\n            \"registered\": 0,\n            \"generalAnswered\": 1,\n            \"majorAnswered\": 1,\n            \"submitted\": 0,\n            \"documentFailed\": 0\n        }\n    ]\n}"
 				}
 			]
 		},
