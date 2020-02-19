@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserStatusRepository extends JpaRepository<UserStatus,Integer> {
 	Integer countByIsAccepted(boolean accepted);
+	Integer countByIsAcceptedStoreData(boolean accepted);
 	Integer countByIsRegistered(boolean registered);
 	Integer countByIsGeneralAnswered(boolean generalAnswered);
 	Integer countByIsMajorAnswered(boolean majorAnswered);
 	Integer countByIsSubmitted(boolean submitted);
+	Integer countByIsDocumentFailed(boolean documentFailed);
 }

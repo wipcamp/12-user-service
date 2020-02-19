@@ -24,6 +24,8 @@ public class UserStatus {
 
 	private boolean isAccepted = false;
 
+	private boolean isAcceptedStoreData = false;
+
 	private boolean isRegistered = false;
 
 	private boolean isGeneralAnswered = false;
@@ -31,6 +33,8 @@ public class UserStatus {
 	private boolean isMajorAnswered = false;
 
 	private boolean isSubmitted = false;
+
+	private boolean isDocumentFailed = false;
 
 
 }
