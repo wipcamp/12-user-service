@@ -274,12 +274,14 @@ public class UserService {
 
 	private UserInformationResponse getUserInformation() {
 		int accepted = userStatusRepository.countByIsAccepted(true);
+		int acceptedStoreData = userStatusRepository.countByIsAcceptedStoreData(true);
 		int registered = userStatusRepository.countByIsRegistered(true);
 		int generalAnswered = userStatusRepository.countByIsGeneralAnswered(true);
 		int majorAnswered = userStatusRepository.countByIsMajorAnswered(true);
 		int submitted = userStatusRepository.countByIsSubmitted(true);
+		int documentFailed = userStatusRepository.countByIsSubmitted(true);
 		int total = Math.toIntExact(userStatusRepository.count());
-		return new UserInformationResponse(total, accepted, registered, generalAnswered, majorAnswered, submitted);
+		return new UserInformationResponse(total, accepted,acceptedStoreData, registered, generalAnswered, majorAnswered, submitted, documentFailed);
 	}
 
 	private UserUpdateResponse getUpdateCountUser() {
@@ -359,6 +361,9 @@ public class UserService {
 				userStatus = new UserStatus();
 			}
 			switch (updateUserStatusRequest.getStatus()) {
+			case "acceptData":
+				userStatus.setAcceptedStoreData(true);
+				break;
 			case "accept":
 				userStatus.setAccepted(true);
 				break;
@@ -373,6 +378,9 @@ public class UserService {
 				break;
 			case "submit":
 				userStatus.setSubmitted(true);
+				break;
+			case "documentFail":
+				userStatus.setDocumentFailed(true);
 				break;
 			default:
 				((FailureResponse) result).setError("Status does not match the pattern");
