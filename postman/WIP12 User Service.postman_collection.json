@@ -19,12 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"lineId\": \"55555555\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n    \"lineId\": \"1\"\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/user",
@@ -455,12 +450,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"เย้\",\n  \"firstNameEn\": \"sfas\",\n  \"lastName\": \"แง้แง้แง้\",\n  \"lastNameEn\": \"asdf\",\n  \"nickName\": \"ดีครับ\",\n  \"citizenId\": \"1111111111111\",\n  \"telNo\": \"0121221212\",\n  \"gender\": \"ชาย\",\n  \"birthDate\": \"1999-01-01\",\n  \"bloodGroup\": \"A\",\n  \"religion\": \"พุทธ\",\n  \"email\": \"mail@mail.com\",\n  \"allergicFood\": \"กกก\",\n  \"congenitalDisease\": \"ฟหก\",\n  \"congenitalDrug\": \"แแแ\",\n  \"parent\": {\n    \"relation\": \"KKK\",\n    \"telNo\": \"0121221212\"\n  },\n  \"school\": {\n    \"name\": \"asd\",\n    \"level\": \"ม.5\",\n    \"major\": \"asd\",\n    \"gpax\": \"3.95\"\n  },\n  \"telEmergency\": \"0121221212\",\n  \"province\": \"กระบี่\",\n  \"knowWhence\": {\n    \"facebook\": false,\n    \"dekd\": false,\n    \"sit\": false,\n    \"camphub\": true,\n    \"etc\": \"\"\n  },\n  \"\": \"male\",\n  \"computerWorks\": \"ฟหกดฟหกดฟหกด\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n  \"firstName\": \"เย้\",\n  \"firstNameEn\": \"sfas\",\n  \"lastName\": \"แง้แง้แง้\",\n  \"lastNameEn\": \"asdf\",\n  \"nickName\": \"ดีครับ\",\n  \"citizenId\": \"1111111111111\",\n  \"telNo\": \"0121221212\",\n  \"gender\": \"ชาย\",\n  \"birthDate\": \"1999-01-01\",\n  \"bloodGroup\": \"A\",\n  \"religion\": \"พุทธ\",\n  \"email\": \"mail@mail.com\",\n  \"allergicFood\": \"กกก\",\n  \"congenitalDisease\": \"ฟหก\",\n  \"congenitalDrug\": \"แแแ\",\n  \"parent\": {\n    \"relation\": \"KKK\",\n    \"telNo\": \"0121221212\"\n  },\n  \"school\": {\n    \"name\": \"asd\",\n    \"level\": \"ม.5\",\n    \"major\": \"asd\",\n    \"gpax\": \"3.95\"\n  },\n  \"telEmergency\": \"0121221212\",\n  \"province\": \"กระบี่\",\n  \"knowWhence\": {\n    \"facebook\": false,\n    \"dekd\": false,\n    \"sit\": false,\n    \"camphub\": true,\n    \"etc\": \"\"\n  },\n  \"\": \"male\",\n  \"computerWorks\": \"ฟหกดฟหกดฟหกด\"\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/user/120001",
@@ -591,12 +581,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"asd\",\n    \"lastName\": \"asd\",\n    \"firstNameEn\": \"asd\",\n    \"lastNameEn\": \"asd\",\n    \"nickName\": \"asd\",\n    \"email\": \"mail@mail.com\",\n    \"birthDate\": \"1999-01-01\",\n    \"citizenId\": \"1101111111111\",\n    \"gender\": \"ชาย\",\n    \"bloodGroup\": \"A\",\n    \"telNo\": \"0808080808\",\n    \"religion\": \"พุทธ\",\n    \"telEmergency\": \"0808080808\",\n    \"allergicFood\": null,\n    \"congenitalDisease\": null,\n    \"congenitalDrug\": null,\n    \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n    \"province\": \"กระบี่\",\n    \"knowWhence\": \"Camphub\",\n    \"school\": {\n        \"name\": \"หกด\",\n        \"level\": \"ม.4\",\n        \"major\": \"ฟหก\",\n        \"gpax\": \"1.00\"\n    },\n    \"parent\": {\n        \"telNo\": \"0808080808\",\n        \"relation\": \"แม่\"\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n    \"firstName\": \"asd\",\n    \"lastName\": \"asd\",\n    \"firstNameEn\": \"asd\",\n    \"lastNameEn\": \"asd\",\n    \"nickName\": \"asd\",\n    \"email\": \"mail@mail.com\",\n    \"birthDate\": \"1999-01-01\",\n    \"citizenId\": \"1101111111111\",\n    \"gender\": \"ชาย\",\n    \"bloodGroup\": \"A\",\n    \"telNo\": \"0808080808\",\n    \"religion\": \"พุทธ\",\n    \"telEmergency\": \"0808080808\",\n    \"allergicFood\": null,\n    \"congenitalDisease\": null,\n    \"congenitalDrug\": null,\n    \"computerWorks\": \"ฟหกดฟหกดฟหกด\",\n    \"province\": \"กระบี่\",\n    \"knowWhence\": \"Camphub\",\n    \"school\": {\n        \"name\": \"หกด\",\n        \"level\": \"ม.4\",\n        \"major\": \"ฟหก\",\n        \"gpax\": \"1.00\"\n    },\n    \"parent\": {\n        \"telNo\": \"0808080808\",\n        \"relation\": \"แม่\"\n    }\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/me",
@@ -726,12 +711,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"status\":\"acceptData\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"status\":\"acceptData\"\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/user/120001/status",
@@ -1448,12 +1428,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"status\":\"major\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"status\":\"major\"\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/me/status",
@@ -1969,12 +1944,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/answer?userId=120004&majorId=1",
@@ -2128,12 +2098,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"answers\":[\n\t\t{\n\t\t\t\"question_id\":1,\n\t\t\t\"answer_content\":\"Nope\"\n\t\t},\n\t\t{\n\t\t\t\"question_id\":7,\n\t\t\t\"answer_content\":\"Its 4.20\"\n\t\t}]\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/me/answer?majorId=1",
@@ -2291,21 +2256,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}"
 				},
 				"url": {
-					"raw": "{{APIADDRESS}}/user/120004/general",
+					"raw": "{{APIADDRESS}}/user/120001/general",
 					"host": [
 						"{{APIADDRESS}}"
 					],
 					"path": [
 						"user",
-						"120004",
+						"120001",
 						"general"
 					]
 				},
@@ -2430,12 +2390,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"firstAnswer\":\"Example answer1\",\n\t\"secondAnswer\":\"Example answer2\",\n\t\"thirdAnswer\":\"Example answer3\",\n\t\"forthAnswer\":\"Example answer4\"\n}"
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/me/general",
@@ -2571,14 +2526,9 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/C:/Users/Administrator/Downloads/MAMP_phpInfo.pdf"
+							"src": "/C:/Users/Totozz/Downloads/lab6.pdf"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
@@ -3009,12 +2959,7 @@
 							"type": "file",
 							"src": "/C:/Users/Administrator/Downloads/MAMP_phpInfo.pdf"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{APIADDRESS}}/me/uploadDocument",
@@ -3137,6 +3082,153 @@
 					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        \"File 120013-document.pdf has been uploaded to server!\"\n    ]\n}"
 				}
 			]
+		},
+		{
+			"name": "GET User Upload Document",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"user",
+						"120001",
+						"uploadDocument"
+					]
+				},
+				"description": "## Get Uploaded Document for specific User by userId (wipId)\n\n----\n\n## Response data\n\n\t* [0] => url access of document."
+			},
+			"response": [
+				{
+					"name": "GET User Upload Document",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{APIADDRESS}}/user/120001/uploadDocument",
+							"host": [
+								"{{APIADDRESS}}"
+							],
+							"path": [
+								"user",
+								"120001",
+								"uploadDocument"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2020 15:33:59 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": [\n        \"https://minio.wip.camp/testuploaddocument/120001-document.pdf?response-content-type=application%2Fpdf&response-content-disposition=inline%3B%20filename%3D%22120001-document.pdf%22&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=2MFTg5d4%2F20200219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200219T153359Z&X-Amz-Expires=36000&X-Amz-SignedHeaders=host&X-Amz-Signature=494614844ec4c3961d9c45de2e200b86199825fd36664cd80a72fac70a29dc23\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Me Upload Document",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{JWTTOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{APIADDRESS}}/me/uploadDocument",
+					"host": [
+						"{{APIADDRESS}}"
+					],
+					"path": [
+						"me",
+						"uploadDocument"
+					]
+				},
+				"description": "## Get Uploaded Document for session user.\n\n----\n\n## Response data\n\n\t* [0] => url access of document."
+			},
+			"response": []
 		},
 		{
 			"name": "GET Users Percent",
