@@ -90,6 +90,12 @@ public class UserController {
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
+	@GetMapping("/user/{userId}/uploadDocument")
+	public ResponseEntity<ResponseForm> getUploadDocument(@PathVariable("userId") long userId){
+		ResponseForm result = userService.getUploadDocument(userId);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+
 	@GetMapping("/user/line/{lineId}")
 	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") String lineId , HttpServletRequest request){
 		ResponseForm result = userService.getUserByLineId(lineId , request);
@@ -125,6 +131,12 @@ public class UserController {
 	public ResponseEntity<ResponseForm> uploadDocumentByToken(@RequestHeader(name = "Authorization", required = true) String token,
 			@RequestParam("file") MultipartFile file){
 		ResponseForm result = userService.uploadDocumentByToken(file, token);
+		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
+	}
+
+	@GetMapping("/me/uploadDocument")
+	public ResponseEntity<ResponseForm> getUploadDocument(@RequestHeader(name = "Authorization", required = true) String token){
+		ResponseForm result = userService.getUploadDocumentByToken(token);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 }

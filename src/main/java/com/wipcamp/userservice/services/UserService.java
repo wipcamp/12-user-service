@@ -4,15 +4,28 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
+
+import io.minio.errors.ErrorResponseException;
+import io.minio.errors.InsufficientDataException;
+import io.minio.errors.InternalException;
+import io.minio.errors.InvalidBucketNameException;
+import io.minio.errors.InvalidEndpointException;
+import io.minio.errors.InvalidExpiresRangeException;
+import io.minio.errors.InvalidPortException;
+
+import io.minio.errors.InvalidResponseException;
+import io.minio.errors.NoResponseException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,6 +95,9 @@ public class UserService {
 
 	@Value("${minio.bucketname}")
 	private String MINIOBUCKETNAME;
+
+	@Value("${minio.expiretime}")
+	private int MINIOEXPIRETIME;
 
 	private Logger logger = LoggerFactory.getLogger(MajorController.class);
 
@@ -466,7 +482,7 @@ public class UserService {
 
 					minioClient.putObject(MINIOBUCKETNAME, objectName, file.getInputStream(), file.getSize(), header);
 
-					user.setUploadDocumentPath(MINIOENDPOINT + '/' + MINIOBUCKETNAME + '/' + objectName);
+					user.setUploadDocumentPath(minioClient.getObjectUrl(MINIOBUCKETNAME,objectName));
 					userRepository.save(user);
 
 					ArrayList<String> resultData = new ArrayList<>(1);
@@ -490,4 +506,42 @@ public class UserService {
 		return result;
 	}
 
+	public ResponseForm getUploadDocumentByToken(String token) {
+		Integer wipid = null;
+		try {
+			wipid = jwtUtility.getClaimFromToken(token, "wipId");
+		} catch (NullPointerException e) {
+			logger.info(System.currentTimeMillis() + " | JWT doesn't have wipId Field");
+		}
+		return getUploadDocument(wipid);
+	}
+
+	public ResponseForm getUploadDocument(long userId) {
+		ResponseForm result = new FailureResponse();
+		User user = userRepository.findById(userId).orElse(null);
+		if(user == null){
+			((FailureResponse) result).setError("User not found");
+		}else{
+			if(user.getUploadDocumentPath() == null || user.getUploadDocumentPath().isEmpty()){
+				((FailureResponse) result).setError("This user doesn't upload document yet!");
+			}else{
+
+				try {
+					MinioClient minioClient = new MinioClient(MINIOENDPOINT, MINIOACCESSKEY, MINIOSECRETKEY);
+					String userUrlPath = user.getUploadDocumentPath();
+					String objectName = userUrlPath.substring(userUrlPath.length()-19,userUrlPath.length());
+					ArrayList<String> resultData = new ArrayList<>(1);
+					HashMap<String, String> requestParams = new HashMap<>();
+					requestParams.put("response-content-type","application/pdf");
+					requestParams.put("response-content-disposition","inline; filename=\""+objectName+"\"");
+					resultData.add(minioClient.presignedGetObject(MINIOBUCKETNAME,objectName,MINIOEXPIRETIME*60*60,requestParams));
+					result = new SuccessResponse<String>(resultData);
+				} catch (Exception e) {
+					logger.error(new Timestamp(System.currentTimeMillis()) +":getUploadDocument:"+userId+":RUNTIME:"+e.getMessage(),e.getCause());
+					((FailureResponse) result).setError("Error in try clause Exception : "+e);
+				}
+			}
+		}
+		return result;
+	}
 }
