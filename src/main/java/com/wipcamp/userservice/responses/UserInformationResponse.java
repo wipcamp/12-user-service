@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserInformationResponse {
-	private int total,accepted,registered,generalAnswered,majorAnswered,submitted;
+	private int total,accepted,acceptedStoreData,registered,generalAnswered,majorAnswered,submitted,documentFailed;
 }
