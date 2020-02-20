@@ -99,7 +99,7 @@ public class UserService {
 	@Value("${minio.expiretime}")
 	private int MINIOEXPIRETIME;
 
-	private Logger logger = LoggerFactory.getLogger(MajorController.class);
+	private Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	public ResponseForm createUser(HttpServletRequest request, StoreUserRequest storeUserRequest) {
 		ResponseForm result = new FailureResponse();
@@ -119,9 +119,9 @@ public class UserService {
 			}
 		} else {
 			User user = new User();
-			user.setUserStatus(new UserStatus());
 			user.setLineId(lineId);
 			try {
+				userStatusRepository.save(user.getUserStatus());
 				userRepository.save(user);
 				User saveUser = userRepository.findByLineId(lineId).get();
 
@@ -140,7 +140,7 @@ public class UserService {
 			} catch (Exception ex) {
 				logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Cannot create user in database.");
 				((FailureResponse) result).setError("Cannot create user in database. Exceptuin = "+ex);
-
+				System.out.println(ex.getStackTrace());
 			}
 		}
 		return result;
