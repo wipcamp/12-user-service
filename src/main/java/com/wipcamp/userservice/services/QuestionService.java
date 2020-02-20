@@ -30,11 +30,11 @@ public class QuestionService {
 
 	Logger logger = LoggerFactory.getLogger(QuestionController.class);
 
-	public QuestionService(QuestionRepository questionRepository){
+	public QuestionService(QuestionRepository questionRepository) {
 		this.questionRepository = questionRepository;
 	}
 
-	public Question getSingleQuestion(Long questionId){
+	public Question getSingleQuestion(Long questionId) {
 		return questionRepository.findById(questionId).get();
 	}
 
@@ -44,10 +44,11 @@ public class QuestionService {
 		List<Question> allQuestion = this.questionRepository.findAll();
 
 		if (allQuestion.isEmpty()) {
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No question in database" );
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "No question in database");
 			((FailureResponse) result).setError("No question found in database.");
-		} else{
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Question size is " + allQuestion.size());
+		} else {
+			logger.info(
+					System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Question size is " + allQuestion.size());
 			result = new SuccessResponse<Question>(HttpStatus.OK, allQuestion);
 		}
 		return result;
@@ -57,13 +58,14 @@ public class QuestionService {
 
 		ResponseForm result = new FailureResponse();
 
-		try{
+		try {
 			Question currentQuestion = this.questionRepository.findById(questionId).get();
-			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Question is " + currentQuestion.getName());
+			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Current Question is "
+					+ currentQuestion.getName());
 			ArrayList<Question> questions = new ArrayList<>();
 			questions.add(currentQuestion);
 			result = new SuccessResponse<Question>(HttpStatus.OK, questions);
-		} catch(NoSuchElementException ex){
+		} catch (NoSuchElementException ex) {
 			logger.info(System.currentTimeMillis() + " | " + request.getRemoteAddr() + " | " + "Question not found");
 		}
 		return result;

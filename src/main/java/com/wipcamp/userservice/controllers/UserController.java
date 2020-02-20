@@ -64,7 +64,7 @@ public class UserController {
 	}
 
 	@PutMapping("/user/{userId}")
-	public ResponseEntity<ResponseForm> updateUserInformation(@PathVariable("userId") long userId, @Valid @RequestBody User user,
+	public ResponseEntity<ResponseForm> updateUserInformation(@PathVariable("userId") long userId, @Valid @RequestBody @NotNull User user,
 			BindingResult theBindingResult, ModelMap model) {
 		ResponseForm result = userService.updateUser(user, userId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
@@ -109,7 +109,7 @@ public class UserController {
 	}
 
 	@PutMapping("/me")
-	public ResponseEntity<ResponseForm> updateUserByToken(@RequestHeader(name = "Authorization", required = true) String token,@RequestBody User user){
+	public ResponseEntity<ResponseForm> updateUserByToken(@RequestHeader(name = "Authorization", required = true) String token,@Valid @RequestBody @NotNull User user){
 		ResponseForm result = userService.updateUserByToken(token, user);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
