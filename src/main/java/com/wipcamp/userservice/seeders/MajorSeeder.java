@@ -43,7 +43,7 @@ public class MajorSeeder {
 				logger.error(new Timestamp(System.currentTimeMillis())+": doSeeder: Failed: Major seeder is not complete database inset only "+majorRepository.count()+" rows");
 			}
 		}else{
-			logger.error(new Timestamp(System.currentTimeMillis())+":doSeeder:Failed:The database major table already have data!");
+			logger.warn(new Timestamp(System.currentTimeMillis())+":doSeeder:Failed:The database major table already have data!");
 		}
 	}
 }
