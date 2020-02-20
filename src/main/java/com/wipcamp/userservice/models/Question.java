@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import lombok.NoArgsConstructor;
+
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
@@ -20,6 +25,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "questions")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 	@Id
 	@GeneratedValue
@@ -37,44 +45,13 @@ public class Question {
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answerList;
 
-	public Question() {
+	public Question(String name) {
+		this.name = name;
 	}
 
 	public Question(String name, Major major, List<Answer> answerList) {
 		this.name = name;
 		this.major = major;
-		this.answerList = answerList;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Major getMajor() {
-		return major;
-	}
-
-	public void setMajor(Major major) {
-		this.major = major;
-	}
-
-	public List<Answer> getAnswerList() {
-		return answerList;
-	}
-
-	public void setAnswerList(List<Answer> answerList) {
 		this.answerList = answerList;
 	}
 }

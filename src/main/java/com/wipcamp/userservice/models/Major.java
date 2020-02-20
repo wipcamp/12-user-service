@@ -1,17 +1,26 @@
 package com.wipcamp.userservice.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "majors")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Major {
 
 	@Id
@@ -32,46 +41,9 @@ public class Major {
 	@OneToMany(mappedBy = "major")
 	private List<User> userList;
 
-	public Major() {
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
+	public Major (long id, String name, String description){
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public List<Question> getQuestionList() {
-		return questionList;
-	}
-
-	public void setQuestionList(List<Question> questionList) {
-		this.questionList = questionList;
-	}
-
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
 	}
 }
