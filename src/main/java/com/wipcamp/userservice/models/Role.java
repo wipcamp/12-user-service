@@ -14,9 +14,10 @@ import javax.persistence.Table;
 @Data
 @NoArgsConstructor
 public class Role {
+
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private int id;
 
 	@Column(nullable = true)
 	private String name;
