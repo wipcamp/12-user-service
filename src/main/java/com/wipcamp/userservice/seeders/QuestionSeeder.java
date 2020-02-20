@@ -46,7 +46,7 @@ public class QuestionSeeder {
 
 	void doSeeder() {
 		List<Major> majors = majorRepository.findAll();
-		if(majors.size() == 4){
+		if(majors.size() == 4 && questionRepository.count() == 0){
 			int countQuestion = 0;
 			for (int i = 0; i < majors.size(); i++) {
 				for (int j = 0; j < 2; j++) {
@@ -60,7 +60,7 @@ public class QuestionSeeder {
 				logger.error(new Timestamp(System.currentTimeMillis())+": doSeeder: Failed: Question seeder is not complete database inset only "+questionRepository.count()+" rows");
 			}
 		}else{
-			logger.error(new Timestamp(System.currentTimeMillis())+": doSeeder: Failed: The database question table already have data!");
+			logger.warn(new Timestamp(System.currentTimeMillis())+": doSeeder: Failed: The database question table already have data!");
 		}
 	}
 }
