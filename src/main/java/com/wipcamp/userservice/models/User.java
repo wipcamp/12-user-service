@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.wipcamp.userservice.seeders.SeederRunner;
+
 import lombok.Data;
 
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@SequenceGenerator(name="wipId_generator", sequenceName = "wipId_sequence", initialValue = 120000, allocationSize = 1)
+@SequenceGenerator(name="wipId_generator", sequenceName = "wipId_sequence", initialValue = 120001, allocationSize = 1)
 @Data
 @NoArgsConstructor
 public class User {
