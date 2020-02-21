@@ -91,7 +91,7 @@ public class User {
 	private String congenitalDrug;
 
 	@Lob
-	@Column(nullable = true, length=1024)
+	@Column(nullable = true, length=9999)
 	private String computerWorks;
 
 	@Column(nullable = true)
