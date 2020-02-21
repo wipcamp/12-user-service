@@ -21,9 +21,7 @@ public class Parent {
 	@GeneratedValue
 	private int id;
 
-	@NonNull
 	private String telNo;
 
-	@NonNull
 	private String relation;
 }
