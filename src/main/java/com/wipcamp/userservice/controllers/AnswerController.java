@@ -26,9 +26,9 @@ public class AnswerController {
 	private AnswerService answerService;
 
 	@PostMapping("/answer")
-	public ResponseEntity<ResponseForm> createAnswer(@RequestBody @Valid StoreAnswerRequest request, @RequestParam long userId,
+	public ResponseEntity<ResponseForm> createAnswer(@RequestHeader(name = "Authorization", required = true) String token,@RequestBody @Valid StoreAnswerRequest request, @RequestParam long userId,
 			@RequestParam long majorId){
-		ResponseForm result = this.answerService.createAnswer(request,userId,majorId);
+		ResponseForm result = this.answerService.createAnswer(token,request,userId,majorId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 

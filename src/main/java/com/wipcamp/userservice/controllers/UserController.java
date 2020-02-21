@@ -52,53 +52,53 @@ public class UserController {
 
 	@GetMapping("/users")
 	@ResponseBody
-	public ResponseEntity<ResponseForm> getAllUser(@RequestParam(required=false,name="filter") String filter, @RequestParam(required=false,name="option") String option,@RequestParam(required=false,name="date") String date, HttpServletRequest request){
-		ResponseForm result = userService.getAllUser(filter,option,date,request);
+	public ResponseEntity<ResponseForm> getAllUser(@RequestHeader(name = "Authorization", required = true) String token,@RequestParam(required=false,name="filter") String filter, @RequestParam(required=false,name="option") String option,@RequestParam(required=false,name="date") String date, HttpServletRequest request){
+		ResponseForm result = userService.getAllUser(token,filter,option,date,request);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
 	@GetMapping("/user/{userId}")
-	public ResponseEntity<ResponseForm> getUserByUserId(@PathVariable("userId") long userId, HttpServletRequest request) {
-		ResponseForm result = userService.getUserByUserId(userId, request);
+	public ResponseEntity<ResponseForm> getUserByUserId(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("userId") long userId, HttpServletRequest request) {
+		ResponseForm result = userService.getUserByUserId(token,userId, request);
 		return new ResponseEntity<>(result, result.getHttpCode());
 	}
 
 	@PutMapping("/user/{userId}")
-	public ResponseEntity<ResponseForm> updateUserInformation(@PathVariable("userId") long userId, @Valid @RequestBody @NotNull User user,
+	public ResponseEntity<ResponseForm> updateUserInformation(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("userId") long userId, @Valid @RequestBody @NotNull User user,
 			BindingResult theBindingResult, ModelMap model) {
-		ResponseForm result = userService.updateUser(user, userId);
+		ResponseForm result = userService.updateUserCheck(token, user, userId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
 	@PostMapping("/user/{userId}/general")
-	public ResponseEntity<ResponseForm> updateUserGeneralAnswer(@PathVariable("userId") long userId, @Valid @RequestBody GeneralAnswer generalAnswer) {
-		ResponseForm result = userService.updateUserGeneralAnswer(generalAnswer, userId);
+	public ResponseEntity<ResponseForm> updateUserGeneralAnswer(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("userId") long userId, @Valid @RequestBody GeneralAnswer generalAnswer) {
+		ResponseForm result = userService.updateUserGeneralAnswer(token, generalAnswer, userId);
 		return new ResponseEntity<ResponseForm>(result, result.getHttpCode());
 	}
 
 	@PostMapping("/user/{userId}/status")
-	public ResponseEntity<ResponseForm> updateUserStatus(@PathVariable("userId") long userId,
+	public ResponseEntity<ResponseForm> updateUserStatus(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("userId") long userId,
 			@RequestBody @Valid UpdateUserStatusRequest userStatusRequest){
-		ResponseForm result = userService.updateUserStatue(userStatusRequest ,userId);
+		ResponseForm result = userService.updateUserStatue(token,userStatusRequest ,userId);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
 	@PostMapping("/user/{userId}/uploadDocument")
-	public ResponseEntity<ResponseForm> uploadDocument(@PathVariable("userId") long userId,
+	public ResponseEntity<ResponseForm> uploadDocument(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("userId") long userId,
 			@RequestParam("file") MultipartFile file){
-		ResponseForm result = userService.uploadDocument(file ,userId);
+		ResponseForm result = userService.uploadDocument(token, file ,userId);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
 	@GetMapping("/user/{userId}/uploadDocument")
-	public ResponseEntity<ResponseForm> getUploadDocument(@PathVariable("userId") long userId){
-		ResponseForm result = userService.getUploadDocument(userId);
+	public ResponseEntity<ResponseForm> getUploadDocument(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("userId") long userId){
+		ResponseForm result = userService.getUploadDocumentCheck(token,userId);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 
 	@GetMapping("/user/line/{lineId}")
-	public ResponseEntity<ResponseForm> getUserByLineId(@PathVariable("lineId") String lineId , HttpServletRequest request){
-		ResponseForm result = userService.getUserByLineId(lineId , request);
+	public ResponseEntity<ResponseForm> getUserByLineId(@RequestHeader(name = "Authorization", required = true) String token,@PathVariable("lineId") String lineId , HttpServletRequest request){
+		ResponseForm result = userService.getUserByLineId(token,lineId , request);
 		return new ResponseEntity<ResponseForm>(result,result.getHttpCode());
 	}
 

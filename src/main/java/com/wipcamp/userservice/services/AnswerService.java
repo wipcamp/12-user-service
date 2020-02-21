@@ -42,7 +42,15 @@ public class AnswerService {
 
 	private Logger logger = LoggerFactory.getLogger(AnswerService.class);
 
-	public ResponseForm createAnswer(StoreAnswerRequest request, long userId, long majorId) {
+	public ResponseForm createAnswer(String token, StoreAnswerRequest request, long userId, long majorId) {
+
+		Integer wipperId = null;
+		try {
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+		} catch (NullPointerException e) {
+			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
+			return new FailureResponse("You not have this permission");
+		}
 
 		User userFromPath = this.userRepository.findById(userId).orElse(null);
 
