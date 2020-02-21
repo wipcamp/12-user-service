@@ -156,6 +156,9 @@ public class UserService {
 
 	private void updateUserWithNewUser(User newUser, User queryUser) {
 		newUser.setWipId(queryUser.getWipId());
+		if(newUser.getUserStatus() == null){
+			newUser.setUserStatus(queryUser.getUserStatus());
+		}
 		if (newUser.getParent() != null) {
 			if (queryUser.getParent() != null) {
 				newUser.getParent().setId(queryUser.getParent().getId());
