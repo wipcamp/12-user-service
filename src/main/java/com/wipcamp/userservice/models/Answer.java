@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertFalse;
@@ -40,6 +41,7 @@ public class Answer {
 	@NotNull
 	@NotBlank
 	@NonNull
+	@Lob
 	@Column(nullable = true, length=9999)
 	private String answerContent;
 
