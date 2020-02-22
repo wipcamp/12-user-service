@@ -190,7 +190,7 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			((FailureResponse)result).setError("You not have this permission");
@@ -216,7 +216,7 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
@@ -279,7 +279,7 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			((FailureResponse)result).setError("You not have this permission");
@@ -287,7 +287,7 @@ public class UserService {
 		}
 		List<User> allUser = userRepository.findAll();
 		if (filter == null) {
-			if (allUser == null) {
+			if (allUser.size() == 0) {
 				LoggerUtility.logError(logger, "Fail get all users", "getAllUser");
 			} else {
 				LoggerUtility.logSuccessInfo(logger, "Successful get all users", "getAllUser");
@@ -344,7 +344,7 @@ public class UserService {
 		User queryUser = userRepository.findById(userId).orElse(null);
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You don't have this permission.");
@@ -394,7 +394,7 @@ public class UserService {
 		ResponseForm result = new FailureResponse();
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			((FailureResponse)result).setError("You not have this permission");
@@ -494,7 +494,7 @@ public class UserService {
 	public ResponseForm uploadDocument(String token, MultipartFile file, long userId) {
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
@@ -508,6 +508,7 @@ public class UserService {
 			wipid = jwtUtility.getClaimFromToken(token, "wipId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "JWT doesn't have wipId Field token=" + token, "uploadDocumentByToken", token);
+			return new FailureResponse("โปรด Log in ใหม่");
 		}
 		return uploadDocumentToMinio(file, wipid);
 	}
@@ -524,7 +525,7 @@ public class UserService {
 		if (file == null) {
 			LoggerUtility.logUserFailWarning(logger, "Cannot upload document for user. upload file is null wipId=" + userId,
 					"uploadDocumentToMinio", userId);
-			((FailureResponse) result).setError("File must be upload");
+			((FailureResponse) result).setError("กรุณาเลือกไฟล์ก่อนอัพโหลด");
 		} else {
 			String fileType = Objects.requireNonNull(file.getOriginalFilename())
 					.substring(file.getOriginalFilename().lastIndexOf('.'), file.getOriginalFilename().length());
@@ -643,7 +644,7 @@ public class UserService {
 	public ResponseForm getUploadDocumentCheck(String token, long userId) {
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
@@ -654,7 +655,7 @@ public class UserService {
 	public ResponseForm updateUserCheck(String token, User user, long userId) {
 		Integer wipperId = null;
 		try {
-			wipperId = jwtUtility.getClaimFromToken(token, "wipperid");
+			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
