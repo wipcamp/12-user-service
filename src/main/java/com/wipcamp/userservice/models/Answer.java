@@ -40,7 +40,7 @@ public class Answer {
 	@NotNull
 	@NotBlank
 	@NonNull
-	@Column(nullable = true, length=1024)
+	@Column(nullable = true, length=9999)
 	private String answerContent;
 
 	public Answer() {

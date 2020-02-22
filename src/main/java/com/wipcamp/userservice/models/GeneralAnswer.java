@@ -20,15 +20,15 @@ public class GeneralAnswer {
 	@GeneratedValue
 	private int id;
 
-	@Column(nullable = true, length=1024)
+	@Column(nullable = true, length=9999)
 	private String firstAnswer;
 
-	@Column(nullable = true, length=1024)
+	@Column(nullable = true, length=9999)
 	private String secondAnswer;
 
-	@Column(nullable = true, length=1024)
+	@Column(nullable = true, length=9999)
 	private String thirdAnswer;
 
-	@Column(nullable = true, length=1024)
+	@Column(nullable = true, length=9999)
 	private String forthAnswer;
 }
