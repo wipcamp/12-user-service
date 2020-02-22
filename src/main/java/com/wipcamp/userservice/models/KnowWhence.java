@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="know_whences")
+@Table(name="know_whence")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
