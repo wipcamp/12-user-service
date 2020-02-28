@@ -191,11 +191,15 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			((FailureResponse)result).setError("You not have this permission");
 			return result;
 		}
+
 
 		try {
 			User currentUser = this.userRepository.findById(userId).get();
@@ -217,6 +221,9 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
@@ -280,6 +287,9 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			((FailureResponse)result).setError("You not have this permission");
@@ -345,6 +355,9 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You don't have this permission.");
@@ -395,6 +408,9 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			((FailureResponse)result).setError("You not have this permission");
@@ -495,6 +511,9 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
@@ -645,6 +664,9 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
@@ -656,9 +678,13 @@ public class UserService {
 		Integer wipperId = null;
 		try {
 			wipperId = jwtUtility.getClaimFromToken(token, "wipperId");
+			if(wipperId == null){
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			LoggerUtility.logUserError(logger, "Someone try to access /user/{id} fuction.", "updateUserByToken", token, e);
 			return new FailureResponse("You not have this permission");
+
 		}
 		return updateUser(user,userId);
 	}
